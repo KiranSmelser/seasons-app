@@ -1,0 +1,28 @@
+import SwiftUI
+
+struct ContentView: View {
+    var body: some View {
+        TabView {
+            SeasonalListView()
+                .tabItem {
+                    Label("In Season", systemImage: "leaf.fill")
+                }
+
+            RecipeListView()
+                .tabItem {
+                    Label("Recipes", systemImage: "book.fill")
+                }
+
+            CarbonDashboardView()
+                .tabItem {
+                    Label("Impact", systemImage: "chart.bar.fill")
+                }
+        }
+        .tint(.green)
+    }
+}
+
+#Preview {
+    ContentView()
+        .modelContainer(for: CarbonLog.self, inMemory: true)
+}

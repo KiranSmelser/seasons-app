@@ -1,0 +1,218 @@
+[
+  {
+    "id": "strawberry",
+    "name": "Strawberry",
+    "category": "fruit",
+    "description": "Sweet, juicy berries that are at their peak flavor when locally grown in season. Rich in vitamin C and antioxidants.",
+    "imageName": "strawberry",
+    "seasonsByRegion": {
+      "northeast": [6, 7],
+      "southeast": [3, 4, 5, 6],
+      "midwest": [6, 7],
+      "greatPlains": [5, 6, 7],
+      "southwest": [2, 3, 4, 11, 12],
+      "pacificNorthwest": [6, 7, 8],
+      "california": [3, 4, 5, 6, 7, 8, 9]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 1.8
+  },
+  {
+    "id": "tomato",
+    "name": "Tomato",
+    "category": "vegetable",
+    "description": "Versatile and flavorful, vine-ripened local tomatoes taste far superior to imported varieties. High in lycopene.",
+    "imageName": "tomato",
+    "seasonsByRegion": {
+      "northeast": [7, 8, 9],
+      "southeast": [5, 6, 7, 8, 9, 10],
+      "midwest": [7, 8, 9],
+      "greatPlains": [6, 7, 8, 9],
+      "southwest": [4, 5, 6, 10, 11],
+      "pacificNorthwest": [7, 8, 9],
+      "california": [5, 6, 7, 8, 9, 10, 11]
+    },
+    "localCarbonKgPerKg": 0.4,
+    "importedCarbonKgPerKg": 2.5
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "category": "fruit",
+    "description": "Crisp fall favorite available in hundreds of varieties. Local apples from orchards have the best crunch and flavor.",
+    "imageName": "apple",
+    "seasonsByRegion": {
+      "northeast": [8, 9, 10, 11],
+      "southeast": [8, 9, 10],
+      "midwest": [8, 9, 10, 11],
+      "greatPlains": [8, 9, 10],
+      "southwest": [8, 9, 10],
+      "pacificNorthwest": [8, 9, 10, 11],
+      "california": [7, 8, 9, 10, 11]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.1
+  },
+  {
+    "id": "spinach",
+    "name": "Spinach",
+    "category": "vegetable",
+    "description": "Nutrient-dense leafy green packed with iron and vitamins. Thrives in cool weather and grows quickly.",
+    "imageName": "spinach",
+    "seasonsByRegion": {
+      "northeast": [4, 5, 6, 9, 10],
+      "southeast": [2, 3, 4, 10, 11, 12],
+      "midwest": [4, 5, 6, 9, 10],
+      "greatPlains": [3, 4, 5, 9, 10, 11],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [4, 5, 6, 9, 10, 11],
+      "california": [1, 2, 3, 4, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.4
+  },
+  {
+    "id": "zucchini",
+    "name": "Zucchini",
+    "category": "vegetable",
+    "description": "Prolific summer squash that's incredibly versatile in the kitchen. Mild flavor works in both savory and sweet dishes.",
+    "imageName": "zucchini",
+    "seasonsByRegion": {
+      "northeast": [6, 7, 8, 9],
+      "southeast": [4, 5, 6, 7, 8, 9],
+      "midwest": [6, 7, 8, 9],
+      "greatPlains": [6, 7, 8, 9],
+      "southwest": [3, 4, 5, 9, 10, 11],
+      "pacificNorthwest": [6, 7, 8, 9],
+      "california": [4, 5, 6, 7, 8, 9, 10]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 1.6
+  },
+  {
+    "id": "blueberry",
+    "name": "Blueberry",
+    "category": "fruit",
+    "description": "Antioxidant powerhouse with sweet-tart flavor. Local berries are far more flavorful than imported ones.",
+    "imageName": "blueberry",
+    "seasonsByRegion": {
+      "northeast": [6, 7, 8],
+      "southeast": [5, 6, 7],
+      "midwest": [6, 7, 8],
+      "greatPlains": [6, 7],
+      "southwest": [5, 6],
+      "pacificNorthwest": [6, 7, 8],
+      "california": [5, 6, 7, 8]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 2.2
+  },
+  {
+    "id": "kale",
+    "name": "Kale",
+    "category": "vegetable",
+    "description": "Hardy leafy green that actually sweetens after frost. Packed with vitamins K, A, and C.",
+    "imageName": "kale",
+    "seasonsByRegion": {
+      "northeast": [3, 4, 5, 9, 10, 11, 12],
+      "southeast": [1, 2, 3, 10, 11, 12],
+      "midwest": [4, 5, 9, 10, 11],
+      "greatPlains": [3, 4, 5, 9, 10, 11],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [3, 4, 5, 9, 10, 11, 12],
+      "california": [1, 2, 3, 4, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.3
+  },
+  {
+    "id": "basil",
+    "name": "Basil",
+    "category": "herb",
+    "description": "Aromatic herb essential in Mediterranean and Asian cuisines. Fresh local basil has unmatched fragrance.",
+    "imageName": "basil",
+    "seasonsByRegion": {
+      "northeast": [6, 7, 8, 9],
+      "southeast": [4, 5, 6, 7, 8, 9, 10],
+      "midwest": [6, 7, 8, 9],
+      "greatPlains": [5, 6, 7, 8, 9],
+      "southwest": [3, 4, 5, 9, 10, 11],
+      "pacificNorthwest": [6, 7, 8, 9],
+      "california": [4, 5, 6, 7, 8, 9, 10]
+    },
+    "localCarbonKgPerKg": 0.5,
+    "importedCarbonKgPerKg": 3.2
+  },
+  {
+    "id": "sweet_potato",
+    "name": "Sweet Potato",
+    "category": "vegetable",
+    "description": "Naturally sweet root vegetable rich in beta-carotene. Stores well, extending the local season.",
+    "imageName": "sweet_potato",
+    "seasonsByRegion": {
+      "northeast": [9, 10, 11],
+      "southeast": [8, 9, 10, 11, 12],
+      "midwest": [9, 10, 11],
+      "greatPlains": [9, 10, 11],
+      "southwest": [9, 10, 11, 12],
+      "pacificNorthwest": [9, 10, 11],
+      "california": [8, 9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.15,
+    "importedCarbonKgPerKg": 0.9
+  },
+  {
+    "id": "peach",
+    "name": "Peach",
+    "category": "fruit",
+    "description": "Juicy stone fruit that's a hallmark of summer. Tree-ripened local peaches are incomparably sweet and fragrant.",
+    "imageName": "peach",
+    "seasonsByRegion": {
+      "northeast": [7, 8, 9],
+      "southeast": [5, 6, 7, 8],
+      "midwest": [7, 8],
+      "greatPlains": [6, 7, 8],
+      "southwest": [5, 6, 7],
+      "pacificNorthwest": [7, 8, 9],
+      "california": [5, 6, 7, 8, 9]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 1.9
+  },
+  {
+    "id": "butternut_squash",
+    "name": "Butternut Squash",
+    "category": "vegetable",
+    "description": "Sweet, nutty winter squash perfect for soups and roasting. Stores for months after harvest.",
+    "imageName": "butternut_squash",
+    "seasonsByRegion": {
+      "northeast": [9, 10, 11, 12, 1, 2],
+      "southeast": [9, 10, 11, 12],
+      "midwest": [9, 10, 11, 12, 1, 2],
+      "greatPlains": [9, 10, 11, 12, 1],
+      "southwest": [10, 11, 12, 1, 2],
+      "pacificNorthwest": [9, 10, 11, 12, 1, 2],
+      "california": [9, 10, 11, 12, 1, 2]
+    },
+    "localCarbonKgPerKg": 0.15,
+    "importedCarbonKgPerKg": 1.0
+  },
+  {
+    "id": "cilantro",
+    "name": "Cilantro",
+    "category": "herb",
+    "description": "Bright, citrusy herb used globally in salsas, curries, and salads. Bolts quickly in heat, best in cooler months.",
+    "imageName": "cilantro",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 9, 10],
+      "southeast": [2, 3, 4, 10, 11],
+      "midwest": [5, 6, 9, 10],
+      "greatPlains": [4, 5, 9, 10],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [5, 6, 9, 10],
+      "california": [1, 2, 3, 4, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.5,
+    "importedCarbonKgPerKg": 3.0
+  }
+]

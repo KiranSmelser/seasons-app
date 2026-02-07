@@ -1,0 +1,130 @@
+[
+  {
+    "id": "caprese_salad",
+    "name": "Summer Caprese Salad",
+    "description": "Classic Italian salad showcasing peak-season tomatoes and fresh basil. Simple ingredients, maximum flavor.",
+    "ingredients": [
+      {"produceId": "tomato", "name": "Tomato", "quantity": "3", "unit": "large"},
+      {"produceId": "basil", "name": "Fresh Basil", "quantity": "1", "unit": "bunch"},
+      {"produceId": null, "name": "Fresh Mozzarella", "quantity": "8", "unit": "oz"},
+      {"produceId": null, "name": "Extra Virgin Olive Oil", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Balsamic Glaze", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Sea Salt", "quantity": "1", "unit": "pinch"}
+    ],
+    "instructions": [
+      "Slice tomatoes into 1/4 inch thick rounds.",
+      "Slice mozzarella into similar-sized rounds.",
+      "Arrange alternating slices of tomato and mozzarella on a platter.",
+      "Tuck fresh basil leaves between the slices.",
+      "Drizzle with olive oil and balsamic glaze.",
+      "Season with sea salt and freshly cracked pepper."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 0,
+    "servings": 4,
+    "imageName": "caprese_salad"
+  },
+  {
+    "id": "kale_smoothie",
+    "name": "Green Power Smoothie",
+    "description": "A nutrient-packed smoothie blending seasonal kale with sweet fruits for an energizing start to your day.",
+    "ingredients": [
+      {"produceId": "kale", "name": "Kale Leaves", "quantity": "2", "unit": "cups"},
+      {"produceId": "blueberry", "name": "Blueberries", "quantity": "1", "unit": "cup"},
+      {"produceId": null, "name": "Banana", "quantity": "1", "unit": "medium"},
+      {"produceId": null, "name": "Almond Milk", "quantity": "1", "unit": "cup"},
+      {"produceId": null, "name": "Honey", "quantity": "1", "unit": "tbsp"}
+    ],
+    "instructions": [
+      "Remove kale leaves from stems and roughly chop.",
+      "Add kale and almond milk to blender, blend until smooth.",
+      "Add blueberries, banana, and honey.",
+      "Blend on high for 60 seconds until creamy.",
+      "Pour into a glass and serve immediately."
+    ],
+    "prepTimeMinutes": 5,
+    "cookTimeMinutes": 0,
+    "servings": 1,
+    "imageName": "kale_smoothie"
+  },
+  {
+    "id": "butternut_soup",
+    "name": "Roasted Butternut Squash Soup",
+    "description": "Velvety smooth autumn soup with warm spices. Roasting the squash first deepens the natural sweetness.",
+    "ingredients": [
+      {"produceId": "butternut_squash", "name": "Butternut Squash", "quantity": "1", "unit": "large"},
+      {"produceId": null, "name": "Onion", "quantity": "1", "unit": "medium"},
+      {"produceId": null, "name": "Garlic", "quantity": "3", "unit": "cloves"},
+      {"produceId": null, "name": "Vegetable Broth", "quantity": "3", "unit": "cups"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Nutmeg", "quantity": "0.25", "unit": "tsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Preheat oven to 400°F (200°C).",
+      "Halve the butternut squash, scoop out seeds, and drizzle with olive oil.",
+      "Roast cut-side down on a baking sheet for 40-45 minutes until tender.",
+      "Sauté diced onion and garlic in remaining olive oil until softened.",
+      "Scoop roasted squash flesh into the pot with onion mixture.",
+      "Add vegetable broth and bring to a simmer for 10 minutes.",
+      "Blend with an immersion blender until smooth.",
+      "Season with nutmeg, salt, and pepper. Serve warm."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 55,
+    "servings": 4,
+    "imageName": "butternut_soup"
+  },
+  {
+    "id": "zucchini_pasta",
+    "name": "Zucchini Noodles with Basil Pesto",
+    "description": "Light, fresh, and full of summer flavor. Spiralized zucchini replaces pasta for a lower-carb seasonal meal.",
+    "ingredients": [
+      {"produceId": "zucchini", "name": "Zucchini", "quantity": "4", "unit": "medium"},
+      {"produceId": "basil", "name": "Fresh Basil", "quantity": "2", "unit": "cups packed"},
+      {"produceId": "tomato", "name": "Cherry Tomatoes", "quantity": "1", "unit": "cup"},
+      {"produceId": null, "name": "Pine Nuts", "quantity": "0.25", "unit": "cup"},
+      {"produceId": null, "name": "Parmesan Cheese", "quantity": "0.5", "unit": "cup grated"},
+      {"produceId": null, "name": "Garlic", "quantity": "2", "unit": "cloves"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "0.33", "unit": "cup"}
+    ],
+    "instructions": [
+      "Spiralize zucchini into noodles (or use a vegetable peeler for ribbons).",
+      "Make pesto: blend basil, pine nuts, parmesan, garlic, and olive oil until smooth.",
+      "Halve the cherry tomatoes.",
+      "Sauté zucchini noodles in a large pan over medium-high heat for 2-3 minutes.",
+      "Toss with pesto and cherry tomatoes.",
+      "Serve immediately with extra parmesan on top."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 5,
+    "servings": 3,
+    "imageName": "zucchini_pasta"
+  },
+  {
+    "id": "sweet_potato_bowl",
+    "name": "Roasted Sweet Potato & Kale Bowl",
+    "description": "A hearty, nutritious grain bowl featuring roasted sweet potatoes and massaged kale with a tangy dressing.",
+    "ingredients": [
+      {"produceId": "sweet_potato", "name": "Sweet Potatoes", "quantity": "2", "unit": "medium"},
+      {"produceId": "kale", "name": "Kale", "quantity": "1", "unit": "bunch"},
+      {"produceId": null, "name": "Quinoa", "quantity": "1", "unit": "cup"},
+      {"produceId": null, "name": "Tahini", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Cumin", "quantity": "0.5", "unit": "tsp"}
+    ],
+    "instructions": [
+      "Preheat oven to 425°F (220°C).",
+      "Cube sweet potatoes, toss with olive oil and cumin, and roast for 25-30 minutes.",
+      "Cook quinoa according to package directions.",
+      "Remove kale stems and chop leaves. Massage with a drizzle of olive oil and lemon juice for 2 minutes.",
+      "Make dressing: whisk tahini, remaining lemon juice, and 2 tbsp warm water.",
+      "Assemble bowls: quinoa base, topped with kale, roasted sweet potato, and tahini dressing."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 30,
+    "servings": 2,
+    "imageName": "sweet_potato_bowl"
+  }
+]
