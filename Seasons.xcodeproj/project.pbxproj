@@ -14,6 +14,7 @@
 		3D99F56C57E1990A1EC441A6 /* ProduceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CD2D5D8B90A901C7DB128B /* ProduceDataService.swift */; };
 		5FEB023924A216D00230AEDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A431D3659A448763968F32 /* ContentView.swift */; };
 		70CDDBFD513B3116765BDAD5 /* GrowingRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61248354345EA0B70D324011 /* GrowingRegion.swift */; };
+		758FB75E82065D8019370BB1 /* Color+Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B4498BC60A12BD10B1CE5 /* Color+Season.swift */; };
 		7A47C86451707D1ACB5CB4F5 /* SeasonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */; };
 		8232D28378BBE446A92C0C91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1216D2423EFA9EED169DF5A8 /* Preview Assets.xcassets */; };
 		8C725E77655468FC0A8DA957 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E05496A2FB0CE108A6077A /* Recipe.swift */; };
@@ -71,6 +72,7 @@
 		80EB122F1746918E347DC8DB /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
 		8CA4641E5D7540B63E0A572C /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		8CD62714559824FD325A5267 /* CarbonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonViewModel.swift; sourceTree = "<group>"; };
+		A35B4498BC60A12BD10B1CE5 /* Color+Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Season.swift"; sourceTree = "<group>"; };
 		A4DAC01483B03B870BCBB319 /* SeasonsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsApp.swift; sourceTree = "<group>"; };
 		AB087E9C8CAD0BB1BA424AF1 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
 		AB627591CF760800E4C36C8C /* SeasonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonalViewModel.swift; sourceTree = "<group>"; };
@@ -112,6 +114,7 @@
 				1423269A0E4CB3253FFA2706 /* Info.plist */,
 				A4DAC01483B03B870BCBB319 /* SeasonsApp.swift */,
 				43867A0B90EFD9E88F459D24 /* Data */,
+				A4066077ADA08014213F8226 /* Extensions */,
 				5C7965EE79AFBC8370916E1B /* Models */,
 				9292C3500EA0635E21D8C1D5 /* Preview Content */,
 				5443642D039172A8D7E334E2 /* Services */,
@@ -152,6 +155,14 @@
 				1216D2423EFA9EED169DF5A8 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		A4066077ADA08014213F8226 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				A35B4498BC60A12BD10B1CE5 /* Color+Season.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 		B0B16A34FB25640932DA22A6 /* Carbon */ = {
@@ -317,6 +328,7 @@
 				D650F3A6C8762275986DBC43 /* CarbonDashboardView.swift in Sources */,
 				D676C924FCAA0320A5ADCB8E /* CarbonLog.swift in Sources */,
 				288BD196422FBD4A58BC2010 /* CarbonViewModel.swift in Sources */,
+				758FB75E82065D8019370BB1 /* Color+Season.swift in Sources */,
 				5FEB023924A216D00230AEDE /* ContentView.swift in Sources */,
 				FDB3891AD6A02BEAD50B2FF5 /* Favorite.swift in Sources */,
 				E3C222853915FAC287603111 /* FavoritesService.swift in Sources */,

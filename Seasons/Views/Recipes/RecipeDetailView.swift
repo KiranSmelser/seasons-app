@@ -103,11 +103,11 @@ struct RecipeDetailView: View {
             if isInSeason {
                 Image(systemName: "leaf.fill")
                     .font(.caption)
-                    .foregroundStyle(.green)
+                    .foregroundStyle(Color.seasonGreen)
             } else {
                 Image(systemName: "circle.fill")
                     .font(.system(size: 6))
-                    .foregroundStyle(.secondary)
+                    .foregroundStyle(Color.secondary)
             }
 
             Text("\(ingredient.quantity) \(ingredient.unit)")
@@ -141,7 +141,7 @@ struct RecipeDetailView: View {
                         .fontWeight(.bold)
                         .foregroundStyle(.white)
                         .frame(width: 24, height: 24)
-                        .background(Color.green)
+                        .background(Color.seasonGreen)
                         .clipShape(Circle())
 
                     Text(step)
@@ -165,8 +165,8 @@ struct SeasonalBadge: View {
         .fontWeight(.medium)
         .padding(.horizontal, 12)
         .padding(.vertical, 6)
-        .background(matchCount > 0 ? Color.green.opacity(0.15) : Color(.systemGray6))
-        .foregroundStyle(matchCount > 0 ? .green : .secondary)
+        .background(matchCount > 0 ? Color.seasonGreen.opacity(0.15) : Color(.systemGray6))
+        .foregroundStyle(matchCount > 0 ? Color.seasonGreen : Color.secondary)
         .clipShape(Capsule())
     }
 }
@@ -185,8 +185,7 @@ struct SeasonalBadge: View {
                 instructions: ["Step one.", "Step two."],
                 prepTimeMinutes: 10,
                 cookTimeMinutes: 20,
-                servings: 4,
-                imageName: "test"
+                servings: 4
             ),
             locationService: LocationService()
         )

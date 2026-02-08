@@ -21,8 +21,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 0,
-    "servings": 4,
-    "imageName": "caprese_salad"
+    "servings": 4
   },
   {
     "id": "kale_smoothie",
@@ -44,8 +43,7 @@
     ],
     "prepTimeMinutes": 5,
     "cookTimeMinutes": 0,
-    "servings": 1,
-    "imageName": "kale_smoothie"
+    "servings": 1
   },
   {
     "id": "butternut_soup",
@@ -72,8 +70,7 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 55,
-    "servings": 4,
-    "imageName": "butternut_soup"
+    "servings": 4
   },
   {
     "id": "zucchini_pasta",
@@ -98,8 +95,7 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 5,
-    "servings": 3,
-    "imageName": "zucchini_pasta"
+    "servings": 3
   },
   {
     "id": "sweet_potato_bowl",
@@ -124,8 +120,7 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 30,
-    "servings": 2,
-    "imageName": "sweet_potato_bowl"
+    "servings": 2
   },
   {
     "id": "grilled_corn_salad",
@@ -151,8 +146,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 10,
-    "servings": 4,
-    "imageName": "grilled_corn_salad"
+    "servings": 4
   },
   {
     "id": "roasted_beet_salad",
@@ -178,8 +172,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 60,
-    "servings": 4,
-    "imageName": "roasted_beet_salad"
+    "servings": 4
   },
   {
     "id": "asparagus_risotto",
@@ -208,8 +201,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 30,
-    "servings": 4,
-    "imageName": "asparagus_risotto"
+    "servings": 4
   },
   {
     "id": "cucumber_gazpacho",
@@ -235,8 +227,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 0,
-    "servings": 4,
-    "imageName": "cucumber_gazpacho"
+    "servings": 4
   },
   {
     "id": "berry_crisp",
@@ -264,8 +255,7 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 40,
-    "servings": 6,
-    "imageName": "berry_crisp"
+    "servings": 6
   },
   {
     "id": "stuffed_peppers",
@@ -293,8 +283,7 @@
     ],
     "prepTimeMinutes": 20,
     "cookTimeMinutes": 40,
-    "servings": 4,
-    "imageName": "stuffed_peppers"
+    "servings": 4
   },
   {
     "id": "pumpkin_soup",
@@ -323,8 +312,7 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 55,
-    "servings": 6,
-    "imageName": "pumpkin_soup"
+    "servings": 6
   },
   {
     "id": "broccoli_cheddar_soup",
@@ -352,8 +340,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 25,
-    "servings": 4,
-    "imageName": "broccoli_cheddar_soup"
+    "servings": 4
   },
   {
     "id": "carrot_ginger_soup",
@@ -380,8 +367,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 30,
-    "servings": 4,
-    "imageName": "carrot_ginger_soup"
+    "servings": 4
   },
   {
     "id": "fig_arugula_salad",
@@ -407,8 +393,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 0,
-    "servings": 4,
-    "imageName": "fig_arugula_salad"
+    "servings": 4
   },
   {
     "id": "pear_walnut_salad",
@@ -434,8 +419,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 5,
-    "servings": 4,
-    "imageName": "pear_walnut_salad"
+    "servings": 4
   },
   {
     "id": "watermelon_feta_salad",
@@ -461,8 +445,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 0,
-    "servings": 4,
-    "imageName": "watermelon_feta_salad"
+    "servings": 4
   },
   {
     "id": "eggplant_parmesan",
@@ -491,8 +474,7 @@
     ],
     "prepTimeMinutes": 25,
     "cookTimeMinutes": 35,
-    "servings": 6,
-    "imageName": "eggplant_parmesan"
+    "servings": 6
   },
   {
     "id": "strawberry_spinach_salad",
@@ -518,8 +500,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 0,
-    "servings": 4,
-    "imageName": "strawberry_spinach_salad"
+    "servings": 4
   },
   {
     "id": "apple_cinnamon_crumble",
@@ -547,8 +528,7 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 45,
-    "servings": 6,
-    "imageName": "apple_cinnamon_crumble"
+    "servings": 6
   },
   {
     "id": "grilled_peach_burrata",
@@ -576,8 +556,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 5,
-    "servings": 4,
-    "imageName": "grilled_peach_burrata"
+    "servings": 4
   },
   {
     "id": "cantaloupe_prosciutto_bites",
@@ -602,8 +581,7 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 0,
-    "servings": 4,
-    "imageName": "cantaloupe_prosciutto_bites"
+    "servings": 4
   },
   {
     "id": "grape_walnut_chicken_salad",
@@ -629,8 +607,7 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 0,
-    "servings": 4,
-    "imageName": "grape_walnut_chicken_salad"
+    "servings": 4
   },
   {
     "id": "plum_pomegranate_galette",
@@ -658,8 +635,7 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 40,
-    "servings": 6,
-    "imageName": "plum_pomegranate_galette"
+    "servings": 6
   },
   {
     "id": "persimmon_arugula_salad",
@@ -685,8 +661,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 0,
-    "servings": 4,
-    "imageName": "persimmon_arugula_salad"
+    "servings": 4
   },
   {
     "id": "garlic_green_beans",
@@ -712,8 +687,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 10,
-    "servings": 4,
-    "imageName": "garlic_green_beans"
+    "servings": 4
   },
   {
     "id": "roasted_cauliflower_tahini",
@@ -740,8 +714,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 55,
-    "servings": 4,
-    "imageName": "roasted_cauliflower_tahini"
+    "servings": 4
   },
   {
     "id": "braised_cabbage_artichoke",
@@ -769,8 +742,7 @@
     ],
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 35,
-    "servings": 4,
-    "imageName": "braised_cabbage_artichoke"
+    "servings": 4
   },
   {
     "id": "roasted_root_vegetables",
@@ -797,7 +769,6 @@
     ],
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 40,
-    "servings": 4,
-    "imageName": "roasted_root_vegetables"
+    "servings": 4
   }
 ]

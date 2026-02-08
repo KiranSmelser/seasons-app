@@ -17,7 +17,6 @@ struct Recipe: Codable, Identifiable {
     let prepTimeMinutes: Int
     let cookTimeMinutes: Int
     let servings: Int
-    let imageName: String
 
     var totalTimeMinutes: Int {
         prepTimeMinutes + cookTimeMinutes

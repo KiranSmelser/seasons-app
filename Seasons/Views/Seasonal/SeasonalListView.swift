@@ -66,7 +66,7 @@ struct SeasonalListView: View {
             Text(viewModel.currentMonthName)
                 .font(.title2)
                 .fontWeight(.bold)
-                .foregroundStyle(.green)
+                .foregroundStyle(Color.seasonGreen)
             Text("\(viewModel.inSeasonCount) items in season in the \(locationService.region.displayName)")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
@@ -170,7 +170,7 @@ struct FilterChip: View {
             }
             .padding(.horizontal, 16)
             .padding(.vertical, 8)
-            .background(isSelected ? Color.green : Color(.systemGray6))
+            .background(isSelected ? Color.seasonGreen : Color(.systemGray6))
             .foregroundStyle(isSelected ? .white : .primary)
             .clipShape(Capsule())
         }
@@ -185,13 +185,22 @@ struct ProduceCard: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
             ZStack(alignment: .topTrailing) {
-                ZStack {
-                    RoundedRectangle(cornerRadius: 12)
-                        .fill(Color(.systemGray6))
+                if UIImage(named: item.imageName) != nil {
+                    Image(item.imageName)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(minWidth: 0, maxWidth: .infinity)
                         .aspectRatio(1.0, contentMode: .fit)
-                    Image(systemName: item.category.systemImage)
-                        .font(.system(size: 36))
-                        .foregroundStyle(.green.opacity(0.6))
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                } else {
+                    ZStack {
+                        RoundedRectangle(cornerRadius: 12)
+                            .fill(Color(.systemGray6))
+                            .aspectRatio(1.0, contentMode: .fit)
+                        Image(systemName: item.category.systemImage)
+                            .font(.system(size: 36))
+                            .foregroundStyle(Color.seasonGreen.opacity(0.6))
+                    }
                 }
 
                 Button {
@@ -234,7 +243,7 @@ struct RegionPickerView: View {
                         Spacer()
                         if locationService.region == region {
                             Image(systemName: "checkmark")
-                                .foregroundStyle(.green)
+                                .foregroundStyle(Color.seasonGreen)
                         }
                     }
                 }

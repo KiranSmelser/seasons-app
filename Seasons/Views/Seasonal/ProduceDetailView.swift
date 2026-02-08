@@ -57,13 +57,21 @@ struct ProduceDetailView: View {
     @ViewBuilder
     private var headerSection: some View {
         HStack(spacing: 16) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 16)
-                    .fill(Color(.systemGray6))
+            if UIImage(named: item.imageName) != nil {
+                Image(item.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
                     .frame(width: 80, height: 80)
-                Image(systemName: item.category.systemImage)
-                    .font(.system(size: 32))
-                    .foregroundStyle(.green)
+                    .clipShape(RoundedRectangle(cornerRadius: 16))
+            } else {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 16)
+                        .fill(Color(.systemGray6))
+                        .frame(width: 80, height: 80)
+                    Image(systemName: item.category.systemImage)
+                        .font(.system(size: 32))
+                        .foregroundStyle(Color.seasonGreen)
+                }
             }
 
             VStack(alignment: .leading, spacing: 4) {
@@ -76,7 +84,7 @@ struct ProduceDetailView: View {
                 if item.isInSeason(region: region, month: currentMonth) {
                     Label("In season now", systemImage: "checkmark.circle.fill")
                         .font(.caption)
-                        .foregroundStyle(.green)
+                        .foregroundStyle(Color.seasonGreen)
                 } else {
                     Label("Not in season", systemImage: "xmark.circle")
                         .font(.caption)
@@ -99,7 +107,7 @@ struct ProduceDetailView: View {
 
                     VStack(spacing: 4) {
                         RoundedRectangle(cornerRadius: 4)
-                            .fill(inSeason ? Color.green : Color(.systemGray5))
+                            .fill(inSeason ? Color.seasonGreen : Color(.systemGray5))
                             .frame(height: 32)
                             .overlay {
                                 if isCurrent {
@@ -134,7 +142,7 @@ struct ProduceDetailView: View {
                     title: "Local & Seasonal",
                     value: String(format: "%.2f", item.localCarbonKgPerKg),
                     unit: "kg CO\u{2082}/kg",
-                    color: .green
+                    color: .seasonGreen
                 )
                 CarbonCard(
                     title: "Imported",

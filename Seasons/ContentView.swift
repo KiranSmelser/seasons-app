@@ -18,7 +18,7 @@ struct ContentView: View {
                     Label("Impact", systemImage: "chart.bar.fill")
                 }
         }
-        .tint(.green)
+        .tint(.seasonGreen)
     }
 }
 

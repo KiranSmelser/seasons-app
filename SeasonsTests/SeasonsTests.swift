@@ -96,8 +96,7 @@ final class SeasonsTests: XCTestCase {
             instructions: ["Step 1"],
             prepTimeMinutes: 10,
             cookTimeMinutes: 0,
-            servings: 2,
-            imageName: "test"
+            servings: 2
         )
 
         let inSeason: Set<String> = ["tomato", "spinach"]

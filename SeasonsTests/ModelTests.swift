@@ -80,7 +80,7 @@ final class ModelTests: XCTestCase {
             ingredients: [],
             instructions: ["Step 1"],
             prepTimeMinutes: 15, cookTimeMinutes: 30,
-            servings: 4, imageName: "test"
+            servings: 4
         )
         XCTAssertEqual(recipe.totalTimeMinutes, 45)
     }
@@ -95,7 +95,7 @@ final class ModelTests: XCTestCase {
             ],
             instructions: ["Step 1"],
             prepTimeMinutes: 10, cookTimeMinutes: 0,
-            servings: 2, imageName: "test"
+            servings: 2
         )
         XCTAssertEqual(recipe.produceIds, ["tomato", "basil"])
     }
@@ -109,7 +109,7 @@ final class ModelTests: XCTestCase {
             ],
             instructions: ["Step 1"],
             prepTimeMinutes: 10, cookTimeMinutes: 0,
-            servings: 2, imageName: "test"
+            servings: 2
         )
         let inSeason: Set<String> = ["tomato", "basil", "kale"]
         XCTAssertEqual(recipe.seasonalMatchCount(inSeason: inSeason), 2)
@@ -124,7 +124,7 @@ final class ModelTests: XCTestCase {
             ],
             instructions: ["Step 1"],
             prepTimeMinutes: 10, cookTimeMinutes: 0,
-            servings: 2, imageName: "test"
+            servings: 2
         )
         let inSeason: Set<String> = []
         XCTAssertEqual(recipe.seasonalMatchCount(inSeason: inSeason), 0)

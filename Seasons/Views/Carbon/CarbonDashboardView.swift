@@ -70,14 +70,14 @@ struct CarbonDashboardView: View {
                 .foregroundStyle(.secondary)
             Text(CarbonCalculationService.formattedCarbon(total))
                 .font(.system(size: 48, weight: .bold, design: .rounded))
-                .foregroundStyle(.green)
+                .foregroundStyle(Color.seasonGreen)
             Text("by choosing local, seasonal produce")
                 .font(.caption)
                 .foregroundStyle(.secondary)
         }
         .frame(maxWidth: .infinity)
         .padding(.vertical, 24)
-        .background(Color.green.opacity(0.1))
+        .background(Color.seasonGreen.opacity(0.1))
         .clipShape(RoundedRectangle(cornerRadius: 16))
     }
 
@@ -127,7 +127,7 @@ struct CarbonDashboardView: View {
                         Text("-\(CarbonCalculationService.formattedCarbon(item.totalCarbonSavedKg)) CO\u{2082}")
                             .font(.subheadline)
                             .fontWeight(.semibold)
-                            .foregroundStyle(.green)
+                            .foregroundStyle(Color.seasonGreen)
                     }
                     .padding()
                     .background(Color(.systemGray6))
@@ -161,7 +161,7 @@ struct CarbonDashboardView: View {
                         Text("-\(CarbonCalculationService.formattedCarbon(log.carbonSavedKg)) CO\u{2082}")
                             .font(.caption)
                             .fontWeight(.medium)
-                            .foregroundStyle(.green)
+                            .foregroundStyle(Color.seasonGreen)
                     }
                 }
                 .padding()
@@ -218,7 +218,7 @@ struct AddCarbonLogView: View {
                             Spacer()
                             Text(CarbonCalculationService.formattedCarbon(saved))
                                 .fontWeight(.semibold)
-                                .foregroundStyle(.green)
+                                .foregroundStyle(Color.seasonGreen)
                         }
                     }
                 }
