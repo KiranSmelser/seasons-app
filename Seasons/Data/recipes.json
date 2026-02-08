@@ -770,5 +770,193 @@
     "prepTimeMinutes": 15,
     "cookTimeMinutes": 40,
     "servings": 4
+  },
+  {
+    "id": "citrus_vinaigrette_salad",
+    "name": "Citrus Vinaigrette Salad",
+    "description": "A bright winter salad with fresh orange and grapefruit segments on crisp greens, dressed with a zesty lemon vinaigrette.",
+    "ingredients": [
+      {"produceId": "orange", "name": "Orange", "quantity": "2", "unit": "medium, segmented"},
+      {"produceId": "grapefruit", "name": "Grapefruit", "quantity": "1", "unit": "large, segmented"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "3", "unit": "tbsp"},
+      {"produceId": "spinach", "name": "Baby Spinach", "quantity": "4", "unit": "cups"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Honey", "quantity": "1", "unit": "tsp"},
+      {"produceId": null, "name": "Shaved Parmesan", "quantity": "2", "unit": "oz"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Supreme the orange and grapefruit by cutting away the peel and slicing between membranes.",
+      "Whisk together lemon juice, olive oil, honey, salt, and pepper for the vinaigrette.",
+      "Arrange baby spinach on a platter.",
+      "Scatter citrus segments over the greens.",
+      "Top with shaved parmesan.",
+      "Drizzle with the lemon vinaigrette and serve immediately."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 0,
+    "servings": 4
+  },
+  {
+    "id": "rhubarb_crumble",
+    "name": "Rhubarb Crumble",
+    "description": "Tart rhubarb baked under a buttery oat crumble topping. A classic spring dessert that balances sweet and sour perfectly.",
+    "ingredients": [
+      {"produceId": "rhubarb", "name": "Rhubarb", "quantity": "1.5", "unit": "lbs, cut into 1-inch pieces"},
+      {"produceId": null, "name": "Sugar", "quantity": "0.75", "unit": "cup"},
+      {"produceId": null, "name": "Rolled Oats", "quantity": "0.75", "unit": "cup"},
+      {"produceId": null, "name": "Flour", "quantity": "0.5", "unit": "cup"},
+      {"produceId": null, "name": "Brown Sugar", "quantity": "0.33", "unit": "cup packed"},
+      {"produceId": null, "name": "Butter", "quantity": "5", "unit": "tbsp cold, cubed"},
+      {"produceId": null, "name": "Vanilla Extract", "quantity": "1", "unit": "tsp"},
+      {"produceId": null, "name": "Salt", "quantity": "1", "unit": "pinch"}
+    ],
+    "instructions": [
+      "Preheat oven to 375\u00b0F (190\u00b0C).",
+      "Toss rhubarb pieces with sugar and vanilla extract.",
+      "Spread rhubarb in a baking dish.",
+      "Mix oats, flour, brown sugar, and salt in a bowl.",
+      "Cut in cold butter until the mixture forms coarse crumbs.",
+      "Scatter topping evenly over the rhubarb.",
+      "Bake for 40-45 minutes until topping is golden and rhubarb is bubbly.",
+      "Let cool 10 minutes before serving. Top with whipped cream or vanilla ice cream."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 45,
+    "servings": 6
+  },
+  {
+    "id": "leek_parsnip_soup",
+    "name": "Leek & Parsnip Soup",
+    "description": "A velvety, comforting soup combining sweet parsnips and mild leeks. Simple winter ingredients yield a surprisingly elegant result.",
+    "ingredients": [
+      {"produceId": "leek", "name": "Leeks", "quantity": "3", "unit": "large, white and light green parts, sliced"},
+      {"produceId": "parsnip", "name": "Parsnips", "quantity": "4", "unit": "medium, peeled and chopped"},
+      {"produceId": null, "name": "Vegetable Broth", "quantity": "4", "unit": "cups"},
+      {"produceId": null, "name": "Butter", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Heavy Cream", "quantity": "0.25", "unit": "cup"},
+      {"produceId": null, "name": "Fresh Thyme", "quantity": "3", "unit": "sprigs"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Melt butter in a large pot over medium heat.",
+      "Add sliced leeks and cook until softened, about 5 minutes.",
+      "Add chopped parsnips and cook for 3 more minutes.",
+      "Pour in vegetable broth, add thyme sprigs, and bring to a boil.",
+      "Reduce heat and simmer for 20-25 minutes until parsnips are very tender.",
+      "Remove thyme sprigs and blend soup until smooth.",
+      "Stir in cream, season with salt and pepper, and serve warm."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 30,
+    "servings": 4
+  },
+  {
+    "id": "collard_greens_lemon",
+    "name": "Collard Greens with Lemon",
+    "description": "Southern-style braised collard greens brightened with fresh lemon juice and garlic. A nutritious and flavorful side dish.",
+    "ingredients": [
+      {"produceId": "collard_greens", "name": "Collard Greens", "quantity": "1", "unit": "large bunch, stems removed, chopped"},
+      {"produceId": "lemon", "name": "Lemon", "quantity": "1", "unit": "juiced"},
+      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Vegetable Broth", "quantity": "0.5", "unit": "cup"},
+      {"produceId": null, "name": "Red Pepper Flakes", "quantity": "0.25", "unit": "tsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Heat olive oil in a large skillet or Dutch oven over medium heat.",
+      "Add garlic and red pepper flakes, cook for 30 seconds until fragrant.",
+      "Add collard greens in batches, letting each batch wilt before adding more.",
+      "Pour in vegetable broth and bring to a simmer.",
+      "Cover and cook for 15-20 minutes until greens are tender.",
+      "Squeeze fresh lemon juice over the greens and toss to combine.",
+      "Season with salt and pepper and serve warm."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 20,
+    "servings": 4
+  },
+  {
+    "id": "brussels_sprouts_sage",
+    "name": "Roasted Brussels Sprouts with Sage",
+    "description": "Crispy roasted Brussels sprouts tossed with browned sage butter. Nutty, savory, and irresistibly crunchy.",
+    "ingredients": [
+      {"produceId": "brussels_sprouts", "name": "Brussels Sprouts", "quantity": "1.5", "unit": "lbs, trimmed and halved"},
+      {"produceId": "sage", "name": "Fresh Sage", "quantity": "12", "unit": "leaves"},
+      {"produceId": null, "name": "Butter", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Garlic", "quantity": "2", "unit": "cloves, minced"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Preheat oven to 425\u00b0F (220\u00b0C).",
+      "Toss halved Brussels sprouts with olive oil, salt, and pepper.",
+      "Spread in a single layer on a baking sheet and roast for 25-30 minutes until crispy and golden.",
+      "While sprouts roast, melt butter in a small pan over medium heat until it begins to brown.",
+      "Add sage leaves and fry for 30 seconds until crisp. Remove sage and set aside.",
+      "Add garlic to the browned butter and cook for 30 seconds.",
+      "Toss roasted sprouts with the sage brown butter and lemon juice.",
+      "Top with crispy sage leaves and serve."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 30,
+    "servings": 4
+  },
+  {
+    "id": "swiss_chard_white_bean",
+    "name": "Swiss Chard & White Bean Stew",
+    "description": "A hearty, rustic Italian-inspired stew with tender Swiss chard, creamy white beans, and fragrant thyme.",
+    "ingredients": [
+      {"produceId": "swiss_chard", "name": "Swiss Chard", "quantity": "1", "unit": "large bunch, stems and leaves separated, chopped"},
+      {"produceId": "thyme", "name": "Fresh Thyme", "quantity": "4", "unit": "sprigs"},
+      {"produceId": null, "name": "Cannellini Beans", "quantity": "2", "unit": "15-oz cans, drained and rinsed"},
+      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
+      {"produceId": null, "name": "Crushed Tomatoes", "quantity": "1", "unit": "14-oz can"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Vegetable Broth", "quantity": "1", "unit": "cup"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Heat olive oil in a Dutch oven over medium heat.",
+      "Add Swiss chard stems and cook for 3-4 minutes until softened.",
+      "Add garlic and thyme sprigs, cook for 1 minute.",
+      "Pour in crushed tomatoes and vegetable broth, bring to a simmer.",
+      "Add white beans and cook for 10 minutes.",
+      "Stir in Swiss chard leaves and cook until wilted, about 3-4 minutes.",
+      "Remove thyme sprigs, season with salt and pepper.",
+      "Serve warm with crusty bread."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 20,
+    "servings": 4
+  },
+  {
+    "id": "herb_compound_butter",
+    "name": "Herb Compound Butter",
+    "description": "A versatile compound butter packed with fresh chives, dill, and oregano. Perfect for melting over grilled vegetables, bread, or fish.",
+    "ingredients": [
+      {"produceId": "chives", "name": "Fresh Chives", "quantity": "3", "unit": "tbsp, finely chopped"},
+      {"produceId": "dill", "name": "Fresh Dill", "quantity": "2", "unit": "tbsp, finely chopped"},
+      {"produceId": "oregano", "name": "Fresh Oregano", "quantity": "1", "unit": "tbsp, finely chopped"},
+      {"produceId": null, "name": "Unsalted Butter", "quantity": "8", "unit": "oz (2 sticks), softened"},
+      {"produceId": null, "name": "Garlic", "quantity": "1", "unit": "clove, minced"},
+      {"produceId": null, "name": "Lemon Zest", "quantity": "1", "unit": "tsp"},
+      {"produceId": null, "name": "Sea Salt", "quantity": "0.5", "unit": "tsp"},
+      {"produceId": null, "name": "Black Pepper", "quantity": "0.25", "unit": "tsp"}
+    ],
+    "instructions": [
+      "Place softened butter in a mixing bowl.",
+      "Add chopped chives, dill, and oregano to the butter.",
+      "Mix in minced garlic, lemon zest, salt, and pepper.",
+      "Stir until all herbs are evenly distributed throughout the butter.",
+      "Spoon the butter onto a sheet of plastic wrap and roll into a log shape.",
+      "Twist the ends to seal and refrigerate for at least 1 hour until firm.",
+      "Slice into rounds and serve over grilled vegetables, bread, or fish."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 0,
+    "servings": 8
   }
 ]

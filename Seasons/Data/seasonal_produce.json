@@ -42,12 +42,12 @@
     "description": "Crisp fall favorite available in hundreds of varieties. Local apples from orchards have the best crunch and flavor.",
     "imageName": "apple",
     "seasonsByRegion": {
-      "northeast": [8, 9, 10, 11],
+      "northeast": [8, 9, 10, 11, 12, 1, 2],
       "southeast": [8, 9, 10],
-      "midwest": [8, 9, 10, 11],
+      "midwest": [8, 9, 10, 11, 12, 1, 2],
       "greatPlains": [8, 9, 10],
       "southwest": [8, 9, 10],
-      "pacificNorthwest": [8, 9, 10, 11],
+      "pacificNorthwest": [8, 9, 10, 11, 12, 1, 2],
       "california": [7, 8, 9, 10, 11]
     },
     "localCarbonKgPerKg": 0.2,
@@ -772,5 +772,247 @@
     },
     "localCarbonKgPerKg": 0.5,
     "importedCarbonKgPerKg": 3.1
+  },
+  {
+    "id": "rhubarb",
+    "name": "Rhubarb",
+    "category": "fruit",
+    "description": "Tart, ruby-stalked perennial used in pies, crisps, and jams. One of the first harvests of spring, thriving in cold climates.",
+    "imageName": "rhubarb",
+    "seasonsByRegion": {
+      "northeast": [4, 5, 6],
+      "southeast": [3, 4, 5],
+      "midwest": [4, 5, 6],
+      "greatPlains": [4, 5, 6],
+      "southwest": [3, 4, 5],
+      "pacificNorthwest": [3, 4, 5, 6],
+      "california": [2, 3, 4, 5]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.5
+  },
+  {
+    "id": "orange",
+    "name": "Orange",
+    "category": "fruit",
+    "description": "Bright, juicy citrus fruit packed with vitamin C. US-grown oranges from Florida, Texas, and California are a winter staple.",
+    "imageName": "orange",
+    "seasonsByRegion": {
+      "southeast": [11, 12, 1, 2, 3, 4],
+      "greatPlains": [11, 12, 1, 2, 3],
+      "southwest": [11, 12, 1, 2, 3],
+      "california": [11, 12, 1, 2, 3, 4, 5]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 1.5
+  },
+  {
+    "id": "grapefruit",
+    "name": "Grapefruit",
+    "category": "fruit",
+    "description": "Bold, tangy citrus with a bittersweet edge. Texas Ruby Reds and Florida grapefruits are prized winter treats.",
+    "imageName": "grapefruit",
+    "seasonsByRegion": {
+      "southeast": [11, 12, 1, 2, 3, 4, 5],
+      "greatPlains": [10, 11, 12, 1, 2, 3, 4],
+      "southwest": [11, 12, 1, 2, 3, 4],
+      "california": [11, 12, 1, 2, 3, 4, 5]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 1.6
+  },
+  {
+    "id": "lemon",
+    "name": "Lemon",
+    "category": "fruit",
+    "description": "Essential citrus with bright acidity. Meyer lemons from backyard trees and California groves are sweeter than imports.",
+    "imageName": "lemon",
+    "seasonsByRegion": {
+      "southeast": [11, 12, 1, 2, 3, 4, 5, 6],
+      "southwest": [10, 11, 12, 1, 2, 3, 4, 5],
+      "california": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 1.4
+  },
+  {
+    "id": "thyme",
+    "name": "Thyme",
+    "category": "herb",
+    "description": "Earthy, subtly minty herb essential in French and Mediterranean cooking. Evergreen perennial that stays harvestable into winter.",
+    "imageName": "thyme",
+    "seasonsByRegion": {
+      "northeast": [4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "southeast": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "midwest": [4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "greatPlains": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "southwest": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "pacificNorthwest": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "california": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.5,
+    "importedCarbonKgPerKg": 3.0
+  },
+  {
+    "id": "sage",
+    "name": "Sage",
+    "category": "herb",
+    "description": "Velvety, savory herb with a warm, peppery flavor. A cornerstone of holiday stuffing and pairs beautifully with squash.",
+    "imageName": "sage",
+    "seasonsByRegion": {
+      "northeast": [4, 5, 6, 7, 8, 9, 10, 11],
+      "southeast": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "midwest": [4, 5, 6, 7, 8, 9, 10, 11],
+      "greatPlains": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "southwest": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "pacificNorthwest": [3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "california": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.5,
+    "importedCarbonKgPerKg": 2.8
+  },
+  {
+    "id": "chives",
+    "name": "Chives",
+    "category": "herb",
+    "description": "Mild, onion-flavored herb and one of the first to emerge in spring. Delicate hollow stems brighten eggs, potatoes, and soups.",
+    "imageName": "chives",
+    "seasonsByRegion": {
+      "northeast": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "southeast": [2, 3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "midwest": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "greatPlains": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "southwest": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "pacificNorthwest": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "california": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.5,
+    "importedCarbonKgPerKg": 3.2
+  },
+  {
+    "id": "dill",
+    "name": "Dill",
+    "category": "herb",
+    "description": "Feathery, aromatic herb with a fresh anise-like flavor. Essential for pickles, seafood, and Eastern European cuisine.",
+    "imageName": "dill",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 7, 8, 9],
+      "southeast": [3, 4, 5, 9, 10, 11],
+      "midwest": [5, 6, 7, 8, 9],
+      "greatPlains": [4, 5, 6, 7, 8, 9],
+      "southwest": [2, 3, 4, 10, 11],
+      "pacificNorthwest": [5, 6, 7, 8, 9],
+      "california": [3, 4, 5, 6, 7, 8, 9, 10]
+    },
+    "localCarbonKgPerKg": 0.5,
+    "importedCarbonKgPerKg": 3.0
+  },
+  {
+    "id": "oregano",
+    "name": "Oregano",
+    "category": "herb",
+    "description": "Robust, pungent herb that's a staple of Italian and Mexican cooking. Flavor intensifies as the plant flowers.",
+    "imageName": "oregano",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 7, 8, 9, 10],
+      "southeast": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "midwest": [5, 6, 7, 8, 9, 10],
+      "greatPlains": [4, 5, 6, 7, 8, 9, 10],
+      "southwest": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "pacificNorthwest": [4, 5, 6, 7, 8, 9, 10, 11],
+      "california": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.5,
+    "importedCarbonKgPerKg": 2.8
+  },
+  {
+    "id": "brussels_sprouts",
+    "name": "Brussels Sprouts",
+    "category": "vegetable",
+    "description": "Miniature cabbages that sweeten dramatically after frost. Roasting caramelizes their natural sugars for a nutty, crisp result.",
+    "imageName": "brussels_sprouts",
+    "seasonsByRegion": {
+      "northeast": [9, 10, 11, 12],
+      "southeast": [10, 11, 12, 1, 2],
+      "midwest": [9, 10, 11, 12],
+      "greatPlains": [10, 11, 12],
+      "southwest": [10, 11, 12, 1, 2],
+      "pacificNorthwest": [9, 10, 11, 12, 1],
+      "california": [10, 11, 12, 1, 2, 3]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.5
+  },
+  {
+    "id": "collard_greens",
+    "name": "Collard Greens",
+    "category": "vegetable",
+    "description": "Hearty, nutritious brassica green and a cornerstone of Southern cooking. Cold-hardy leaves improve in flavor after frost.",
+    "imageName": "collard_greens",
+    "seasonsByRegion": {
+      "northeast": [4, 5, 9, 10, 11, 12],
+      "southeast": [1, 2, 3, 4, 10, 11, 12],
+      "midwest": [4, 5, 9, 10, 11, 12],
+      "greatPlains": [3, 4, 5, 9, 10, 11, 12],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [4, 5, 9, 10, 11, 12],
+      "california": [1, 2, 3, 4, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.15,
+    "importedCarbonKgPerKg": 1.2
+  },
+  {
+    "id": "parsnip",
+    "name": "Parsnip",
+    "category": "vegetable",
+    "description": "Sweet, nutty root vegetable that improves with frost as starches convert to sugar. A winter soup and roast essential.",
+    "imageName": "parsnip",
+    "seasonsByRegion": {
+      "northeast": [9, 10, 11, 12, 1, 2, 3],
+      "southeast": [10, 11, 12, 1, 2],
+      "midwest": [9, 10, 11, 12, 1, 2, 3],
+      "greatPlains": [10, 11, 12, 1, 2],
+      "southwest": [10, 11, 12, 1, 2],
+      "pacificNorthwest": [9, 10, 11, 12, 1, 2, 3],
+      "california": [10, 11, 12, 1, 2, 3]
+    },
+    "localCarbonKgPerKg": 0.12,
+    "importedCarbonKgPerKg": 0.9
+  },
+  {
+    "id": "leek",
+    "name": "Leek",
+    "category": "vegetable",
+    "description": "Mild, sweet allium with an elegant flavor. Hardy enough to overwinter in the garden and a base for classic soups and gratins.",
+    "imageName": "leek",
+    "seasonsByRegion": {
+      "northeast": [4, 5, 6, 9, 10, 11],
+      "southeast": [1, 2, 3, 4, 10, 11, 12],
+      "midwest": [4, 5, 6, 9, 10, 11],
+      "greatPlains": [3, 4, 5, 9, 10, 11],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [4, 5, 6, 9, 10, 11, 12],
+      "california": [1, 2, 3, 4, 5, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.15,
+    "importedCarbonKgPerKg": 1.0
+  },
+  {
+    "id": "swiss_chard",
+    "name": "Swiss Chard",
+    "category": "vegetable",
+    "description": "Colorful, mild leafy green with rainbow-hued stems. Tolerates both heat and light frost for an exceptionally long harvest season.",
+    "imageName": "swiss_chard",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 7, 8, 9, 10, 11],
+      "southeast": [2, 3, 4, 5, 10, 11, 12],
+      "midwest": [5, 6, 7, 8, 9, 10, 11],
+      "greatPlains": [4, 5, 6, 7, 8, 9, 10, 11],
+      "southwest": [1, 2, 3, 4, 10, 11, 12],
+      "pacificNorthwest": [5, 6, 7, 8, 9, 10, 11],
+      "california": [1, 2, 3, 4, 5, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.3
   }
 ]

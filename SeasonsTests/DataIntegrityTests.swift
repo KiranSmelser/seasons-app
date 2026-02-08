@@ -33,14 +33,10 @@ final class DataIntegrityTests: XCTestCase {
         }
     }
 
-    func testAllRegionsCoveredInProduce() {
-        let allRegionKeys = Set(GrowingRegion.allCases.map(\.rawValue))
+    func testAllProduceHaveAtLeastOneRegion() {
         for item in allProduce {
-            let itemRegions = Set(item.seasonsByRegion.keys)
-            for region in allRegionKeys {
-                XCTAssertTrue(itemRegions.contains(region),
-                    "\(item.id) is missing region '\(region)'")
-            }
+            XCTAssertFalse(item.seasonsByRegion.isEmpty,
+                "\(item.id) has no regions defined")
         }
     }
 

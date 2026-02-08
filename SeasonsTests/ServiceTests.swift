@@ -15,7 +15,7 @@ final class ServiceTests: XCTestCase {
     // MARK: - ProduceDataService Tests
 
     func testAllProduceLoaded() {
-        XCTAssertEqual(ProduceDataService.shared.allProduce.count, 43)
+        XCTAssertEqual(ProduceDataService.shared.allProduce.count, 57)
     }
 
     func testProduceByIdFound() {
@@ -46,7 +46,7 @@ final class ServiceTests: XCTestCase {
     // MARK: - RecipeDataService Tests
 
     func testAllRecipesLoaded() {
-        XCTAssertEqual(RecipeDataService.shared.allRecipes.count, 29)
+        XCTAssertEqual(RecipeDataService.shared.allRecipes.count, 36)
     }
 
     func testRecipeByIdFound() {

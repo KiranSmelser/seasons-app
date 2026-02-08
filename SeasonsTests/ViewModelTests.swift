@@ -72,7 +72,7 @@ final class ViewModelTests: XCTestCase {
     func testRecipesReturnAll() {
         let vm = makeRecipeViewModel()
         vm.searchText = ""
-        XCTAssertEqual(vm.recipes.count, 29, "Should return all 29 recipes with empty search")
+        XCTAssertEqual(vm.recipes.count, 36, "Should return all 36 recipes with empty search")
     }
 
     func testRecipesSearchFilter() {

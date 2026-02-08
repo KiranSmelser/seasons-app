@@ -63,6 +63,20 @@ declare -A PRODUCE_TERMS=(
   [mint]="fresh mint herb"
   [rosemary]="fresh rosemary herb"
   [parsley]="fresh parsley herb"
+  [brussels_sprouts]="fresh brussels sprouts"
+  [chives]="fresh chives herb"
+  [collard_greens]="fresh collard greens"
+  [dill]="fresh dill herb"
+  [grapefruit]="fresh grapefruit"
+  [leek]="fresh leeks"
+  [lemon]="fresh lemons"
+  [orange]="fresh oranges"
+  [oregano]="fresh oregano herb"
+  [parsnip]="fresh parsnips"
+  [rhubarb]="fresh rhubarb stalks"
+  [sage]="fresh sage herb"
+  [swiss_chard]="fresh swiss chard"
+  [thyme]="fresh thyme herb"
 )
 
 download_image() {
