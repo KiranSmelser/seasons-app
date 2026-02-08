@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -57,7 +57,7 @@
 		314310D7D1156CE2CE3195D3 /* RecipeListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeListView.swift; sourceTree = "<group>"; };
 		34A431D3659A448763968F32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3978E20E8E93D08EEDF43C6F /* SeasonalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonalListView.swift; sourceTree = "<group>"; };
-		3CA638D19FE3BEEC719D7666 /* Seasons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seasons.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CA638D19FE3BEEC719D7666 /* Seasons.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Seasons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		492DE4386D05BAA3293DCEF5 /* CarbonLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonLog.swift; sourceTree = "<group>"; };
 		5025B505F192EF3770436698 /* seasonal_produce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seasonal_produce.json; sourceTree = "<group>"; };
 		5212FBF28BECFDD8B1F8E60E /* ProduceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceDetailView.swift; sourceTree = "<group>"; };
@@ -256,6 +256,11 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					3E202D5A8ED3C7256D696BB1 = {
+						DevelopmentTeam = "";
+					};
+				};
 			};
 			buildConfigurationList = 122EE96B891670E661B8E5B5 /* Build configuration list for PBXProject "Seasons" */;
 			compatibilityVersion = "Xcode 14.0";
@@ -267,6 +272,7 @@
 			);
 			mainGroup = EDD7B4D6748682D69C936D75;
 			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -408,7 +414,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3FWT3PM62W;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Seasons/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
@@ -427,7 +433,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = 3FWT3PM62W;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Seasons/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",

@@ -7,13 +7,19 @@ struct CarbonDashboardView: View {
     @State private var viewModel = CarbonViewModel()
     @State private var showAddSheet = false
 
+    private var filteredLogs: [CarbonLog] {
+        viewModel.filteredLogs(from: logs)
+    }
+
     var body: some View {
         NavigationStack {
             ScrollView {
                 VStack(spacing: 24) {
+                    timePeriodPicker
                     summaryCard
-                    if !logs.isEmpty {
+                    if !filteredLogs.isEmpty {
                         equivalenciesSection
+                        topProduceSection
                         recentLogsSection
                     } else {
                         emptyState
@@ -23,6 +29,12 @@ struct CarbonDashboardView: View {
             }
             .navigationTitle("Impact")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    ShareLink(item: viewModel.shareText(from: filteredLogs)) {
+                        Image(systemName: "square.and.arrow.up")
+                    }
+                    .disabled(filteredLogs.isEmpty)
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         showAddSheet = true
@@ -40,8 +52,18 @@ struct CarbonDashboardView: View {
     }
 
     @ViewBuilder
+    private var timePeriodPicker: some View {
+        Picker("Time Period", selection: $viewModel.selectedTimePeriod) {
+            ForEach(TimePeriod.allCases) { period in
+                Text(period.rawValue).tag(period)
+            }
+        }
+        .pickerStyle(.segmented)
+    }
+
+    @ViewBuilder
     private var summaryCard: some View {
-        let total = viewModel.totalCarbonSaved(from: logs)
+        let total = viewModel.totalCarbonSaved(from: filteredLogs)
         VStack(spacing: 8) {
             Text("Total CO\u{2082} Saved")
                 .font(.subheadline)
@@ -61,7 +83,7 @@ struct CarbonDashboardView: View {
 
     @ViewBuilder
     private var equivalenciesSection: some View {
-        let equivalencies = viewModel.equivalencies(from: logs)
+        let equivalencies = viewModel.equivalencies(from: filteredLogs)
         VStack(alignment: .leading, spacing: 12) {
             Text("That's equivalent to...")
                 .font(.headline)
@@ -84,12 +106,44 @@ struct CarbonDashboardView: View {
     }
 
     @ViewBuilder
+    private var topProduceSection: some View {
+        let breakdown = viewModel.topProduceBreakdown(from: filteredLogs)
+        if !breakdown.isEmpty {
+            VStack(alignment: .leading, spacing: 12) {
+                Text("Top Produce")
+                    .font(.headline)
+
+                ForEach(breakdown) { item in
+                    HStack {
+                        VStack(alignment: .leading, spacing: 2) {
+                            Text(item.produceName)
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                            Text("\(item.logCount) log\(item.logCount == 1 ? "" : "s")")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Text("-\(CarbonCalculationService.formattedCarbon(item.totalCarbonSavedKg)) CO\u{2082}")
+                            .font(.subheadline)
+                            .fontWeight(.semibold)
+                            .foregroundStyle(.green)
+                    }
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+            }
+        }
+    }
+
+    @ViewBuilder
     private var recentLogsSection: some View {
         VStack(alignment: .leading, spacing: 12) {
             Text("Recent Logs")
                 .font(.headline)
 
-            ForEach(logs.prefix(10)) { log in
+            ForEach(filteredLogs.prefix(10)) { log in
                 HStack {
                     VStack(alignment: .leading, spacing: 2) {
                         Text(log.produceName)
@@ -113,6 +167,13 @@ struct CarbonDashboardView: View {
                 .padding()
                 .background(Color(.systemGray6))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
+                .contextMenu {
+                    Button(role: .destructive) {
+                        modelContext.delete(log)
+                    } label: {
+                        Label("Delete", systemImage: "trash")
+                    }
+                }
             }
         }
     }

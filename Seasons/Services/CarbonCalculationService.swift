@@ -29,6 +29,16 @@ enum CarbonCalculationService {
                 description: "Hours of LED lighting saved",
                 value: carbonSavedKg / 0.005, // ~0.005 kg CO2 per hour for a 10W LED
                 unit: "hrs"
+            ),
+            CarbonEquivalent(
+                description: "Tree seedlings grown for a year",
+                value: carbonSavedKg / 10.0, // ~10 kg CO2 absorbed per tree seedling per year (EPA)
+                unit: "trees"
+            ),
+            CarbonEquivalent(
+                description: "Minutes of hot shower",
+                value: carbonSavedKg / 0.045, // ~0.045 kg CO2 per minute of hot shower
+                unit: "min"
             )
         ]
     }

@@ -493,5 +493,311 @@
     "cookTimeMinutes": 35,
     "servings": 6,
     "imageName": "eggplant_parmesan"
+  },
+  {
+    "id": "strawberry_spinach_salad",
+    "name": "Strawberry Spinach Salad",
+    "description": "A bright spring salad with sweet strawberries, tender spinach, and a tangy poppy seed dressing.",
+    "ingredients": [
+      {"produceId": "strawberry", "name": "Strawberries", "quantity": "2", "unit": "cups sliced"},
+      {"produceId": "spinach", "name": "Baby Spinach", "quantity": "5", "unit": "cups"},
+      {"produceId": null, "name": "Red Onion", "quantity": "0.25", "unit": "cup thinly sliced"},
+      {"produceId": null, "name": "Pecans", "quantity": "0.33", "unit": "cup toasted"},
+      {"produceId": null, "name": "Poppy Seeds", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Apple Cider Vinegar", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Honey", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"}
+    ],
+    "instructions": [
+      "Whisk together apple cider vinegar, honey, olive oil, and poppy seeds for the dressing.",
+      "Arrange baby spinach on a large platter or in a bowl.",
+      "Scatter sliced strawberries and red onion over the spinach.",
+      "Sprinkle toasted pecans on top.",
+      "Drizzle with poppy seed dressing and toss gently.",
+      "Serve immediately."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 0,
+    "servings": 4,
+    "imageName": "strawberry_spinach_salad"
+  },
+  {
+    "id": "apple_cinnamon_crumble",
+    "name": "Apple Cinnamon Crumble",
+    "description": "Warm spiced apples under a buttery oat crumble topping. A classic fall dessert that fills the kitchen with amazing aromas.",
+    "ingredients": [
+      {"produceId": "apple", "name": "Apples", "quantity": "5", "unit": "medium, peeled and sliced"},
+      {"produceId": null, "name": "Brown Sugar", "quantity": "0.5", "unit": "cup packed"},
+      {"produceId": null, "name": "Rolled Oats", "quantity": "0.75", "unit": "cup"},
+      {"produceId": null, "name": "Flour", "quantity": "0.5", "unit": "cup"},
+      {"produceId": null, "name": "Butter", "quantity": "5", "unit": "tbsp cold, cubed"},
+      {"produceId": null, "name": "Ground Cinnamon", "quantity": "1.5", "unit": "tsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Salt", "quantity": "1", "unit": "pinch"}
+    ],
+    "instructions": [
+      "Preheat oven to 350°F (175°C).",
+      "Toss sliced apples with half the brown sugar, cinnamon, and lemon juice.",
+      "Spread apples in a baking dish.",
+      "Mix oats, flour, remaining brown sugar, and salt in a bowl.",
+      "Cut in cold butter until the mixture forms coarse crumbs.",
+      "Scatter the crumble topping evenly over the apples.",
+      "Bake for 40-45 minutes until topping is golden and apples are bubbling.",
+      "Let cool 10 minutes before serving. Top with vanilla ice cream if desired."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 45,
+    "servings": 6,
+    "imageName": "apple_cinnamon_crumble"
+  },
+  {
+    "id": "grilled_peach_burrata",
+    "name": "Grilled Peach & Burrata Salad",
+    "description": "Caramelized grilled peaches paired with creamy burrata, fresh basil, and a balsamic drizzle for an elegant summer salad.",
+    "ingredients": [
+      {"produceId": "peach", "name": "Peaches", "quantity": "4", "unit": "halved and pitted"},
+      {"produceId": "basil", "name": "Fresh Basil", "quantity": "0.25", "unit": "cup leaves"},
+      {"produceId": null, "name": "Burrata", "quantity": "8", "unit": "oz"},
+      {"produceId": null, "name": "Arugula", "quantity": "3", "unit": "cups"},
+      {"produceId": null, "name": "Balsamic Glaze", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Sea Salt", "quantity": "1", "unit": "pinch"},
+      {"produceId": null, "name": "Black Pepper", "quantity": "1", "unit": "pinch"}
+    ],
+    "instructions": [
+      "Preheat grill or grill pan to medium-high heat.",
+      "Brush peach halves with olive oil on the cut side.",
+      "Grill peaches cut-side down for 3-4 minutes until charred and softened.",
+      "Arrange arugula on a platter.",
+      "Place grilled peach halves over the arugula.",
+      "Tear burrata into pieces and scatter over the salad.",
+      "Top with fresh basil leaves.",
+      "Drizzle with balsamic glaze, season with salt and pepper."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 5,
+    "servings": 4,
+    "imageName": "grilled_peach_burrata"
+  },
+  {
+    "id": "cantaloupe_prosciutto_bites",
+    "name": "Cantaloupe Prosciutto Bites",
+    "description": "A classic Italian appetizer of sweet melon wrapped in salty prosciutto, finished with fresh cherry garnish.",
+    "ingredients": [
+      {"produceId": "cantaloupe", "name": "Cantaloupe", "quantity": "1", "unit": "medium, cut into wedges"},
+      {"produceId": "cherry", "name": "Fresh Cherries", "quantity": "1", "unit": "cup, pitted and halved"},
+      {"produceId": null, "name": "Prosciutto", "quantity": "6", "unit": "oz, thinly sliced"},
+      {"produceId": null, "name": "Fresh Mozzarella Pearls", "quantity": "4", "unit": "oz"},
+      {"produceId": null, "name": "Honey", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Mint Leaves", "quantity": "8", "unit": "small leaves"},
+      {"produceId": null, "name": "Black Pepper", "quantity": "1", "unit": "pinch"}
+    ],
+    "instructions": [
+      "Cut cantaloupe into bite-sized wedges, removing the rind.",
+      "Wrap each wedge with a slice of prosciutto.",
+      "Arrange on a platter with mozzarella pearls and halved cherries.",
+      "Tuck mint leaves between the bites.",
+      "Drizzle with honey and finish with freshly cracked black pepper.",
+      "Serve immediately as an appetizer."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 0,
+    "servings": 4,
+    "imageName": "cantaloupe_prosciutto_bites"
+  },
+  {
+    "id": "grape_walnut_chicken_salad",
+    "name": "Grape & Walnut Chicken Salad",
+    "description": "Creamy chicken salad studded with sweet grapes and crunchy walnuts. Perfect for sandwiches or on a bed of greens.",
+    "ingredients": [
+      {"produceId": "grape", "name": "Red Grapes", "quantity": "1.5", "unit": "cups, halved"},
+      {"produceId": "lettuce", "name": "Lettuce", "quantity": "4", "unit": "cups"},
+      {"produceId": null, "name": "Cooked Chicken Breast", "quantity": "2", "unit": "cups shredded"},
+      {"produceId": null, "name": "Walnuts", "quantity": "0.5", "unit": "cup chopped and toasted"},
+      {"produceId": null, "name": "Greek Yogurt", "quantity": "0.33", "unit": "cup"},
+      {"produceId": null, "name": "Mayonnaise", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Dijon Mustard", "quantity": "1", "unit": "tsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Mix Greek yogurt, mayonnaise, and Dijon mustard until smooth.",
+      "Fold in shredded chicken, halved grapes, and toasted walnuts.",
+      "Season with salt and pepper to taste.",
+      "Refrigerate for at least 30 minutes to let flavors meld.",
+      "Serve scooped over lettuce leaves or in a sandwich.",
+      "Garnish with a few extra grape halves on top."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 0,
+    "servings": 4,
+    "imageName": "grape_walnut_chicken_salad"
+  },
+  {
+    "id": "plum_pomegranate_galette",
+    "name": "Plum & Pomegranate Galette",
+    "description": "A rustic free-form tart with caramelized plums and jewel-like pomegranate seeds. Easier than pie and just as impressive.",
+    "ingredients": [
+      {"produceId": "plum", "name": "Plums", "quantity": "5", "unit": "medium, sliced"},
+      {"produceId": "pomegranate", "name": "Pomegranate Seeds", "quantity": "0.33", "unit": "cup"},
+      {"produceId": null, "name": "Pie Dough", "quantity": "1", "unit": "round, store-bought or homemade"},
+      {"produceId": null, "name": "Sugar", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Cornstarch", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Egg", "quantity": "1", "unit": "beaten, for wash"},
+      {"produceId": null, "name": "Vanilla Extract", "quantity": "0.5", "unit": "tsp"}
+    ],
+    "instructions": [
+      "Preheat oven to 400°F (200°C).",
+      "Toss sliced plums with sugar, cornstarch, lemon juice, and vanilla.",
+      "Roll pie dough into a rough circle on a parchment-lined baking sheet.",
+      "Arrange plum slices in the center, leaving a 2-inch border.",
+      "Fold the dough edges up over the fruit, pleating as you go.",
+      "Brush the dough edges with beaten egg.",
+      "Bake for 35-40 minutes until crust is golden and plums are bubbly.",
+      "Let cool slightly, then scatter pomegranate seeds over the top before serving."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 40,
+    "servings": 6,
+    "imageName": "plum_pomegranate_galette"
+  },
+  {
+    "id": "persimmon_arugula_salad",
+    "name": "Persimmon & Arugula Salad",
+    "description": "Sweet Fuyu persimmon slices with peppery arugula, shaved parmesan, and a lemon vinaigrette. An autumn showstopper.",
+    "ingredients": [
+      {"produceId": "persimmon", "name": "Fuyu Persimmons", "quantity": "3", "unit": "thinly sliced"},
+      {"produceId": null, "name": "Arugula", "quantity": "5", "unit": "cups"},
+      {"produceId": null, "name": "Shaved Parmesan", "quantity": "2", "unit": "oz"},
+      {"produceId": null, "name": "Pomegranate Seeds", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Honey", "quantity": "1", "unit": "tsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Whisk together lemon juice, olive oil, honey, salt, and pepper.",
+      "Arrange arugula on a platter.",
+      "Fan persimmon slices over the arugula.",
+      "Scatter shaved parmesan and pomegranate seeds on top.",
+      "Drizzle with the lemon vinaigrette.",
+      "Serve immediately."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 0,
+    "servings": 4,
+    "imageName": "persimmon_arugula_salad"
+  },
+  {
+    "id": "garlic_green_beans",
+    "name": "Garlic Green Beans with Almonds",
+    "description": "Crisp-tender green beans sautéed with garlic and finished with crunchy toasted almonds. A quick, elegant side dish.",
+    "ingredients": [
+      {"produceId": "green_bean", "name": "Green Beans", "quantity": "1", "unit": "lb, trimmed"},
+      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
+      {"produceId": null, "name": "Sliced Almonds", "quantity": "0.25", "unit": "cup"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Red Pepper Flakes", "quantity": "0.25", "unit": "tsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Toast sliced almonds in a dry pan over medium heat until golden, about 3 minutes. Set aside.",
+      "Blanch green beans in boiling salted water for 3 minutes, then transfer to ice water.",
+      "Drain green beans and pat dry.",
+      "Heat olive oil in a large skillet over medium-high heat.",
+      "Add green beans and sauté for 3-4 minutes until lightly charred.",
+      "Add garlic and red pepper flakes, cook for 30 seconds.",
+      "Squeeze lemon juice over the beans, toss with toasted almonds, and season with salt and pepper."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 10,
+    "servings": 4,
+    "imageName": "garlic_green_beans"
+  },
+  {
+    "id": "roasted_cauliflower_tahini",
+    "name": "Roasted Cauliflower with Tahini",
+    "description": "Whole cauliflower head roasted until golden and drizzled with a creamy lemon-tahini sauce. Stunning and delicious.",
+    "ingredients": [
+      {"produceId": "cauliflower", "name": "Cauliflower", "quantity": "1", "unit": "large head"},
+      {"produceId": null, "name": "Tahini", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Garlic", "quantity": "2", "unit": "cloves, minced"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Cumin", "quantity": "1", "unit": "tsp"},
+      {"produceId": null, "name": "Paprika", "quantity": "0.5", "unit": "tsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Preheat oven to 400°F (200°C).",
+      "Remove leaves from cauliflower and trim the stem flat so it sits upright.",
+      "Rub olive oil, cumin, paprika, salt, and pepper all over the cauliflower.",
+      "Place on a baking sheet and roast for 45-55 minutes until deeply golden and tender.",
+      "Whisk together tahini, lemon juice, garlic, and 2 tbsp warm water until smooth.",
+      "Drizzle tahini sauce over the roasted cauliflower.",
+      "Slice into wedges and serve warm."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 55,
+    "servings": 4,
+    "imageName": "roasted_cauliflower_tahini"
+  },
+  {
+    "id": "braised_cabbage_artichoke",
+    "name": "Braised Cabbage with Artichoke",
+    "description": "Slow-braised cabbage wedges with tender artichoke hearts in a savory white wine broth. Comfort food at its finest.",
+    "ingredients": [
+      {"produceId": "cabbage", "name": "Cabbage", "quantity": "1", "unit": "medium, cut into wedges"},
+      {"produceId": "artichoke", "name": "Artichoke Hearts", "quantity": "1", "unit": "14-oz can, drained and quartered"},
+      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, smashed"},
+      {"produceId": null, "name": "White Wine", "quantity": "0.5", "unit": "cup"},
+      {"produceId": null, "name": "Vegetable Broth", "quantity": "1", "unit": "cup"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Dijon Mustard", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Heat olive oil in a large, oven-safe skillet or Dutch oven over medium-high heat.",
+      "Sear cabbage wedges until golden on each side, about 3 minutes per side. Remove and set aside.",
+      "Add garlic to the skillet and cook for 30 seconds.",
+      "Pour in white wine and scrape up any browned bits.",
+      "Stir in vegetable broth and Dijon mustard.",
+      "Return cabbage to the skillet, add artichoke hearts, and bring to a simmer.",
+      "Cover and braise on low heat for 25-30 minutes until cabbage is tender.",
+      "Season with salt and pepper and serve with the braising liquid spooned over."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 35,
+    "servings": 4,
+    "imageName": "braised_cabbage_artichoke"
+  },
+  {
+    "id": "roasted_root_vegetables",
+    "name": "Roasted Root Vegetables",
+    "description": "A colorful medley of turnips, radishes, and carrots roasted until caramelized and sweet. A celebration of root vegetables.",
+    "ingredients": [
+      {"produceId": "turnip", "name": "Turnips", "quantity": "2", "unit": "medium, peeled and cubed"},
+      {"produceId": "radish", "name": "Radishes", "quantity": "1", "unit": "bunch, halved"},
+      {"produceId": "carrot", "name": "Carrots", "quantity": "3", "unit": "medium, cut into chunks"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Fresh Thyme", "quantity": "4", "unit": "sprigs"},
+      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, unpeeled"},
+      {"produceId": null, "name": "Balsamic Vinegar", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Preheat oven to 425°F (220°C).",
+      "Toss cubed turnips, halved radishes, and carrot chunks with olive oil, salt, and pepper.",
+      "Spread in a single layer on a large baking sheet.",
+      "Tuck thyme sprigs and garlic cloves among the vegetables.",
+      "Roast for 35-40 minutes, tossing halfway through, until golden and tender.",
+      "Drizzle with balsamic vinegar and toss gently.",
+      "Remove thyme stems and serve warm."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 40,
+    "servings": 4,
+    "imageName": "roasted_root_vegetables"
   }
 ]
