@@ -1,14 +1,27 @@
 import SwiftUI
+import SwiftData
 
 struct ProduceDetailView: View {
     let item: ProduceItem
     let region: GrowingRegion
+
+    @Environment(\.modelContext) private var modelContext
 
     private let monthAbbreviations = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
 
     private var currentMonth: Int {
         Calendar.current.component(.month, from: Date())
     }
+
+    private var linkedRecipes: [Recipe] {
+        RecipeDataService.shared.recipes(using: item.id)
+    }
+
+    private var favoritesService: FavoritesService {
+        FavoritesService(modelContext: modelContext)
+    }
+
+    @State private var isFavorited = false
 
     var body: some View {
         ScrollView {
@@ -17,11 +30,28 @@ struct ProduceDetailView: View {
                 seasonalCalendar
                 carbonSection
                 descriptionSection
+                if !linkedRecipes.isEmpty {
+                    recipesSection
+                }
             }
             .padding()
         }
         .navigationTitle(item.name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    favoritesService.toggleFavorite(itemType: "produce", itemId: item.id)
+                    isFavorited.toggle()
+                } label: {
+                    Image(systemName: isFavorited ? "heart.fill" : "heart")
+                        .foregroundStyle(isFavorited ? .red : .secondary)
+                }
+            }
+        }
+        .onAppear {
+            isFavorited = favoritesService.isFavorited(itemType: "produce", itemId: item.id)
+        }
     }
 
     @ViewBuilder
@@ -130,6 +160,37 @@ struct ProduceDetailView: View {
                 .foregroundStyle(.secondary)
         }
     }
+
+    @ViewBuilder
+    private var recipesSection: some View {
+        VStack(alignment: .leading, spacing: 12) {
+            Text("Recipes with \(item.name)")
+                .font(.headline)
+
+            ForEach(linkedRecipes) { recipe in
+                NavigationLink(value: RecipeDestination(recipeId: recipe.id)) {
+                    HStack {
+                        VStack(alignment: .leading, spacing: 4) {
+                            Text(recipe.name)
+                                .font(.subheadline)
+                                .fontWeight(.medium)
+                            Text("\(recipe.totalTimeMinutes) min")
+                                .font(.caption)
+                                .foregroundStyle(.secondary)
+                        }
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.caption)
+                            .foregroundStyle(.secondary)
+                    }
+                    .padding()
+                    .background(Color(.systemGray6))
+                    .clipShape(RoundedRectangle(cornerRadius: 10))
+                }
+                .buttonStyle(.plain)
+            }
+        }
+    }
 }
 
 struct CarbonCard: View {
@@ -174,4 +235,5 @@ struct CarbonCard: View {
             region: .northeast
         )
     }
+    .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

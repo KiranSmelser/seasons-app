@@ -8,6 +8,7 @@ final class SeasonalViewModel {
 
     var selectedCategory: ProduceCategory?
     var searchText = ""
+    var showFavoritesOnly = false
 
     init(locationService: LocationService) {
         self.locationService = locationService
@@ -33,6 +34,14 @@ final class SeasonalViewModel {
             items = items.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
         }
         return items.sorted { $0.name < $1.name }
+    }
+
+    func filteredProduce(favoritedIds: Set<String>) -> [ProduceItem] {
+        var items = seasonalProduce
+        if showFavoritesOnly {
+            items = items.filter { favoritedIds.contains($0.id) }
+        }
+        return items
     }
 
     var allProduce: [ProduceItem] {

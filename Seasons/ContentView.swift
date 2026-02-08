@@ -24,5 +24,5 @@ struct ContentView: View {
 
 #Preview {
     ContentView()
-        .modelContainer(for: CarbonLog.self, inMemory: true)
+        .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

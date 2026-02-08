@@ -7,6 +7,7 @@ final class RecipeViewModel {
     private let produceService = ProduceDataService.shared
 
     var searchText = ""
+    var showFavoritesOnly = false
 
     init(locationService: LocationService) {
         self.locationService = locationService
@@ -24,6 +25,14 @@ final class RecipeViewModel {
         var items = recipeService.recipesSortedBySeasonal(inSeasonIds: inSeasonIds)
         if !searchText.isEmpty {
             items = items.filter { $0.name.localizedCaseInsensitiveContains(searchText) }
+        }
+        return items
+    }
+
+    func filteredRecipes(favoritedIds: Set<String>) -> [Recipe] {
+        var items = recipes
+        if showFavoritesOnly {
+            items = items.filter { favoritedIds.contains($0.id) }
         }
         return items
     }

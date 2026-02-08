@@ -1,9 +1,12 @@
 import SwiftUI
+import SwiftData
 
 struct SeasonalListView: View {
     @State private var locationService = LocationService()
     @State private var viewModel: SeasonalViewModel?
     @State private var showRegionPicker = false
+
+    @Environment(\.modelContext) private var modelContext
 
     private let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -76,17 +79,30 @@ struct SeasonalListView: View {
             HStack(spacing: 8) {
                 FilterChip(
                     title: "All",
-                    isSelected: viewModel.selectedCategory == nil
+                    isSelected: viewModel.selectedCategory == nil && !viewModel.showFavoritesOnly
                 ) {
                     viewModel.selectedCategory = nil
+                    viewModel.showFavoritesOnly = false
+                }
+
+                FilterChip(
+                    title: "Favorites",
+                    isSelected: viewModel.showFavoritesOnly,
+                    systemImage: "heart.fill"
+                ) {
+                    viewModel.showFavoritesOnly.toggle()
+                    if viewModel.showFavoritesOnly {
+                        viewModel.selectedCategory = nil
+                    }
                 }
 
                 ForEach(ProduceCategory.allCases) { category in
                     FilterChip(
                         title: category.displayName,
-                        isSelected: viewModel.selectedCategory == category
+                        isSelected: viewModel.selectedCategory == category && !viewModel.showFavoritesOnly
                     ) {
                         viewModel.selectedCategory = category
+                        viewModel.showFavoritesOnly = false
                     }
                 }
             }
@@ -95,7 +111,10 @@ struct SeasonalListView: View {
 
     @ViewBuilder
     private func produceGrid(viewModel: SeasonalViewModel) -> some View {
-        if viewModel.seasonalProduce.isEmpty {
+        let favoritesService = FavoritesService(modelContext: modelContext)
+        let items = viewModel.filteredProduce(favoritedIds: favoritesService.favoritedIds(for: "produce"))
+
+        if items.isEmpty {
             ContentUnavailableView(
                 "No produce found",
                 systemImage: "leaf.fill",
@@ -103,16 +122,27 @@ struct SeasonalListView: View {
             )
         } else {
             LazyVGrid(columns: columns, spacing: 16) {
-                ForEach(viewModel.seasonalProduce) { item in
-                    NavigationLink(value: item.id) {
-                        ProduceCard(item: item)
+                ForEach(items) { item in
+                    NavigationLink(value: ProduceDestination(produceId: item.id)) {
+                        ProduceCard(
+                            item: item,
+                            isFavorited: favoritesService.isFavorited(itemType: "produce", itemId: item.id),
+                            onToggleFavorite: {
+                                favoritesService.toggleFavorite(itemType: "produce", itemId: item.id)
+                            }
+                        )
                     }
                     .buttonStyle(.plain)
                 }
             }
-            .navigationDestination(for: String.self) { produceId in
-                if let item = ProduceDataService.shared.produce(byId: produceId) {
+            .navigationDestination(for: ProduceDestination.self) { destination in
+                if let item = ProduceDataService.shared.produce(byId: destination.produceId) {
                     ProduceDetailView(item: item, region: locationService.region)
+                }
+            }
+            .navigationDestination(for: RecipeDestination.self) { destination in
+                if let recipe = RecipeDataService.shared.recipe(byId: destination.recipeId) {
+                    RecipeDetailView(recipe: recipe, locationService: locationService)
                 }
             }
         }
@@ -124,34 +154,57 @@ struct SeasonalListView: View {
 struct FilterChip: View {
     let title: String
     let isSelected: Bool
+    var systemImage: String? = nil
     let action: () -> Void
 
     var body: some View {
         Button(action: action) {
-            Text(title)
-                .font(.subheadline)
-                .fontWeight(isSelected ? .semibold : .regular)
-                .padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                .background(isSelected ? Color.green : Color(.systemGray6))
-                .foregroundStyle(isSelected ? .white : .primary)
-                .clipShape(Capsule())
+            HStack(spacing: 4) {
+                if let systemImage {
+                    Image(systemName: systemImage)
+                        .font(.caption2)
+                }
+                Text(title)
+                    .font(.subheadline)
+                    .fontWeight(isSelected ? .semibold : .regular)
+            }
+            .padding(.horizontal, 16)
+            .padding(.vertical, 8)
+            .background(isSelected ? Color.green : Color(.systemGray6))
+            .foregroundStyle(isSelected ? .white : .primary)
+            .clipShape(Capsule())
         }
     }
 }
 
 struct ProduceCard: View {
     let item: ProduceItem
+    let isFavorited: Bool
+    let onToggleFavorite: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            ZStack {
-                RoundedRectangle(cornerRadius: 12)
-                    .fill(Color(.systemGray6))
-                    .aspectRatio(1.0, contentMode: .fit)
-                Image(systemName: item.category.systemImage)
-                    .font(.system(size: 36))
-                    .foregroundStyle(.green.opacity(0.6))
+            ZStack(alignment: .topTrailing) {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemGray6))
+                        .aspectRatio(1.0, contentMode: .fit)
+                    Image(systemName: item.category.systemImage)
+                        .font(.system(size: 36))
+                        .foregroundStyle(.green.opacity(0.6))
+                }
+
+                Button {
+                    onToggleFavorite()
+                } label: {
+                    Image(systemName: isFavorited ? "heart.fill" : "heart")
+                        .font(.caption)
+                        .foregroundStyle(isFavorited ? .red : .secondary)
+                        .padding(8)
+                        .background(.ultraThinMaterial)
+                        .clipShape(Circle())
+                }
+                .padding(6)
             }
 
             Text(item.name)
@@ -200,4 +253,5 @@ struct RegionPickerView: View {
 
 #Preview {
     SeasonalListView()
+        .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

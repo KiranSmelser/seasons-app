@@ -214,5 +214,563 @@
     },
     "localCarbonKgPerKg": 0.5,
     "importedCarbonKgPerKg": 3.0
+  },
+  {
+    "id": "watermelon",
+    "name": "Watermelon",
+    "category": "fruit",
+    "description": "Refreshing summer fruit that's over 90% water. Nothing beats a locally grown melon at peak ripeness.",
+    "imageName": "watermelon",
+    "seasonsByRegion": {
+      "northeast": [7, 8, 9],
+      "southeast": [5, 6, 7, 8, 9],
+      "midwest": [7, 8, 9],
+      "greatPlains": [6, 7, 8, 9],
+      "southwest": [5, 6, 7, 8],
+      "pacificNorthwest": [7, 8, 9],
+      "california": [6, 7, 8, 9, 10]
+    },
+    "localCarbonKgPerKg": 0.15,
+    "importedCarbonKgPerKg": 1.2
+  },
+  {
+    "id": "cantaloupe",
+    "name": "Cantaloupe",
+    "category": "fruit",
+    "description": "Sweet, aromatic melon rich in vitamins A and C. Locally grown cantaloupes have a fragrance imports can't match.",
+    "imageName": "cantaloupe",
+    "seasonsByRegion": {
+      "northeast": [7, 8, 9],
+      "southeast": [5, 6, 7, 8],
+      "midwest": [7, 8, 9],
+      "greatPlains": [6, 7, 8, 9],
+      "southwest": [5, 6, 7, 8],
+      "pacificNorthwest": [7, 8, 9],
+      "california": [6, 7, 8, 9, 10]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.3
+  },
+  {
+    "id": "cherry",
+    "name": "Cherry",
+    "category": "fruit",
+    "description": "Beloved stone fruit with a short but spectacular season. Sweet and tart varieties both shine when picked ripe locally.",
+    "imageName": "cherry",
+    "seasonsByRegion": {
+      "northeast": [6, 7],
+      "southeast": [5, 6],
+      "midwest": [6, 7],
+      "greatPlains": [6, 7],
+      "southwest": [5, 6],
+      "pacificNorthwest": [6, 7, 8],
+      "california": [5, 6, 7]
+    },
+    "localCarbonKgPerKg": 0.35,
+    "importedCarbonKgPerKg": 2.4
+  },
+  {
+    "id": "grape",
+    "name": "Grape",
+    "category": "fruit",
+    "description": "Versatile fruit enjoyed fresh, dried, or pressed. Local table grapes ripen to perfect sweetness on the vine.",
+    "imageName": "grape",
+    "seasonsByRegion": {
+      "northeast": [8, 9, 10],
+      "southeast": [7, 8, 9],
+      "midwest": [8, 9, 10],
+      "greatPlains": [8, 9],
+      "southwest": [7, 8, 9],
+      "pacificNorthwest": [8, 9, 10],
+      "california": [6, 7, 8, 9, 10, 11]
+    },
+    "localCarbonKgPerKg": 0.25,
+    "importedCarbonKgPerKg": 1.5
+  },
+  {
+    "id": "pear",
+    "name": "Pear",
+    "category": "fruit",
+    "description": "Elegant fall fruit with a buttery texture when perfectly ripe. Over 3,000 varieties exist worldwide.",
+    "imageName": "pear",
+    "seasonsByRegion": {
+      "northeast": [8, 9, 10, 11],
+      "southeast": [8, 9, 10],
+      "midwest": [8, 9, 10, 11],
+      "greatPlains": [8, 9, 10],
+      "southwest": [8, 9, 10],
+      "pacificNorthwest": [8, 9, 10, 11],
+      "california": [7, 8, 9, 10, 11]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.2
+  },
+  {
+    "id": "plum",
+    "name": "Plum",
+    "category": "fruit",
+    "description": "Juicy stone fruit ranging from tart to candy-sweet. Local plums have a bloom on the skin that signals freshness.",
+    "imageName": "plum",
+    "seasonsByRegion": {
+      "northeast": [7, 8, 9],
+      "southeast": [6, 7, 8],
+      "midwest": [7, 8, 9],
+      "greatPlains": [7, 8],
+      "southwest": [5, 6, 7],
+      "pacificNorthwest": [7, 8, 9],
+      "california": [5, 6, 7, 8, 9]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 1.8
+  },
+  {
+    "id": "raspberry",
+    "name": "Raspberry",
+    "category": "fruit",
+    "description": "Delicate, intensely flavored berry that doesn't travel well — local is the way to experience true raspberry flavor.",
+    "imageName": "raspberry",
+    "seasonsByRegion": {
+      "northeast": [6, 7, 8],
+      "southeast": [5, 6],
+      "midwest": [6, 7, 8],
+      "greatPlains": [6, 7],
+      "southwest": [5, 6],
+      "pacificNorthwest": [6, 7, 8, 9],
+      "california": [5, 6, 7, 8, 9]
+    },
+    "localCarbonKgPerKg": 0.4,
+    "importedCarbonKgPerKg": 2.8
+  },
+  {
+    "id": "fig",
+    "name": "Fig",
+    "category": "fruit",
+    "description": "Ancient fruit with honey-like sweetness. Extremely perishable, making local figs a rare seasonal treat.",
+    "imageName": "fig",
+    "seasonsByRegion": {
+      "northeast": [8, 9, 10],
+      "southeast": [6, 7, 8, 9, 10],
+      "midwest": [8, 9],
+      "greatPlains": [8, 9],
+      "southwest": [6, 7, 8, 9, 10],
+      "pacificNorthwest": [8, 9, 10],
+      "california": [6, 7, 8, 9, 10, 11]
+    },
+    "localCarbonKgPerKg": 0.35,
+    "importedCarbonKgPerKg": 3.2
+  },
+  {
+    "id": "pomegranate",
+    "name": "Pomegranate",
+    "category": "fruit",
+    "description": "Jewel-toned fruit packed with antioxidants. Each ruby aril bursts with sweet-tart juice.",
+    "imageName": "pomegranate",
+    "seasonsByRegion": {
+      "northeast": [10, 11],
+      "southeast": [9, 10, 11],
+      "midwest": [10, 11],
+      "greatPlains": [10, 11],
+      "southwest": [9, 10, 11, 12],
+      "pacificNorthwest": [10, 11],
+      "california": [9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 2.0
+  },
+  {
+    "id": "cranberry",
+    "name": "Cranberry",
+    "category": "fruit",
+    "description": "Tart, vibrant berry harvested from flooded bogs in fall. A staple of holiday cooking and rich in vitamin C.",
+    "imageName": "cranberry",
+    "seasonsByRegion": {
+      "northeast": [9, 10, 11],
+      "southeast": [10, 11],
+      "midwest": [9, 10, 11],
+      "greatPlains": [10, 11],
+      "southwest": [10, 11],
+      "pacificNorthwest": [9, 10, 11],
+      "california": [10, 11]
+    },
+    "localCarbonKgPerKg": 0.25,
+    "importedCarbonKgPerKg": 1.4
+  },
+  {
+    "id": "persimmon",
+    "name": "Persimmon",
+    "category": "fruit",
+    "description": "Sweet autumn fruit with a custard-like texture when fully ripe. Fuyu varieties can be eaten crisp like an apple.",
+    "imageName": "persimmon",
+    "seasonsByRegion": {
+      "northeast": [10, 11],
+      "southeast": [9, 10, 11],
+      "midwest": [10, 11],
+      "greatPlains": [10, 11],
+      "southwest": [10, 11, 12],
+      "pacificNorthwest": [10, 11],
+      "california": [9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 2.1
+  },
+  {
+    "id": "blackberry",
+    "name": "Blackberry",
+    "category": "fruit",
+    "description": "Deep purple berries with a complex sweet-tart flavor. Wild blackberries grow abundantly along roadsides and fields.",
+    "imageName": "blackberry",
+    "seasonsByRegion": {
+      "northeast": [7, 8],
+      "southeast": [5, 6, 7],
+      "midwest": [7, 8],
+      "greatPlains": [6, 7, 8],
+      "southwest": [5, 6],
+      "pacificNorthwest": [7, 8, 9],
+      "california": [5, 6, 7, 8]
+    },
+    "localCarbonKgPerKg": 0.35,
+    "importedCarbonKgPerKg": 2.6
+  },
+  {
+    "id": "carrot",
+    "name": "Carrot",
+    "category": "vegetable",
+    "description": "Crunchy root vegetable that sweetens in cold soil. Local carrots have a depth of flavor that store-bought can't touch.",
+    "imageName": "carrot",
+    "seasonsByRegion": {
+      "northeast": [6, 7, 8, 9, 10, 11],
+      "southeast": [1, 2, 3, 4, 10, 11, 12],
+      "midwest": [6, 7, 8, 9, 10, 11],
+      "greatPlains": [5, 6, 7, 8, 9, 10, 11],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [6, 7, 8, 9, 10, 11],
+      "california": [1, 2, 3, 4, 5, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.12,
+    "importedCarbonKgPerKg": 0.8
+  },
+  {
+    "id": "broccoli",
+    "name": "Broccoli",
+    "category": "vegetable",
+    "description": "Nutrient-dense cruciferous vegetable that prefers cool weather. Rich in fiber, vitamin C, and cancer-fighting compounds.",
+    "imageName": "broccoli",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 9, 10, 11],
+      "southeast": [2, 3, 4, 10, 11, 12],
+      "midwest": [5, 6, 9, 10, 11],
+      "greatPlains": [4, 5, 9, 10, 11],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [5, 6, 9, 10, 11],
+      "california": [1, 2, 3, 4, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.25,
+    "importedCarbonKgPerKg": 1.5
+  },
+  {
+    "id": "corn",
+    "name": "Corn",
+    "category": "vegetable",
+    "description": "Quintessential summer vegetable best eaten within hours of harvest when sugars haven't yet converted to starch.",
+    "imageName": "corn",
+    "seasonsByRegion": {
+      "northeast": [7, 8, 9],
+      "southeast": [5, 6, 7, 8, 9],
+      "midwest": [7, 8, 9],
+      "greatPlains": [7, 8, 9],
+      "southwest": [5, 6, 7],
+      "pacificNorthwest": [7, 8, 9],
+      "california": [5, 6, 7, 8, 9, 10]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.1
+  },
+  {
+    "id": "bell_pepper",
+    "name": "Bell Pepper",
+    "category": "vegetable",
+    "description": "Colorful, sweet peppers that ripen from green to red, yellow, or orange. Local peppers are crunchier and sweeter.",
+    "imageName": "bell_pepper",
+    "seasonsByRegion": {
+      "northeast": [7, 8, 9, 10],
+      "southeast": [5, 6, 7, 8, 9, 10],
+      "midwest": [7, 8, 9],
+      "greatPlains": [6, 7, 8, 9],
+      "southwest": [4, 5, 6, 10, 11],
+      "pacificNorthwest": [7, 8, 9],
+      "california": [5, 6, 7, 8, 9, 10, 11]
+    },
+    "localCarbonKgPerKg": 0.35,
+    "importedCarbonKgPerKg": 2.3
+  },
+  {
+    "id": "cucumber",
+    "name": "Cucumber",
+    "category": "vegetable",
+    "description": "Cool, crisp, and hydrating summer staple. Local cucumbers are firmer and more flavorful than traveled ones.",
+    "imageName": "cucumber",
+    "seasonsByRegion": {
+      "northeast": [6, 7, 8, 9],
+      "southeast": [4, 5, 6, 7, 8, 9],
+      "midwest": [6, 7, 8, 9],
+      "greatPlains": [6, 7, 8, 9],
+      "southwest": [3, 4, 5, 9, 10, 11],
+      "pacificNorthwest": [6, 7, 8, 9],
+      "california": [4, 5, 6, 7, 8, 9, 10]
+    },
+    "localCarbonKgPerKg": 0.25,
+    "importedCarbonKgPerKg": 1.7
+  },
+  {
+    "id": "green_bean",
+    "name": "Green Bean",
+    "category": "vegetable",
+    "description": "Tender, snappy pods best picked young. Local green beans have a fresh crispness that imported ones quickly lose.",
+    "imageName": "green_bean",
+    "seasonsByRegion": {
+      "northeast": [6, 7, 8, 9],
+      "southeast": [4, 5, 6, 7, 8, 9, 10],
+      "midwest": [6, 7, 8, 9],
+      "greatPlains": [6, 7, 8, 9],
+      "southwest": [3, 4, 5, 9, 10, 11],
+      "pacificNorthwest": [6, 7, 8, 9],
+      "california": [4, 5, 6, 7, 8, 9, 10]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.4
+  },
+  {
+    "id": "cauliflower",
+    "name": "Cauliflower",
+    "category": "vegetable",
+    "description": "Mild, versatile cruciferous vegetable that thrives in cool weather. Can be roasted, mashed, or eaten raw.",
+    "imageName": "cauliflower",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 9, 10, 11],
+      "southeast": [2, 3, 4, 10, 11, 12],
+      "midwest": [5, 6, 9, 10, 11],
+      "greatPlains": [4, 5, 9, 10, 11],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [5, 6, 9, 10, 11],
+      "california": [1, 2, 3, 4, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.25,
+    "importedCarbonKgPerKg": 1.6
+  },
+  {
+    "id": "beet",
+    "name": "Beet",
+    "category": "vegetable",
+    "description": "Earthy, sweet root vegetable with edible greens. Roasting concentrates its natural sugars beautifully.",
+    "imageName": "beet",
+    "seasonsByRegion": {
+      "northeast": [6, 7, 8, 9, 10, 11],
+      "southeast": [3, 4, 5, 10, 11, 12],
+      "midwest": [6, 7, 8, 9, 10, 11],
+      "greatPlains": [5, 6, 7, 8, 9, 10, 11],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [6, 7, 8, 9, 10, 11],
+      "california": [1, 2, 3, 4, 5, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.15,
+    "importedCarbonKgPerKg": 0.9
+  },
+  {
+    "id": "asparagus",
+    "name": "Asparagus",
+    "category": "vegetable",
+    "description": "Prized spring vegetable with a short but eagerly awaited season. Local spears are tender and sweet.",
+    "imageName": "asparagus",
+    "seasonsByRegion": {
+      "northeast": [4, 5, 6],
+      "southeast": [2, 3, 4],
+      "midwest": [4, 5, 6],
+      "greatPlains": [4, 5],
+      "southwest": [2, 3, 4],
+      "pacificNorthwest": [4, 5, 6],
+      "california": [2, 3, 4, 5]
+    },
+    "localCarbonKgPerKg": 0.4,
+    "importedCarbonKgPerKg": 3.5
+  },
+  {
+    "id": "artichoke",
+    "name": "Artichoke",
+    "category": "vegetable",
+    "description": "Thistle-like vegetable with a tender heart. Nearly all US artichokes come from California's coastal fields.",
+    "imageName": "artichoke",
+    "seasonsByRegion": {
+      "northeast": [5, 6],
+      "southeast": [3, 4, 5],
+      "midwest": [5, 6],
+      "greatPlains": [5, 6],
+      "southwest": [3, 4, 5],
+      "pacificNorthwest": [4, 5, 6],
+      "california": [3, 4, 5, 6, 9, 10, 11]
+    },
+    "localCarbonKgPerKg": 0.4,
+    "importedCarbonKgPerKg": 2.5
+  },
+  {
+    "id": "eggplant",
+    "name": "Eggplant",
+    "category": "vegetable",
+    "description": "Meaty, versatile nightshade that absorbs flavors beautifully. Local eggplant is firmer with fewer bitter seeds.",
+    "imageName": "eggplant",
+    "seasonsByRegion": {
+      "northeast": [7, 8, 9],
+      "southeast": [5, 6, 7, 8, 9, 10],
+      "midwest": [7, 8, 9],
+      "greatPlains": [7, 8, 9],
+      "southwest": [4, 5, 6, 9, 10, 11],
+      "pacificNorthwest": [7, 8, 9],
+      "california": [5, 6, 7, 8, 9, 10]
+    },
+    "localCarbonKgPerKg": 0.3,
+    "importedCarbonKgPerKg": 2.0
+  },
+  {
+    "id": "cabbage",
+    "name": "Cabbage",
+    "category": "vegetable",
+    "description": "Reliable cool-weather crop that stores exceptionally well. Great raw in slaw or cooked in stir-fries and soups.",
+    "imageName": "cabbage",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 9, 10, 11, 12],
+      "southeast": [1, 2, 3, 4, 10, 11, 12],
+      "midwest": [5, 6, 9, 10, 11, 12],
+      "greatPlains": [4, 5, 9, 10, 11, 12],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [5, 6, 9, 10, 11, 12],
+      "california": [1, 2, 3, 4, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.1,
+    "importedCarbonKgPerKg": 0.8
+  },
+  {
+    "id": "radish",
+    "name": "Radish",
+    "category": "vegetable",
+    "description": "Peppery, crunchy root that matures in as little as 25 days. One of the fastest crops from seed to table.",
+    "imageName": "radish",
+    "seasonsByRegion": {
+      "northeast": [4, 5, 6, 9, 10],
+      "southeast": [2, 3, 4, 10, 11],
+      "midwest": [4, 5, 6, 9, 10],
+      "greatPlains": [3, 4, 5, 9, 10],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [4, 5, 6, 9, 10],
+      "california": [1, 2, 3, 4, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.1,
+    "importedCarbonKgPerKg": 0.85
+  },
+  {
+    "id": "turnip",
+    "name": "Turnip",
+    "category": "vegetable",
+    "description": "Underrated root vegetable with a mild, slightly peppery flavor. Both the root and greens are edible and nutritious.",
+    "imageName": "turnip",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 9, 10, 11],
+      "southeast": [2, 3, 4, 10, 11, 12],
+      "midwest": [5, 6, 9, 10, 11],
+      "greatPlains": [4, 5, 9, 10, 11],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [5, 6, 9, 10, 11],
+      "california": [1, 2, 3, 4, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.12,
+    "importedCarbonKgPerKg": 0.85
+  },
+  {
+    "id": "pumpkin",
+    "name": "Pumpkin",
+    "category": "vegetable",
+    "description": "Iconic fall squash used in pies, soups, and roasting. Sugar pumpkins from local farms have the best flavor for cooking.",
+    "imageName": "pumpkin",
+    "seasonsByRegion": {
+      "northeast": [9, 10, 11],
+      "southeast": [9, 10, 11],
+      "midwest": [9, 10, 11],
+      "greatPlains": [9, 10, 11],
+      "southwest": [9, 10, 11, 12],
+      "pacificNorthwest": [9, 10, 11],
+      "california": [9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.15,
+    "importedCarbonKgPerKg": 1.0
+  },
+  {
+    "id": "lettuce",
+    "name": "Lettuce",
+    "category": "vegetable",
+    "description": "Crisp salad staple that wilts quickly after harvest. Locally grown lettuce retains its crunch and nutritional value.",
+    "imageName": "lettuce",
+    "seasonsByRegion": {
+      "northeast": [4, 5, 6, 9, 10],
+      "southeast": [2, 3, 4, 10, 11, 12],
+      "midwest": [4, 5, 6, 9, 10],
+      "greatPlains": [3, 4, 5, 9, 10],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [4, 5, 6, 9, 10],
+      "california": [1, 2, 3, 4, 5, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.2,
+    "importedCarbonKgPerKg": 1.3
+  },
+  {
+    "id": "mint",
+    "name": "Mint",
+    "category": "herb",
+    "description": "Vigorous, aromatic herb that grows prolifically. Fresh mint adds a cool brightness to drinks, salads, and desserts.",
+    "imageName": "mint",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 7, 8, 9, 10],
+      "southeast": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "midwest": [5, 6, 7, 8, 9, 10],
+      "greatPlains": [4, 5, 6, 7, 8, 9, 10],
+      "southwest": [3, 4, 5, 6, 7, 8, 9, 10, 11],
+      "pacificNorthwest": [5, 6, 7, 8, 9, 10],
+      "california": [3, 4, 5, 6, 7, 8, 9, 10, 11]
+    },
+    "localCarbonKgPerKg": 0.5,
+    "importedCarbonKgPerKg": 3.0
+  },
+  {
+    "id": "rosemary",
+    "name": "Rosemary",
+    "category": "herb",
+    "description": "Woody, fragrant herb that's a cornerstone of Mediterranean cooking. Hardy enough to survive mild winters.",
+    "imageName": "rosemary",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 7, 8, 9, 10],
+      "southeast": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "midwest": [5, 6, 7, 8, 9, 10],
+      "greatPlains": [4, 5, 6, 7, 8, 9, 10, 11],
+      "southwest": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
+      "pacificNorthwest": [4, 5, 6, 7, 8, 9, 10, 11],
+      "california": [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.55,
+    "importedCarbonKgPerKg": 3.4
+  },
+  {
+    "id": "parsley",
+    "name": "Parsley",
+    "category": "herb",
+    "description": "Bright, fresh herb used as both garnish and ingredient. Flat-leaf varieties have the most robust flavor.",
+    "imageName": "parsley",
+    "seasonsByRegion": {
+      "northeast": [5, 6, 7, 8, 9, 10],
+      "southeast": [2, 3, 4, 5, 10, 11, 12],
+      "midwest": [5, 6, 7, 8, 9, 10],
+      "greatPlains": [4, 5, 6, 7, 8, 9, 10],
+      "southwest": [1, 2, 3, 10, 11, 12],
+      "pacificNorthwest": [5, 6, 7, 8, 9, 10],
+      "california": [1, 2, 3, 4, 5, 10, 11, 12]
+    },
+    "localCarbonKgPerKg": 0.5,
+    "importedCarbonKgPerKg": 3.1
   }
 ]

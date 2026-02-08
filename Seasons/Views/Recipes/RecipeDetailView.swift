@@ -1,8 +1,21 @@
 import SwiftUI
+import SwiftData
 
 struct RecipeDetailView: View {
     let recipe: Recipe
-    let viewModel: RecipeViewModel
+    let locationService: LocationService
+
+    @Environment(\.modelContext) private var modelContext
+
+    @State private var isFavorited = false
+
+    private var viewModel: RecipeViewModel {
+        RecipeViewModel(locationService: locationService)
+    }
+
+    private var favoritesService: FavoritesService {
+        FavoritesService(modelContext: modelContext)
+    }
 
     var body: some View {
         ScrollView {
@@ -15,6 +28,20 @@ struct RecipeDetailView: View {
         }
         .navigationTitle(recipe.name)
         .navigationBarTitleDisplayMode(.inline)
+        .toolbar {
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    favoritesService.toggleFavorite(itemType: "recipe", itemId: recipe.id)
+                    isFavorited.toggle()
+                } label: {
+                    Image(systemName: isFavorited ? "heart.fill" : "heart")
+                        .foregroundStyle(isFavorited ? .red : .secondary)
+                }
+            }
+        }
+        .onAppear {
+            isFavorited = favoritesService.isFavorited(itemType: "recipe", itemId: recipe.id)
+        }
     }
 
     @ViewBuilder
@@ -52,31 +79,53 @@ struct RecipeDetailView: View {
                 .font(.headline)
 
             ForEach(recipe.ingredients) { ingredient in
-                HStack(spacing: 8) {
-                    if viewModel.isIngredientInSeason(ingredient) {
-                        Image(systemName: "leaf.fill")
-                            .font(.caption)
-                            .foregroundStyle(.green)
-                    } else {
-                        Image(systemName: "circle.fill")
-                            .font(.system(size: 6))
-                            .foregroundStyle(.secondary)
+                let isInSeason = viewModel.isIngredientInSeason(ingredient)
+                let hasProduce = ingredient.produceId != nil
+
+                if hasProduce {
+                    NavigationLink(value: ProduceDestination(produceId: ingredient.produceId!)) {
+                        ingredientRow(ingredient: ingredient, isInSeason: isInSeason, tappable: true)
                     }
-
-                    Text("\(ingredient.quantity) \(ingredient.unit)")
-                        .font(.subheadline)
-                        .foregroundStyle(.secondary)
-                        .frame(width: 80, alignment: .leading)
-
-                    Text(ingredient.name)
-                        .font(.subheadline)
-                        .fontWeight(viewModel.isIngredientInSeason(ingredient) ? .semibold : .regular)
+                    .buttonStyle(.plain)
+                } else {
+                    ingredientRow(ingredient: ingredient, isInSeason: isInSeason, tappable: false)
                 }
             }
         }
         .padding()
         .background(Color(.systemGray6))
         .clipShape(RoundedRectangle(cornerRadius: 12))
+    }
+
+    @ViewBuilder
+    private func ingredientRow(ingredient: RecipeIngredient, isInSeason: Bool, tappable: Bool) -> some View {
+        HStack(spacing: 8) {
+            if isInSeason {
+                Image(systemName: "leaf.fill")
+                    .font(.caption)
+                    .foregroundStyle(.green)
+            } else {
+                Image(systemName: "circle.fill")
+                    .font(.system(size: 6))
+                    .foregroundStyle(.secondary)
+            }
+
+            Text("\(ingredient.quantity) \(ingredient.unit)")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+                .frame(width: 80, alignment: .leading)
+
+            Text(ingredient.name)
+                .font(.subheadline)
+                .fontWeight(isInSeason ? .semibold : .regular)
+
+            if tappable {
+                Spacer()
+                Image(systemName: "chevron.right")
+                    .font(.caption2)
+                    .foregroundStyle(.secondary)
+            }
+        }
     }
 
     @ViewBuilder
@@ -139,7 +188,8 @@ struct SeasonalBadge: View {
                 servings: 4,
                 imageName: "test"
             ),
-            viewModel: RecipeViewModel(locationService: LocationService())
+            locationService: LocationService()
         )
     }
+    .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

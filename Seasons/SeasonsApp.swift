@@ -7,6 +7,6 @@ struct SeasonsApp: App {
         WindowGroup {
             ContentView()
         }
-        .modelContainer(for: CarbonLog.self)
+        .modelContainer(for: [CarbonLog.self, Favorite.self])
     }
 }

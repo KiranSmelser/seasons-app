@@ -28,4 +28,9 @@ final class RecipeDataService {
     func recipe(byId id: String) -> Recipe? {
         allRecipes.first { $0.id == id }
     }
+
+    /// Returns recipes that use a given produce item.
+    func recipes(using produceId: String) -> [Recipe] {
+        allRecipes.filter { $0.produceIds.contains(produceId) }
+    }
 }
