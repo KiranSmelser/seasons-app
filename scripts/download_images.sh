@@ -77,6 +77,19 @@ declare -A PRODUCE_TERMS=(
   [sage]="fresh sage herb"
   [swiss_chard]="fresh swiss chard"
   [thyme]="fresh thyme herb"
+  [celery]="fresh celery stalks"
+  [currant]="fresh currants"
+  [garlic]="fresh garlic bulbs"
+  [gooseberry]="fresh gooseberries"
+  [honeyberry]="honeyberry fruit"
+  [kohlrabi]="fresh kohlrabi"
+  [okra]="fresh okra"
+  [onion]="fresh onions"
+  [potato]="fresh potatoes"
+  [rutabaga]="fresh rutabaga"
+  [snap_pea]="fresh snap peas"
+  [tarragon]="fresh tarragon herb"
+  [tart_cherry]="tart cherries"
 )
 
 download_image() {

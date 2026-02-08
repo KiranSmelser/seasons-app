@@ -958,5 +958,294 @@
     "prepTimeMinutes": 10,
     "cookTimeMinutes": 0,
     "servings": 8
+  },
+  {
+    "id": "loaded_baked_potato",
+    "name": "Loaded Baked Potato",
+    "description": "Crispy-skinned baked potatoes topped with sour cream, sharp cheddar, and fresh chives. Simple comfort food done right.",
+    "ingredients": [
+      {"produceId": "potato", "name": "Russet Potatoes", "quantity": "4", "unit": "large"},
+      {"produceId": "chives", "name": "Fresh Chives", "quantity": "3", "unit": "tbsp, chopped"},
+      {"produceId": null, "name": "Sharp Cheddar Cheese", "quantity": "1", "unit": "cup shredded"},
+      {"produceId": null, "name": "Sour Cream", "quantity": "0.5", "unit": "cup"},
+      {"produceId": null, "name": "Butter", "quantity": "4", "unit": "tbsp"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Preheat oven to 400\u00b0F (200\u00b0C).",
+      "Scrub potatoes and prick all over with a fork.",
+      "Rub with olive oil and sprinkle with salt.",
+      "Bake directly on the oven rack for 50-60 minutes until tender when pierced.",
+      "Slice open and fluff the inside with a fork.",
+      "Top with butter, sour cream, shredded cheddar, and fresh chives.",
+      "Season with salt and pepper and serve immediately."
+    ],
+    "prepTimeMinutes": 5,
+    "cookTimeMinutes": 60,
+    "servings": 4
+  },
+  {
+    "id": "french_onion_soup",
+    "name": "French Onion Soup",
+    "description": "Deeply caramelized onions in a rich broth with garlic and thyme, topped with crusty bread and melted Gruyère.",
+    "ingredients": [
+      {"produceId": "onion", "name": "Yellow Onions", "quantity": "4", "unit": "large, thinly sliced"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
+      {"produceId": "thyme", "name": "Fresh Thyme", "quantity": "4", "unit": "sprigs"},
+      {"produceId": null, "name": "Butter", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Beef Broth", "quantity": "6", "unit": "cups"},
+      {"produceId": null, "name": "Dry White Wine", "quantity": "0.5", "unit": "cup"},
+      {"produceId": null, "name": "French Bread", "quantity": "4", "unit": "thick slices"},
+      {"produceId": null, "name": "Gruyère Cheese", "quantity": "1.5", "unit": "cups shredded"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Melt butter in a large heavy pot over medium heat.",
+      "Add onions and a pinch of salt. Cook, stirring occasionally, for 35-40 minutes until deeply caramelized.",
+      "Add garlic and cook for 1 minute.",
+      "Pour in white wine and scrape up any browned bits from the bottom.",
+      "Add beef broth and thyme sprigs. Simmer for 20 minutes.",
+      "Remove thyme sprigs and season with salt and pepper.",
+      "Ladle soup into oven-safe bowls, top with bread slices and Gruyère.",
+      "Broil until cheese is bubbly and golden, about 2-3 minutes."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 60,
+    "servings": 4
+  },
+  {
+    "id": "roasted_kohlrabi_snap_peas",
+    "name": "Roasted Kohlrabi & Snap Peas",
+    "description": "Tender roasted kohlrabi paired with crisp snap peas in a bright lemon-herb dressing. A fresh spring side dish.",
+    "ingredients": [
+      {"produceId": "kohlrabi", "name": "Kohlrabi", "quantity": "3", "unit": "medium, peeled and cubed"},
+      {"produceId": "snap_pea", "name": "Sugar Snap Peas", "quantity": "2", "unit": "cups, trimmed"},
+      {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Garlic", "quantity": "2", "unit": "cloves, minced"},
+      {"produceId": null, "name": "Fresh Mint", "quantity": "2", "unit": "tbsp, chopped"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Preheat oven to 425\u00b0F (220\u00b0C).",
+      "Toss kohlrabi cubes with 2 tbsp olive oil, salt, and pepper.",
+      "Spread on a baking sheet and roast for 25-30 minutes until golden and tender.",
+      "In the last 5 minutes, add snap peas to the baking sheet.",
+      "Whisk together remaining olive oil, lemon juice, and garlic.",
+      "Toss roasted vegetables with the lemon dressing and fresh mint.",
+      "Serve warm or at room temperature."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 30,
+    "servings": 4
+  },
+  {
+    "id": "mashed_rutabaga",
+    "name": "Mashed Rutabaga",
+    "description": "Creamy, buttery mashed rutabaga with a hint of nutmeg. A delicious lower-carb alternative to mashed potatoes.",
+    "ingredients": [
+      {"produceId": "rutabaga", "name": "Rutabaga", "quantity": "2", "unit": "large, peeled and cubed"},
+      {"produceId": null, "name": "Butter", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Heavy Cream", "quantity": "0.25", "unit": "cup"},
+      {"produceId": null, "name": "Nutmeg", "quantity": "0.25", "unit": "tsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Peel rutabaga and cut into 1-inch cubes.",
+      "Place in a large pot and cover with salted water.",
+      "Bring to a boil, then reduce heat and simmer for 25-30 minutes until very tender.",
+      "Drain well and return to the pot.",
+      "Add butter, cream, and nutmeg.",
+      "Mash until smooth (or use a hand mixer for extra-creamy texture).",
+      "Season with salt and pepper and serve warm."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 30,
+    "servings": 4
+  },
+  {
+    "id": "waldorf_salad",
+    "name": "Celery & Apple Waldorf Salad",
+    "description": "The classic American salad with crisp celery, sweet apple, crunchy walnuts, and a creamy yogurt dressing.",
+    "ingredients": [
+      {"produceId": "celery", "name": "Celery", "quantity": "4", "unit": "stalks, sliced"},
+      {"produceId": "apple", "name": "Apple", "quantity": "2", "unit": "medium, diced"},
+      {"produceId": null, "name": "Walnuts", "quantity": "0.5", "unit": "cup, toasted and chopped"},
+      {"produceId": null, "name": "Greek Yogurt", "quantity": "0.33", "unit": "cup"},
+      {"produceId": null, "name": "Mayonnaise", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Dried Cranberries", "quantity": "0.25", "unit": "cup"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Dice the apples and toss with lemon juice to prevent browning.",
+      "Slice celery into thin half-moons.",
+      "Whisk together Greek yogurt and mayonnaise until smooth.",
+      "Combine apples, celery, walnuts, and dried cranberries in a large bowl.",
+      "Pour the dressing over the salad and toss to coat.",
+      "Season with salt and pepper.",
+      "Refrigerate for 15 minutes before serving for best flavor."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 0,
+    "servings": 4
+  },
+  {
+    "id": "southern_fried_okra",
+    "name": "Southern Fried Okra",
+    "description": "Crispy cornmeal-crusted okra fried until golden. A beloved Southern side dish with irresistible crunch.",
+    "ingredients": [
+      {"produceId": "okra", "name": "Fresh Okra", "quantity": "1", "unit": "lb, sliced into 1/2-inch rounds"},
+      {"produceId": null, "name": "Cornmeal", "quantity": "0.75", "unit": "cup"},
+      {"produceId": null, "name": "Flour", "quantity": "0.25", "unit": "cup"},
+      {"produceId": null, "name": "Egg", "quantity": "1", "unit": "beaten"},
+      {"produceId": null, "name": "Buttermilk", "quantity": "0.5", "unit": "cup"},
+      {"produceId": null, "name": "Vegetable Oil", "quantity": "1", "unit": "cup, for frying"},
+      {"produceId": null, "name": "Cayenne Pepper", "quantity": "0.25", "unit": "tsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Slice okra into 1/2-inch rounds and pat dry.",
+      "Whisk together egg and buttermilk in a bowl.",
+      "Mix cornmeal, flour, cayenne, salt, and pepper in another bowl.",
+      "Dip okra pieces in the egg mixture, then dredge in the cornmeal mixture.",
+      "Heat vegetable oil in a cast iron skillet to 350\u00b0F (175\u00b0C).",
+      "Fry okra in batches for 3-4 minutes until golden and crispy.",
+      "Drain on paper towels, season with extra salt, and serve hot."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 15,
+    "servings": 4
+  },
+  {
+    "id": "tart_cherry_galette",
+    "name": "Tart Cherry Galette",
+    "description": "A rustic free-form pastry filled with jammy tart cherries and a hint of almond. Simple, stunning, and delicious.",
+    "ingredients": [
+      {"produceId": "tart_cherry", "name": "Tart Cherries", "quantity": "3", "unit": "cups, pitted"},
+      {"produceId": null, "name": "Pie Dough", "quantity": "1", "unit": "round, store-bought or homemade"},
+      {"produceId": null, "name": "Sugar", "quantity": "0.33", "unit": "cup"},
+      {"produceId": null, "name": "Cornstarch", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Almond Extract", "quantity": "0.5", "unit": "tsp"},
+      {"produceId": null, "name": "Egg", "quantity": "1", "unit": "beaten, for wash"},
+      {"produceId": null, "name": "Turbinado Sugar", "quantity": "1", "unit": "tbsp, for sprinkling"}
+    ],
+    "instructions": [
+      "Preheat oven to 400\u00b0F (200\u00b0C).",
+      "Toss pitted tart cherries with sugar, cornstarch, and almond extract.",
+      "Roll pie dough into a rough circle on a parchment-lined baking sheet.",
+      "Mound the cherry filling in the center, leaving a 2-inch border.",
+      "Fold the dough edges up over the fruit, pleating as you go.",
+      "Brush the dough with beaten egg and sprinkle with turbinado sugar.",
+      "Bake for 35-40 minutes until crust is golden and filling is bubbly.",
+      "Let cool for 10 minutes before slicing and serving."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 40,
+    "servings": 6
+  },
+  {
+    "id": "gooseberry_fool",
+    "name": "Gooseberry Fool",
+    "description": "A classic English dessert of stewed gooseberries folded into softly whipped cream. Tart, sweet, and beautifully simple.",
+    "ingredients": [
+      {"produceId": "gooseberry", "name": "Gooseberries", "quantity": "2", "unit": "cups, topped and tailed"},
+      {"produceId": null, "name": "Sugar", "quantity": "0.5", "unit": "cup"},
+      {"produceId": null, "name": "Heavy Cream", "quantity": "1.5", "unit": "cups"},
+      {"produceId": null, "name": "Vanilla Extract", "quantity": "1", "unit": "tsp"},
+      {"produceId": null, "name": "Water", "quantity": "2", "unit": "tbsp"}
+    ],
+    "instructions": [
+      "Place gooseberries, sugar, and water in a saucepan over medium heat.",
+      "Cook for 8-10 minutes, stirring occasionally, until berries burst and form a thick compote.",
+      "Remove from heat and let cool completely.",
+      "Whip the cream with vanilla extract until it forms soft peaks.",
+      "Gently fold the cooled gooseberry compote into the whipped cream, leaving streaks for a marbled effect.",
+      "Spoon into glasses and refrigerate for at least 30 minutes.",
+      "Serve chilled, topped with a few reserved whole berries if desired."
+    ],
+    "prepTimeMinutes": 10,
+    "cookTimeMinutes": 10,
+    "servings": 4
+  },
+  {
+    "id": "honeyberry_compote",
+    "name": "Honeyberry Compote",
+    "description": "A luscious warm compote of honeyberries simmered with honey and lemon. Perfect spooned over yogurt, pancakes, or ice cream.",
+    "ingredients": [
+      {"produceId": "honeyberry", "name": "Honeyberries", "quantity": "2", "unit": "cups"},
+      {"produceId": null, "name": "Honey", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Lemon Zest", "quantity": "1", "unit": "tsp"},
+      {"produceId": null, "name": "Water", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Vanilla Extract", "quantity": "0.5", "unit": "tsp"}
+    ],
+    "instructions": [
+      "Combine honeyberries, honey, lemon juice, lemon zest, and water in a saucepan.",
+      "Bring to a gentle simmer over medium heat.",
+      "Cook for 8-10 minutes, stirring occasionally, until berries soften and juices thicken.",
+      "Lightly mash some berries with a fork for a chunkier texture, or leave whole.",
+      "Stir in vanilla extract and remove from heat.",
+      "Serve warm over yogurt, pancakes, or ice cream.",
+      "Store leftovers in the refrigerator for up to one week."
+    ],
+    "prepTimeMinutes": 5,
+    "cookTimeMinutes": 10,
+    "servings": 4
+  },
+  {
+    "id": "currant_scones",
+    "name": "Currant Scones",
+    "description": "Tender, flaky British-style scones studded with sweet currants. Best served warm with clotted cream and jam.",
+    "ingredients": [
+      {"produceId": "currant", "name": "Currants", "quantity": "0.5", "unit": "cup"},
+      {"produceId": null, "name": "Flour", "quantity": "2", "unit": "cups"},
+      {"produceId": null, "name": "Sugar", "quantity": "3", "unit": "tbsp"},
+      {"produceId": null, "name": "Baking Powder", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Butter", "quantity": "5", "unit": "tbsp cold, cubed"},
+      {"produceId": null, "name": "Heavy Cream", "quantity": "0.75", "unit": "cup"},
+      {"produceId": null, "name": "Egg", "quantity": "1", "unit": "beaten, for wash"},
+      {"produceId": null, "name": "Salt", "quantity": "0.5", "unit": "tsp"}
+    ],
+    "instructions": [
+      "Preheat oven to 425\u00b0F (220\u00b0C).",
+      "Whisk together flour, sugar, baking powder, and salt.",
+      "Cut in cold butter until the mixture resembles coarse crumbs.",
+      "Stir in currants.",
+      "Add cream and stir until the dough just comes together.",
+      "Turn out onto a floured surface and pat to 1-inch thickness.",
+      "Cut into rounds with a biscuit cutter and place on a parchment-lined baking sheet.",
+      "Brush tops with beaten egg and bake for 12-15 minutes until golden."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 15,
+    "servings": 8
+  },
+  {
+    "id": "tarragon_chicken_salad",
+    "name": "Tarragon Chicken Salad",
+    "description": "An elegant chicken salad with the distinctive anise flavor of fresh tarragon, crunchy celery, and a creamy Dijon dressing.",
+    "ingredients": [
+      {"produceId": "tarragon", "name": "Fresh Tarragon", "quantity": "3", "unit": "tbsp, chopped"},
+      {"produceId": null, "name": "Cooked Chicken Breast", "quantity": "3", "unit": "cups, diced"},
+      {"produceId": null, "name": "Celery", "quantity": "2", "unit": "stalks, diced"},
+      {"produceId": null, "name": "Greek Yogurt", "quantity": "0.33", "unit": "cup"},
+      {"produceId": null, "name": "Mayonnaise", "quantity": "2", "unit": "tbsp"},
+      {"produceId": null, "name": "Dijon Mustard", "quantity": "2", "unit": "tsp"},
+      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
+    ],
+    "instructions": [
+      "Whisk together Greek yogurt, mayonnaise, Dijon mustard, and lemon juice.",
+      "Fold in diced chicken, celery, and fresh tarragon.",
+      "Season with salt and pepper to taste.",
+      "Refrigerate for at least 30 minutes to let flavors meld.",
+      "Serve on a bed of greens, in a sandwich, or with crackers.",
+      "Garnish with extra tarragon leaves before serving."
+    ],
+    "prepTimeMinutes": 15,
+    "cookTimeMinutes": 0,
+    "servings": 4
   }
 ]
