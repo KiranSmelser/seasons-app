@@ -51,8 +51,8 @@
     "description": "Velvety smooth autumn soup with warm spices. Roasting the squash first deepens the natural sweetness.",
     "ingredients": [
       {"produceId": "butternut_squash", "name": "Butternut Squash", "quantity": "1", "unit": "large"},
-      {"produceId": null, "name": "Onion", "quantity": "1", "unit": "medium"},
-      {"produceId": null, "name": "Garlic", "quantity": "3", "unit": "cloves"},
+      {"produceId": "onion", "name": "Onion", "quantity": "1", "unit": "medium"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "3", "unit": "cloves"},
       {"produceId": null, "name": "Vegetable Broth", "quantity": "3", "unit": "cups"},
       {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Nutmeg", "quantity": "0.25", "unit": "tsp"},
@@ -82,7 +82,7 @@
       {"produceId": "tomato", "name": "Cherry Tomatoes", "quantity": "1", "unit": "cup"},
       {"produceId": null, "name": "Pine Nuts", "quantity": "0.25", "unit": "cup"},
       {"produceId": null, "name": "Parmesan Cheese", "quantity": "0.5", "unit": "cup grated"},
-      {"produceId": null, "name": "Garlic", "quantity": "2", "unit": "cloves"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "2", "unit": "cloves"},
       {"produceId": null, "name": "Olive Oil", "quantity": "0.33", "unit": "cup"}
     ],
     "instructions": [
@@ -106,7 +106,7 @@
       {"produceId": "kale", "name": "Kale", "quantity": "1", "unit": "bunch"},
       {"produceId": null, "name": "Quinoa", "quantity": "1", "unit": "cup"},
       {"produceId": null, "name": "Tahini", "quantity": "2", "unit": "tbsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Cumin", "quantity": "0.5", "unit": "tsp"}
     ],
@@ -130,7 +130,7 @@
       {"produceId": "corn", "name": "Corn", "quantity": "4", "unit": "ears"},
       {"produceId": "bell_pepper", "name": "Red Bell Pepper", "quantity": "1", "unit": "medium"},
       {"produceId": "cilantro", "name": "Fresh Cilantro", "quantity": "0.5", "unit": "cup chopped"},
-      {"produceId": null, "name": "Red Onion", "quantity": "0.25", "unit": "cup diced"},
+      {"produceId": "onion", "name": "Red Onion", "quantity": "0.25", "unit": "cup diced"},
       {"produceId": null, "name": "Lime Juice", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Olive Oil", "quantity": "1", "unit": "tbsp"},
       {"produceId": null, "name": "Chili Powder", "quantity": "0.5", "unit": "tsp"},
@@ -211,8 +211,8 @@
       {"produceId": "cucumber", "name": "Cucumbers", "quantity": "3", "unit": "large"},
       {"produceId": "mint", "name": "Fresh Mint", "quantity": "0.25", "unit": "cup"},
       {"produceId": null, "name": "Greek Yogurt", "quantity": "0.5", "unit": "cup"},
-      {"produceId": null, "name": "Garlic", "quantity": "1", "unit": "clove"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "1", "unit": "clove"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
     ],
@@ -292,8 +292,8 @@
     "ingredients": [
       {"produceId": "pumpkin", "name": "Sugar Pumpkin", "quantity": "1", "unit": "medium (about 3 lbs)"},
       {"produceId": "rosemary", "name": "Fresh Rosemary", "quantity": "1", "unit": "sprig"},
-      {"produceId": null, "name": "Onion", "quantity": "1", "unit": "large"},
-      {"produceId": null, "name": "Garlic", "quantity": "3", "unit": "cloves"},
+      {"produceId": "onion", "name": "Onion", "quantity": "1", "unit": "large"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "3", "unit": "cloves"},
       {"produceId": null, "name": "Vegetable Broth", "quantity": "3", "unit": "cups"},
       {"produceId": null, "name": "Coconut Milk", "quantity": "0.5", "unit": "cup"},
       {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
@@ -326,7 +326,7 @@
       {"produceId": null, "name": "Milk", "quantity": "1", "unit": "cup"},
       {"produceId": null, "name": "Butter", "quantity": "3", "unit": "tbsp"},
       {"produceId": null, "name": "Flour", "quantity": "3", "unit": "tbsp"},
-      {"produceId": null, "name": "Onion", "quantity": "0.5", "unit": "medium, diced"},
+      {"produceId": "onion", "name": "Onion", "quantity": "0.5", "unit": "medium, diced"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
     ],
     "instructions": [
@@ -350,7 +350,7 @@
       {"produceId": "carrot", "name": "Carrots", "quantity": "2", "unit": "lbs, chopped"},
       {"produceId": "parsley", "name": "Fresh Parsley", "quantity": "2", "unit": "tbsp chopped"},
       {"produceId": null, "name": "Fresh Ginger", "quantity": "2", "unit": "inches, peeled"},
-      {"produceId": null, "name": "Onion", "quantity": "1", "unit": "medium"},
+      {"produceId": "onion", "name": "Onion", "quantity": "1", "unit": "medium"},
       {"produceId": null, "name": "Vegetable Broth", "quantity": "4", "unit": "cups"},
       {"produceId": null, "name": "Coconut Milk", "quantity": "0.5", "unit": "cup"},
       {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
@@ -483,7 +483,7 @@
     "ingredients": [
       {"produceId": "strawberry", "name": "Strawberries", "quantity": "2", "unit": "cups sliced"},
       {"produceId": "spinach", "name": "Baby Spinach", "quantity": "5", "unit": "cups"},
-      {"produceId": null, "name": "Red Onion", "quantity": "0.25", "unit": "cup thinly sliced"},
+      {"produceId": "onion", "name": "Red Onion", "quantity": "0.25", "unit": "cup thinly sliced"},
       {"produceId": null, "name": "Pecans", "quantity": "0.33", "unit": "cup toasted"},
       {"produceId": null, "name": "Poppy Seeds", "quantity": "1", "unit": "tbsp"},
       {"produceId": null, "name": "Apple Cider Vinegar", "quantity": "2", "unit": "tbsp"},
@@ -513,7 +513,7 @@
       {"produceId": null, "name": "Flour", "quantity": "0.5", "unit": "cup"},
       {"produceId": null, "name": "Butter", "quantity": "5", "unit": "tbsp cold, cubed"},
       {"produceId": null, "name": "Ground Cinnamon", "quantity": "1.5", "unit": "tsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
       {"produceId": null, "name": "Salt", "quantity": "1", "unit": "pinch"}
     ],
     "instructions": [
@@ -568,7 +568,7 @@
       {"produceId": null, "name": "Prosciutto", "quantity": "6", "unit": "oz, thinly sliced"},
       {"produceId": null, "name": "Fresh Mozzarella Pearls", "quantity": "4", "unit": "oz"},
       {"produceId": null, "name": "Honey", "quantity": "1", "unit": "tbsp"},
-      {"produceId": null, "name": "Mint Leaves", "quantity": "8", "unit": "small leaves"},
+      {"produceId": "mint", "name": "Mint Leaves", "quantity": "8", "unit": "small leaves"},
       {"produceId": null, "name": "Black Pepper", "quantity": "1", "unit": "pinch"}
     ],
     "instructions": [
@@ -619,7 +619,7 @@
       {"produceId": null, "name": "Pie Dough", "quantity": "1", "unit": "round, store-bought or homemade"},
       {"produceId": null, "name": "Sugar", "quantity": "3", "unit": "tbsp"},
       {"produceId": null, "name": "Cornstarch", "quantity": "1", "unit": "tbsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
       {"produceId": null, "name": "Egg", "quantity": "1", "unit": "beaten, for wash"},
       {"produceId": null, "name": "Vanilla Extract", "quantity": "0.5", "unit": "tsp"}
     ],
@@ -646,7 +646,7 @@
       {"produceId": null, "name": "Arugula", "quantity": "5", "unit": "cups"},
       {"produceId": null, "name": "Shaved Parmesan", "quantity": "2", "unit": "oz"},
       {"produceId": null, "name": "Pomegranate Seeds", "quantity": "3", "unit": "tbsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
       {"produceId": null, "name": "Honey", "quantity": "1", "unit": "tsp"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
@@ -669,10 +669,10 @@
     "description": "Crisp-tender green beans sautéed with garlic and finished with crunchy toasted almonds. A quick, elegant side dish.",
     "ingredients": [
       {"produceId": "green_bean", "name": "Green Beans", "quantity": "1", "unit": "lb, trimmed"},
-      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
       {"produceId": null, "name": "Sliced Almonds", "quantity": "0.25", "unit": "cup"},
       {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
       {"produceId": null, "name": "Red Pepper Flakes", "quantity": "0.25", "unit": "tsp"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
     ],
@@ -696,8 +696,8 @@
     "ingredients": [
       {"produceId": "cauliflower", "name": "Cauliflower", "quantity": "1", "unit": "large head"},
       {"produceId": null, "name": "Tahini", "quantity": "3", "unit": "tbsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
-      {"produceId": null, "name": "Garlic", "quantity": "2", "unit": "cloves, minced"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "2", "unit": "cloves, minced"},
       {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
       {"produceId": null, "name": "Cumin", "quantity": "1", "unit": "tsp"},
       {"produceId": null, "name": "Paprika", "quantity": "0.5", "unit": "tsp"},
@@ -723,7 +723,7 @@
     "ingredients": [
       {"produceId": "cabbage", "name": "Cabbage", "quantity": "1", "unit": "medium, cut into wedges"},
       {"produceId": "artichoke", "name": "Artichoke Hearts", "quantity": "1", "unit": "14-oz can, drained and quartered"},
-      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, smashed"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "4", "unit": "cloves, smashed"},
       {"produceId": null, "name": "White Wine", "quantity": "0.5", "unit": "cup"},
       {"produceId": null, "name": "Vegetable Broth", "quantity": "1", "unit": "cup"},
       {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
@@ -753,8 +753,8 @@
       {"produceId": "radish", "name": "Radishes", "quantity": "1", "unit": "bunch, halved"},
       {"produceId": "carrot", "name": "Carrots", "quantity": "3", "unit": "medium, cut into chunks"},
       {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
-      {"produceId": null, "name": "Fresh Thyme", "quantity": "4", "unit": "sprigs"},
-      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, unpeeled"},
+      {"produceId": "thyme", "name": "Fresh Thyme", "quantity": "4", "unit": "sprigs"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "4", "unit": "cloves, unpeeled"},
       {"produceId": null, "name": "Balsamic Vinegar", "quantity": "1", "unit": "tbsp"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
     ],
@@ -835,7 +835,7 @@
       {"produceId": null, "name": "Vegetable Broth", "quantity": "4", "unit": "cups"},
       {"produceId": null, "name": "Butter", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Heavy Cream", "quantity": "0.25", "unit": "cup"},
-      {"produceId": null, "name": "Fresh Thyme", "quantity": "3", "unit": "sprigs"},
+      {"produceId": "thyme", "name": "Fresh Thyme", "quantity": "3", "unit": "sprigs"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
     ],
     "instructions": [
@@ -858,7 +858,7 @@
     "ingredients": [
       {"produceId": "collard_greens", "name": "Collard Greens", "quantity": "1", "unit": "large bunch, stems removed, chopped"},
       {"produceId": "lemon", "name": "Lemon", "quantity": "1", "unit": "juiced"},
-      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
       {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Vegetable Broth", "quantity": "0.5", "unit": "cup"},
       {"produceId": null, "name": "Red Pepper Flakes", "quantity": "0.25", "unit": "tsp"},
@@ -886,8 +886,8 @@
       {"produceId": "sage", "name": "Fresh Sage", "quantity": "12", "unit": "leaves"},
       {"produceId": null, "name": "Butter", "quantity": "3", "unit": "tbsp"},
       {"produceId": null, "name": "Olive Oil", "quantity": "2", "unit": "tbsp"},
-      {"produceId": null, "name": "Garlic", "quantity": "2", "unit": "cloves, minced"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "2", "unit": "cloves, minced"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
     ],
     "instructions": [
@@ -912,7 +912,7 @@
       {"produceId": "swiss_chard", "name": "Swiss Chard", "quantity": "1", "unit": "large bunch, stems and leaves separated, chopped"},
       {"produceId": "thyme", "name": "Fresh Thyme", "quantity": "4", "unit": "sprigs"},
       {"produceId": null, "name": "Cannellini Beans", "quantity": "2", "unit": "15-oz cans, drained and rinsed"},
-      {"produceId": null, "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "4", "unit": "cloves, minced"},
       {"produceId": null, "name": "Crushed Tomatoes", "quantity": "1", "unit": "14-oz can"},
       {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
       {"produceId": null, "name": "Vegetable Broth", "quantity": "1", "unit": "cup"},
@@ -941,8 +941,8 @@
       {"produceId": "dill", "name": "Fresh Dill", "quantity": "2", "unit": "tbsp, finely chopped"},
       {"produceId": "oregano", "name": "Fresh Oregano", "quantity": "1", "unit": "tbsp, finely chopped"},
       {"produceId": null, "name": "Unsalted Butter", "quantity": "8", "unit": "oz (2 sticks), softened"},
-      {"produceId": null, "name": "Garlic", "quantity": "1", "unit": "clove, minced"},
-      {"produceId": null, "name": "Lemon Zest", "quantity": "1", "unit": "tsp"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "1", "unit": "clove, minced"},
+      {"produceId": "lemon", "name": "Lemon Zest", "quantity": "1", "unit": "tsp"},
       {"produceId": null, "name": "Sea Salt", "quantity": "0.5", "unit": "tsp"},
       {"produceId": null, "name": "Black Pepper", "quantity": "0.25", "unit": "tsp"}
     ],
@@ -1022,9 +1022,9 @@
       {"produceId": "kohlrabi", "name": "Kohlrabi", "quantity": "3", "unit": "medium, peeled and cubed"},
       {"produceId": "snap_pea", "name": "Sugar Snap Peas", "quantity": "2", "unit": "cups, trimmed"},
       {"produceId": null, "name": "Olive Oil", "quantity": "3", "unit": "tbsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
-      {"produceId": null, "name": "Garlic", "quantity": "2", "unit": "cloves, minced"},
-      {"produceId": null, "name": "Fresh Mint", "quantity": "2", "unit": "tbsp, chopped"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "2", "unit": "tbsp"},
+      {"produceId": "garlic", "name": "Garlic", "quantity": "2", "unit": "cloves, minced"},
+      {"produceId": "mint", "name": "Fresh Mint", "quantity": "2", "unit": "tbsp, chopped"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
     ],
     "instructions": [
@@ -1074,7 +1074,7 @@
       {"produceId": null, "name": "Walnuts", "quantity": "0.5", "unit": "cup, toasted and chopped"},
       {"produceId": null, "name": "Greek Yogurt", "quantity": "0.33", "unit": "cup"},
       {"produceId": null, "name": "Mayonnaise", "quantity": "2", "unit": "tbsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
       {"produceId": null, "name": "Dried Cranberries", "quantity": "0.25", "unit": "cup"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
     ],
@@ -1176,8 +1176,8 @@
     "ingredients": [
       {"produceId": "honeyberry", "name": "Honeyberries", "quantity": "2", "unit": "cups"},
       {"produceId": null, "name": "Honey", "quantity": "3", "unit": "tbsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
-      {"produceId": null, "name": "Lemon Zest", "quantity": "1", "unit": "tsp"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": "lemon", "name": "Lemon Zest", "quantity": "1", "unit": "tsp"},
       {"produceId": null, "name": "Water", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Vanilla Extract", "quantity": "0.5", "unit": "tsp"}
     ],
@@ -1229,11 +1229,11 @@
     "ingredients": [
       {"produceId": "tarragon", "name": "Fresh Tarragon", "quantity": "3", "unit": "tbsp, chopped"},
       {"produceId": null, "name": "Cooked Chicken Breast", "quantity": "3", "unit": "cups, diced"},
-      {"produceId": null, "name": "Celery", "quantity": "2", "unit": "stalks, diced"},
+      {"produceId": "celery", "name": "Celery", "quantity": "2", "unit": "stalks, diced"},
       {"produceId": null, "name": "Greek Yogurt", "quantity": "0.33", "unit": "cup"},
       {"produceId": null, "name": "Mayonnaise", "quantity": "2", "unit": "tbsp"},
       {"produceId": null, "name": "Dijon Mustard", "quantity": "2", "unit": "tsp"},
-      {"produceId": null, "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
+      {"produceId": "lemon", "name": "Lemon Juice", "quantity": "1", "unit": "tbsp"},
       {"produceId": null, "name": "Salt and Pepper", "quantity": "1", "unit": "to taste"}
     ],
     "instructions": [
