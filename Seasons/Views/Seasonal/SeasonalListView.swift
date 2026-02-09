@@ -7,6 +7,11 @@ struct SeasonalListView: View {
     @State private var showRegionPicker = false
 
     @Environment(\.modelContext) private var modelContext
+    @Query private var favorites: [Favorite]
+
+    private var produceFavoritedIds: Set<String> {
+        Set(favorites.filter { $0.itemType == "produce" }.map(\.itemId))
+    }
 
     private let columns = [
         GridItem(.flexible(), spacing: 16),
@@ -111,8 +116,7 @@ struct SeasonalListView: View {
 
     @ViewBuilder
     private func produceGrid(viewModel: SeasonalViewModel) -> some View {
-        let favoritesService = FavoritesService(modelContext: modelContext)
-        let items = viewModel.filteredProduce(favoritedIds: favoritesService.favoritedIds(for: "produce"))
+        let items = viewModel.filteredProduce(favoritedIds: produceFavoritedIds)
 
         if items.isEmpty {
             ContentUnavailableView(
@@ -124,15 +128,24 @@ struct SeasonalListView: View {
             LazyVGrid(columns: columns, spacing: 16) {
                 ForEach(items) { item in
                     NavigationLink(value: ProduceDestination(produceId: item.id)) {
-                        ProduceCard(
-                            item: item,
-                            isFavorited: favoritesService.isFavorited(itemType: "produce", itemId: item.id),
-                            onToggleFavorite: {
-                                favoritesService.toggleFavorite(itemType: "produce", itemId: item.id)
-                            }
-                        )
+                        ProduceCard(item: item)
                     }
                     .buttonStyle(.plain)
+                    .overlay(alignment: .topTrailing) {
+                        let isFavorited = produceFavoritedIds.contains(item.id)
+                        Button {
+                            FavoritesService(modelContext: modelContext)
+                                .toggleFavorite(itemType: "produce", itemId: item.id)
+                        } label: {
+                            Image(systemName: isFavorited ? "heart.fill" : "heart")
+                                .font(.caption)
+                                .foregroundStyle(isFavorited ? .red : .secondary)
+                                .padding(8)
+                                .background(.ultraThinMaterial)
+                                .clipShape(Circle())
+                        }
+                        .padding(6)
+                    }
                 }
             }
             .navigationDestination(for: ProduceDestination.self) { destination in
@@ -179,41 +192,25 @@ struct FilterChip: View {
 
 struct ProduceCard: View {
     let item: ProduceItem
-    let isFavorited: Bool
-    let onToggleFavorite: () -> Void
 
     var body: some View {
         VStack(alignment: .leading, spacing: 8) {
-            ZStack(alignment: .topTrailing) {
-                if UIImage(named: item.imageName) != nil {
-                    Image(item.imageName)
-                        .resizable()
-                        .aspectRatio(contentMode: .fill)
-                        .frame(minWidth: 0, maxWidth: .infinity)
+            if UIImage(named: item.imageName) != nil {
+                Image(item.imageName)
+                    .resizable()
+                    .aspectRatio(contentMode: .fill)
+                    .frame(minWidth: 0, maxWidth: .infinity)
+                    .aspectRatio(1.0, contentMode: .fit)
+                    .clipShape(RoundedRectangle(cornerRadius: 12))
+            } else {
+                ZStack {
+                    RoundedRectangle(cornerRadius: 12)
+                        .fill(Color(.systemGray6))
                         .aspectRatio(1.0, contentMode: .fit)
-                        .clipShape(RoundedRectangle(cornerRadius: 12))
-                } else {
-                    ZStack {
-                        RoundedRectangle(cornerRadius: 12)
-                            .fill(Color(.systemGray6))
-                            .aspectRatio(1.0, contentMode: .fit)
-                        Image(systemName: item.category.systemImage)
-                            .font(.system(size: 36))
-                            .foregroundStyle(Color.seasonGreen.opacity(0.6))
-                    }
+                    Image(systemName: item.category.systemImage)
+                        .font(.system(size: 36))
+                        .foregroundStyle(Color.seasonGreen.opacity(0.6))
                 }
-
-                Button {
-                    onToggleFavorite()
-                } label: {
-                    Image(systemName: isFavorited ? "heart.fill" : "heart")
-                        .font(.caption)
-                        .foregroundStyle(isFavorited ? .red : .secondary)
-                        .padding(8)
-                        .background(.ultraThinMaterial)
-                        .clipShape(Circle())
-                }
-                .padding(6)
             }
 
             Text(item.name)

@@ -6,6 +6,11 @@ struct RecipeListView: View {
     @State private var viewModel: RecipeViewModel?
 
     @Environment(\.modelContext) private var modelContext
+    @Query private var favorites: [Favorite]
+
+    private var recipeFavoritedIds: Set<String> {
+        Set(favorites.filter { $0.itemType == "recipe" }.map(\.itemId))
+    }
 
     var body: some View {
         NavigationStack {
@@ -27,8 +32,7 @@ struct RecipeListView: View {
 
     @ViewBuilder
     private func recipeContent(viewModel: RecipeViewModel) -> some View {
-        let favoritesService = FavoritesService(modelContext: modelContext)
-        let recipes = viewModel.filteredRecipes(favoritedIds: favoritesService.favoritedIds(for: "recipe"))
+        let recipes = viewModel.filteredRecipes(favoritedIds: recipeFavoritedIds)
 
         List {
             Section {
@@ -37,9 +41,10 @@ struct RecipeListView: View {
                         RecipeRow(
                             recipe: recipe,
                             viewModel: viewModel,
-                            isFavorited: favoritesService.isFavorited(itemType: "recipe", itemId: recipe.id),
+                            isFavorited: recipeFavoritedIds.contains(recipe.id),
                             onToggleFavorite: {
-                                favoritesService.toggleFavorite(itemType: "recipe", itemId: recipe.id)
+                                FavoritesService(modelContext: modelContext)
+                                    .toggleFavorite(itemType: "recipe", itemId: recipe.id)
                             }
                         )
                     }
@@ -131,7 +136,7 @@ struct RecipeRow: View {
                 Image(systemName: isFavorited ? "heart.fill" : "heart")
                     .foregroundStyle(isFavorited ? .red : .secondary)
             }
-            .buttonStyle(.plain)
+            .buttonStyle(.borderless)
         }
         .padding(.vertical, 4)
     }
