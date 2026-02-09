@@ -32,7 +32,7 @@
       "pacificNorthwest": [7, 8, 9],
       "california": [5, 6, 7, 8, 9, 10, 11]
     },
-    "localCarbonKgPerKg": 0.4,
+    "localCarbonKgPerKg": 0.3,
     "importedCarbonKgPerKg": 2.5
   },
   {
@@ -446,8 +446,8 @@
       "pacificNorthwest": [6, 7, 8, 9, 10, 11],
       "california": [1, 2, 3, 4, 5, 10, 11, 12]
     },
-    "localCarbonKgPerKg": 0.12,
-    "importedCarbonKgPerKg": 0.8
+    "localCarbonKgPerKg": 0.15,
+    "importedCarbonKgPerKg": 0.5
   },
   {
     "id": "broccoli",
@@ -573,7 +573,7 @@
       "california": [1, 2, 3, 4, 5, 10, 11, 12]
     },
     "localCarbonKgPerKg": 0.15,
-    "importedCarbonKgPerKg": 0.9
+    "importedCarbonKgPerKg": 0.55
   },
   {
     "id": "asparagus",
@@ -645,7 +645,7 @@
       "california": [1, 2, 3, 4, 10, 11, 12]
     },
     "localCarbonKgPerKg": 0.1,
-    "importedCarbonKgPerKg": 0.8
+    "importedCarbonKgPerKg": 0.5
   },
   {
     "id": "radish",
@@ -681,7 +681,7 @@
       "california": [1, 2, 3, 4, 10, 11, 12]
     },
     "localCarbonKgPerKg": 0.12,
-    "importedCarbonKgPerKg": 0.85
+    "importedCarbonKgPerKg": 0.5
   },
   {
     "id": "pumpkin",
@@ -977,7 +977,7 @@
       "california": [10, 11, 12, 1, 2, 3]
     },
     "localCarbonKgPerKg": 0.12,
-    "importedCarbonKgPerKg": 0.9
+    "importedCarbonKgPerKg": 0.5
   },
   {
     "id": "leek",
@@ -1031,7 +1031,7 @@
       "california": [4, 5, 6, 7, 8, 9, 10, 11, 12]
     },
     "localCarbonKgPerKg": 0.12,
-    "importedCarbonKgPerKg": 0.7
+    "importedCarbonKgPerKg": 0.45
   },
   {
     "id": "onion",
@@ -1049,7 +1049,7 @@
       "california": [4, 5, 6, 7, 8, 9, 10, 11]
     },
     "localCarbonKgPerKg": 0.1,
-    "importedCarbonKgPerKg": 0.7
+    "importedCarbonKgPerKg": 0.4
   },
   {
     "id": "garlic",
@@ -1067,7 +1067,7 @@
       "california": [5, 6, 7, 8, 9, 10, 11]
     },
     "localCarbonKgPerKg": 0.15,
-    "importedCarbonKgPerKg": 1.0
+    "importedCarbonKgPerKg": 0.7
   },
   {
     "id": "rutabaga",
@@ -1085,7 +1085,7 @@
       "california": [10, 11, 12, 1, 2, 3]
     },
     "localCarbonKgPerKg": 0.12,
-    "importedCarbonKgPerKg": 0.85
+    "importedCarbonKgPerKg": 0.5
   },
   {
     "id": "snap_pea",

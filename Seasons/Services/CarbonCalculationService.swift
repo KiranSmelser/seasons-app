@@ -17,22 +17,22 @@ enum CarbonCalculationService {
         [
             CarbonEquivalent(
                 description: "Miles not driven",
-                value: carbonSavedKg / 0.404, // ~0.404 kg CO2 per mile for avg car
+                value: carbonSavedKg / 0.39, // ~0.39 kg CO2 per mile for avg car (EPA 2024: 8.89 kg/gal, 22.8 mpg)
                 unit: "mi"
             ),
             CarbonEquivalent(
                 description: "Smartphone charges",
-                value: carbonSavedKg / 0.008, // ~0.008 kg CO2 per full charge
+                value: carbonSavedKg / 0.006, // ~0.006 kg CO2 per full charge (US-avg grid)
                 unit: "charges"
             ),
             CarbonEquivalent(
                 description: "Hours of LED lighting saved",
-                value: carbonSavedKg / 0.005, // ~0.005 kg CO2 per hour for a 10W LED
+                value: carbonSavedKg / 0.004, // ~0.004 kg CO2 per hour for a 10W LED (EIA 2023 grid avg)
                 unit: "hrs"
             ),
             CarbonEquivalent(
                 description: "Tree seedlings grown for a year",
-                value: carbonSavedKg / 10.0, // ~10 kg CO2 absorbed per tree seedling per year (EPA)
+                value: carbonSavedKg / 22.0, // ~22 kg CO2 absorbed per young seedling per year (EPA urban tree: 60 kg; 22 kg conservative for seedlings)
                 unit: "trees"
             ),
             CarbonEquivalent(
