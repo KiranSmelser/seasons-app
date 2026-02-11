@@ -8,7 +8,7 @@ final class ServiceTests: XCTestCase {
 
     private func makeTestModelContext() throws -> ModelContext {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try ModelContainer(for: CarbonLog.self, Favorite.self, configurations: config)
+        let container = try ModelContainer(for: CarbonLog.self, Favorite.self, PendingSyncDeletion.self, configurations: config)
         return ModelContext(container)
     }
 
@@ -161,5 +161,47 @@ final class ServiceTests: XCTestCase {
         XCTAssertEqual(first.produceName, "Tomato")
         XCTAssertEqual(first.quantityKg, 1.5, accuracy: 0.01)
         XCTAssertEqual(first.carbonSavedKg, 2.25, accuracy: 0.01)
+    }
+
+    // MARK: - Sync Field Defaults
+
+    func testFavoriteDefaultSyncFields() throws {
+        let favorite = Favorite(itemType: "produce", itemId: "tomato")
+        XCTAssertFalse(favorite.isSynced)
+        XCTAssertNotNil(favorite.updatedAt)
+    }
+
+    func testCarbonLogDefaultSyncFields() throws {
+        let log = CarbonLog(produceId: "tomato", produceName: "Tomato", quantityKg: 1.0, carbonSavedKg: 1.5)
+        XCTAssertFalse(log.isSynced)
+        XCTAssertFalse(log.isDeleted)
+        XCTAssertNotNil(log.updatedAt)
+    }
+
+    // MARK: - PendingSyncDeletion on Unfavorite
+
+    func testUnfavoriteCreatesPendingSyncDeletion() throws {
+        let context = try makeTestModelContext()
+        let service = FavoritesService(modelContext: context)
+
+        service.toggleFavorite(itemType: "produce", itemId: "tomato")
+        XCTAssertTrue(service.isFavorited(itemType: "produce", itemId: "tomato"))
+
+        service.toggleFavorite(itemType: "produce", itemId: "tomato")
+        XCTAssertFalse(service.isFavorited(itemType: "produce", itemId: "tomato"))
+
+        let deletions = try context.fetch(FetchDescriptor<PendingSyncDeletion>())
+        XCTAssertEqual(deletions.count, 1)
+        XCTAssertEqual(deletions.first?.tableName, "favorites")
+    }
+
+    func testPendingSyncDeletionNotCreatedOnFirstToggle() throws {
+        let context = try makeTestModelContext()
+        let service = FavoritesService(modelContext: context)
+
+        service.toggleFavorite(itemType: "produce", itemId: "kale")
+
+        let deletions = try context.fetch(FetchDescriptor<PendingSyncDeletion>())
+        XCTAssertEqual(deletions.count, 0)
     }
 }

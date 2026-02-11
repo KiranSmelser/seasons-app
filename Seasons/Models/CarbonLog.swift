@@ -9,6 +9,9 @@ final class CarbonLog {
     var produceName: String
     var quantityKg: Double
     var carbonSavedKg: Double
+    var updatedAt: Date
+    var isSynced: Bool
+    var isDeleted: Bool
 
     init(produceId: String, produceName: String, quantityKg: Double, carbonSavedKg: Double) {
         self.id = UUID()
@@ -17,5 +20,8 @@ final class CarbonLog {
         self.produceName = produceName
         self.quantityKg = quantityKg
         self.carbonSavedKg = carbonSavedKg
+        self.updatedAt = Date()
+        self.isSynced = false
+        self.isDeleted = false
     }
 }

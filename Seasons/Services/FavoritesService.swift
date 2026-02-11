@@ -16,6 +16,8 @@ struct FavoritesService {
             predicate: #Predicate { $0.itemType == itemType && $0.itemId == itemId }
         )
         if let existing = try? modelContext.fetch(descriptor).first {
+            let deletion = PendingSyncDeletion(tableName: "favorites", recordId: existing.id)
+            modelContext.insert(deletion)
             modelContext.delete(existing)
         } else {
             modelContext.insert(Favorite(itemType: itemType, itemId: itemId))

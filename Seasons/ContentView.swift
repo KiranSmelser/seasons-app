@@ -1,9 +1,11 @@
 import SwiftUI
 
 struct ContentView: View {
+    let authService: AuthService
+
     var body: some View {
         TabView {
-            SeasonalListView()
+            SeasonalListView(authService: authService)
                 .tabItem {
                     Label("In Season", systemImage: "leaf.fill")
                 }
@@ -23,6 +25,6 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
+    ContentView(authService: AuthService())
         .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

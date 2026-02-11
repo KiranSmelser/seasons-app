@@ -3,7 +3,7 @@ import SwiftData
 
 struct CarbonDashboardView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(sort: \CarbonLog.date, order: .reverse) private var logs: [CarbonLog]
+    @Query(filter: #Predicate<CarbonLog> { !$0.isDeleted }, sort: \CarbonLog.date, order: .reverse) private var logs: [CarbonLog]
     @State private var viewModel = CarbonViewModel()
     @State private var showAddSheet = false
 
@@ -169,7 +169,9 @@ struct CarbonDashboardView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .contextMenu {
                     Button(role: .destructive) {
-                        modelContext.delete(log)
+                        log.isDeleted = true
+                        log.isSynced = false
+                        log.updatedAt = Date()
                     } label: {
                         Label("Delete", systemImage: "trash")
                     }

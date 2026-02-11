@@ -6,6 +6,11 @@ options:
   xcodeVersion: "16.0"
   generateEmptyDirectories: true
 
+packages:
+  Supabase:
+    url: https://github.com/supabase/supabase-swift
+    from: "2.0.0"
+
 settings:
   base:
     SWIFT_VERSION: "5.9"
@@ -15,8 +20,19 @@ targets:
   Seasons:
     type: application
     platform: iOS
+    attributes:
+      DevelopmentTeam: "3FWT3PM62W"
+      ProvisioningStyle: Automatic
     sources:
       - path: Seasons
+    dependencies:
+      - package: Supabase
+        product: Supabase
+    entitlements:
+      path: Seasons/Seasons.entitlements
+      properties:
+        com.apple.developer.applesignin:
+          - Default
     settings:
       base:
         INFOPLIST_FILE: Seasons/Info.plist
@@ -24,7 +40,8 @@ targets:
         MARKETING_VERSION: "1.0.0"
         CURRENT_PROJECT_VERSION: 1
         ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        DEVELOPMENT_TEAM: ""
+        DEVELOPMENT_TEAM: "3FWT3PM62W"
+        CODE_SIGN_STYLE: Automatic
     info:
       path: Seasons/Info.plist
       properties:

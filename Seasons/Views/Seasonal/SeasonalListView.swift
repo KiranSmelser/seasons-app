@@ -2,9 +2,12 @@ import SwiftUI
 import SwiftData
 
 struct SeasonalListView: View {
+    let authService: AuthService
+
     @State private var locationService = LocationService()
     @State private var viewModel: SeasonalViewModel?
     @State private var showRegionPicker = false
+    @State private var showAccountSheet = false
 
     @Environment(\.modelContext) private var modelContext
     @Query private var favorites: [Favorite]
@@ -29,6 +32,13 @@ struct SeasonalListView: View {
             }
             .navigationTitle("In Season")
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    Button {
+                        showAccountSheet = true
+                    } label: {
+                        Image(systemName: authService.isSignedIn ? "person.crop.circle.fill" : "person.crop.circle")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button {
                         showRegionPicker = true
@@ -37,6 +47,9 @@ struct SeasonalListView: View {
                             .font(.caption)
                     }
                 }
+            }
+            .sheet(isPresented: $showAccountSheet) {
+                AccountSheetView(authService: authService)
             }
             .sheet(isPresented: $showRegionPicker) {
                 RegionPickerView(locationService: locationService)
@@ -258,6 +271,6 @@ struct RegionPickerView: View {
 }
 
 #Preview {
-    SeasonalListView()
+    SeasonalListView(authService: AuthService())
         .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }
