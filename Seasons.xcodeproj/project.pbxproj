@@ -22,6 +22,7 @@
 		758FB75E82065D8019370BB1 /* Color+Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B4498BC60A12BD10B1CE5 /* Color+Season.swift */; };
 		7A47C86451707D1ACB5CB4F5 /* SeasonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */; };
 		8232D28378BBE446A92C0C91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1216D2423EFA9EED169DF5A8 /* Preview Assets.xcassets */; };
+		888C374CC0CDB0607ED4B082 /* SyncBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC51A5C4DF9547F7AEDD77 /* SyncBannerView.swift */; };
 		8C725E77655468FC0A8DA957 /* Recipe.swift in Sources */ = {isa = PBXBuildFile; fileRef = D7E05496A2FB0CE108A6077A /* Recipe.swift */; };
 		90DE4814BB481DFC5489D0A8 /* SeasonalViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB627591CF760800E4C36C8C /* SeasonalViewModel.swift */; };
 		9910713D528887191C2A797B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2FC4D33C4A051977B5BA0A28 /* Assets.xcassets */; };
@@ -104,6 +105,7 @@
 		C02A09A7DFBC32870132756A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C097DF06DD7D6AC0D249D5CB /* PendingSyncDeletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingSyncDeletion.swift; sourceTree = "<group>"; };
 		C9ED451C77364A5B4F8CCDF2 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
+		C9FC51A5C4DF9547F7AEDD77 /* SyncBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncBannerView.swift; sourceTree = "<group>"; };
 		D1C7384C6DCA84B4B546B007 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		D7E05496A2FB0CE108A6077A /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		D819519680457F3F6E0200FD /* SupabaseConfig.swift.template */ = {isa = PBXFileReference; path = SupabaseConfig.swift.template; sourceTree = "<group>"; };
@@ -141,6 +143,14 @@
 				5025B505F192EF3770436698 /* seasonal_produce.json */,
 			);
 			path = Data;
+			sourceTree = "<group>";
+		};
+		4572E9D98C0AB306DB7AC89F /* Components */ = {
+			isa = PBXGroup;
+			children = (
+				C9FC51A5C4DF9547F7AEDD77 /* SyncBannerView.swift */,
+			);
+			path = Components;
 			sourceTree = "<group>";
 		};
 		45E5689D208624C70D3EF933 /* Seasons */ = {
@@ -241,6 +251,7 @@
 			children = (
 				E512AE7052A0E09D1690919D /* Account */,
 				B0B16A34FB25640932DA22A6 /* Carbon */,
+				4572E9D98C0AB306DB7AC89F /* Components */,
 				3266F4FA856274EC04EDE872 /* Recipes */,
 				B948B956E4DEB5B6037AD8CD /* Seasonal */,
 			);
@@ -425,6 +436,7 @@
 				C6C0FA97C4C329865B63D350 /* SeasonsApp.swift in Sources */,
 				C5DE6B5055400A93131A07A9 /* SupabaseConfig.swift in Sources */,
 				F0E586CC30B1AFA911B818E4 /* SupabaseSyncClient.swift in Sources */,
+				888C374CC0CDB0607ED4B082 /* SyncBannerView.swift in Sources */,
 				39E9405E29319FA1CDEEAB7A /* SyncClient.swift in Sources */,
 				637005635CFC59FFA52ACA65 /* SyncService.swift in Sources */,
 			);

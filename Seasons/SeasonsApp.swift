@@ -4,6 +4,7 @@ import SwiftData
 @main
 struct SeasonsApp: App {
     @State private var authService = AuthService()
+    @State private var syncBannerMessage: SyncBannerMessage?
     @Environment(\.scenePhase) private var scenePhase
 
     private let modelContainer: ModelContainer
@@ -38,20 +39,35 @@ struct SeasonsApp: App {
 
     var body: some Scene {
         WindowGroup {
-            ContentView(authService: authService)
+            ContentView(authService: authService, syncBannerMessage: $syncBannerMessage)
         }
         .modelContainer(modelContainer)
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active, let user = authService.currentUser {
                 Task {
-                    await syncService.performSync(userId: user.id)
+                    let result = await syncService.performSync(userId: user.id)
+                    showBanner(for: result)
                 }
             }
         }
         .onChange(of: authService.isSignedIn) { wasSignedIn, isNowSignedIn in
             if !wasSignedIn && isNowSignedIn, let user = authService.currentUser {
                 Task {
-                    await syncService.uploadAllLocalData(userId: user.id)
+                    let result = await syncService.uploadAllLocalData(userId: user.id)
+                    showBanner(for: result)
+                }
+            }
+        }
+    }
+
+    private func showBanner(for result: SyncResult) {
+        Task { @MainActor in
+            withAnimation {
+                switch result {
+                case .success:
+                    syncBannerMessage = .success()
+                case .failure(let detail):
+                    syncBannerMessage = .failure(detail)
                 }
             }
         }

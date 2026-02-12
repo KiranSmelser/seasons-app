@@ -266,6 +266,36 @@ final class SyncServiceTests: XCTestCase {
         XCTAssertTrue(favorite.isSynced, "Pulled favorites should be marked as synced")
     }
 
+    // MARK: - SyncResult Return Value
+
+    func testPerformSync_returnsSuccessOnCleanSync() async throws {
+        let result = await syncService.performSync(userId: testUserId)
+        if case .success = result {
+            // expected
+        } else {
+            XCTFail("Expected .success but got \(result)")
+        }
+    }
+
+    func testPerformSync_returnsSuccessEvenWithPartialItemFailures() async throws {
+        let context = makeContext()
+        let fav = Favorite(itemType: "produce", itemId: "tomato")
+        fav.isSynced = false
+        context.insert(fav)
+        try context.save()
+
+        // The upsert for this item will fail, but that's a per-item catch —
+        // the top-level sync should still succeed.
+        mockClient.upsertErrorIndices = [0]
+
+        let result = await syncService.performSync(userId: testUserId)
+        if case .success = result {
+            // expected — per-item failures don't cause top-level failure
+        } else {
+            XCTFail("Expected .success but got \(result)")
+        }
+    }
+
     func testPerformSync_pullUpdatesTimestamp() async throws {
         let future = Date(timeIntervalSinceNow: 3600) // 1 hour from now
         mockClient.remoteFavorites = [

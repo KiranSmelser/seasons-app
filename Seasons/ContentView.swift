@@ -2,6 +2,7 @@ import SwiftUI
 
 struct ContentView: View {
     let authService: AuthService
+    @Binding var syncBannerMessage: SyncBannerMessage?
 
     var body: some View {
         TabView {
@@ -21,10 +22,24 @@ struct ContentView: View {
                 }
         }
         .tint(.seasonGreen)
+        .overlay(alignment: .top) {
+            if let message = syncBannerMessage {
+                SyncBannerView(message: message)
+                    .transition(.move(edge: .top).combined(with: .opacity))
+                    .onAppear {
+                        DispatchQueue.main.asyncAfter(deadline: .now() + message.duration) {
+                            withAnimation {
+                                syncBannerMessage = nil
+                            }
+                        }
+                    }
+            }
+        }
+        .animation(.easeInOut, value: syncBannerMessage)
     }
 }
 
 #Preview {
-    ContentView(authService: AuthService())
+    ContentView(authService: AuthService(), syncBannerMessage: .constant(nil))
         .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

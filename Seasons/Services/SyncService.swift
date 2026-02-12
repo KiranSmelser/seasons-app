@@ -2,6 +2,11 @@ import Foundation
 import SwiftData
 import Supabase
 
+enum SyncResult {
+    case success
+    case failure(String)
+}
+
 actor SyncService {
     private let client: SyncClient
     private let modelContainer: ModelContainer
@@ -24,18 +29,22 @@ actor SyncService {
         self.modelContainer = modelContainer
     }
 
-    func performSync(userId: UUID) async {
+    @discardableResult
+    func performSync(userId: UUID) async -> SyncResult {
         do {
             let context = ModelContext(modelContainer)
             try await pushChanges(userId: userId, context: context)
             try await pullChanges(userId: userId, context: context)
             try context.save()
+            return .success
         } catch {
             print("[SyncService] Sync failed: \(error)")
+            return .failure(error.localizedDescription)
         }
     }
 
-    func uploadAllLocalData(userId: UUID) async {
+    @discardableResult
+    func uploadAllLocalData(userId: UUID) async -> SyncResult {
         do {
             let context = ModelContext(modelContainer)
 
@@ -50,9 +59,10 @@ actor SyncService {
             }
 
             try context.save()
-            await performSync(userId: userId)
+            return await performSync(userId: userId)
         } catch {
             print("[SyncService] Upload all failed: \(error)")
+            return .failure(error.localizedDescription)
         }
     }
 
