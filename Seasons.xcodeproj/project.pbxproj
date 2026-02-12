@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 63;
+	objectVersion = 77;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -12,6 +12,7 @@
 		2F7D028940CEAAC677B951C2 /* RecipeDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F645F22F676E517E64A4C /* RecipeDataService.swift */; };
 		30F18C7F80CA51951236778B /* seasonal_produce.json in Resources */ = {isa = PBXBuildFile; fileRef = 5025B505F192EF3770436698 /* seasonal_produce.json */; };
 		33CC745C7FB9B37608E7AB53 /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 5971522E2DC6297DEC19CA2C /* recipes.json */; };
+		39E9405E29319FA1CDEEAB7A /* SyncClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0937E7CE31F20B3C95A49130 /* SyncClient.swift */; };
 		3D99F56C57E1990A1EC441A6 /* ProduceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CD2D5D8B90A901C7DB128B /* ProduceDataService.swift */; };
 		5718A07630D51967644A12A0 /* RemoteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D6202C60D11E0BBB57D51 /* RemoteModels.swift */; };
 		5FEB023924A216D00230AEDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A431D3659A448763968F32 /* ContentView.swift */; };
@@ -45,7 +46,9 @@
 		E3C222853915FAC287603111 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C7384C6DCA84B4B546B007 /* FavoritesService.swift */; };
 		ED67FEC7DED5FB64C5E9C32F /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314310D7D1156CE2CE3195D3 /* RecipeListView.swift */; };
 		EDDC97A5F96029920490F0D6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A09A7DFBC32870132756A /* AuthService.swift */; };
+		F0E586CC30B1AFA911B818E4 /* SupabaseSyncClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FBD89DB688FAD90B5AB17 /* SupabaseSyncClient.swift */; };
 		F2AE5B63C3AAF24F39CD98B4 /* DataIntegrityTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEEC1DF9C67B33B7326B5A12 /* DataIntegrityTests.swift */; };
+		F415095FF8CA8F90C4DA28BD /* SyncServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 00563252469BE1B66FCE36A9 /* SyncServiceTests.swift */; };
 		FC73A734A30796376101E015 /* ProduceItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 077A905650B5FD70C2F9D4B1 /* ProduceItem.swift */; };
 		FDB3891AD6A02BEAD50B2FF5 /* Favorite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2A5805E3D492EC51C4DE4BD5 /* Favorite.swift */; };
 /* End PBXBuildFile section */
@@ -61,12 +64,15 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		00563252469BE1B66FCE36A9 /* SyncServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncServiceTests.swift; sourceTree = "<group>"; };
 		04520019B8C49FE4EF3011A0 /* NavigationDestination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationDestination.swift; sourceTree = "<group>"; };
 		077A905650B5FD70C2F9D4B1 /* ProduceItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceItem.swift; sourceTree = "<group>"; };
 		08733E4A7CD4D4DCAEAB9802 /* ServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
+		0937E7CE31F20B3C95A49130 /* SyncClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncClient.swift; sourceTree = "<group>"; };
 		1216D2423EFA9EED169DF5A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		1423269A0E4CB3253FFA2706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1A6C7D46BF78E6717711A72A /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
+		1A9FBD89DB688FAD90B5AB17 /* SupabaseSyncClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSyncClient.swift; sourceTree = "<group>"; };
 		1D9F1F060C584E065946D858 /* Seasons.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Seasons.entitlements; sourceTree = "<group>"; };
 		1E17A712F3CD17A2FB64BCDF /* CarbonDashboardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonDashboardView.swift; sourceTree = "<group>"; };
 		2A5805E3D492EC51C4DE4BD5 /* Favorite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorite.swift; sourceTree = "<group>"; };
@@ -76,7 +82,7 @@
 		34A431D3659A448763968F32 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		3978E20E8E93D08EEDF43C6F /* SeasonalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonalListView.swift; sourceTree = "<group>"; };
 		3AFBF1CCE5AABF0FE33BB49F /* AuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTests.swift; sourceTree = "<group>"; };
-		3CA638D19FE3BEEC719D7666 /* Seasons.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Seasons.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		3CA638D19FE3BEEC719D7666 /* Seasons.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Seasons.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		492DE4386D05BAA3293DCEF5 /* CarbonLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonLog.swift; sourceTree = "<group>"; };
 		4A7F7CDB2BD9A3043DBC4215 /* RemoteModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteModelsTests.swift; sourceTree = "<group>"; };
 		5025B505F192EF3770436698 /* seasonal_produce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seasonal_produce.json; sourceTree = "<group>"; };
@@ -100,7 +106,7 @@
 		C9ED451C77364A5B4F8CCDF2 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		D1C7384C6DCA84B4B546B007 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
 		D7E05496A2FB0CE108A6077A /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
-		D819519680457F3F6E0200FD /* SupabaseConfig.swift.template */ = {isa = PBXFileReference; lastKnownFileType = text; path = SupabaseConfig.swift.template; sourceTree = "<group>"; };
+		D819519680457F3F6E0200FD /* SupabaseConfig.swift.template */ = {isa = PBXFileReference; path = SupabaseConfig.swift.template; sourceTree = "<group>"; };
 		E5CD2D5D8B90A901C7DB128B /* ProduceDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceDataService.swift; sourceTree = "<group>"; };
 		E7ADF9CBBD146BA357A1CE8E /* SeasonsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SeasonsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsTests.swift; sourceTree = "<group>"; };
@@ -166,6 +172,8 @@
 				80EB122F1746918E347DC8DB /* LocationService.swift */,
 				E5CD2D5D8B90A901C7DB128B /* ProduceDataService.swift */,
 				F86F645F22F676E517E64A4C /* RecipeDataService.swift */,
+				1A9FBD89DB688FAD90B5AB17 /* SupabaseSyncClient.swift */,
+				0937E7CE31F20B3C95A49130 /* SyncClient.swift */,
 				7A6136C6EC6FEAF72CDA83BF /* SyncService.swift */,
 			);
 			path = Services;
@@ -256,6 +264,7 @@
 				4A7F7CDB2BD9A3043DBC4215 /* RemoteModelsTests.swift */,
 				EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */,
 				08733E4A7CD4D4DCAEAB9802 /* ServiceTests.swift */,
+				00563252469BE1B66FCE36A9 /* SyncServiceTests.swift */,
 				8CA4641E5D7540B63E0A572C /* ViewModelTests.swift */,
 			);
 			path = SeasonsTests;
@@ -340,6 +349,7 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					3E202D5A8ED3C7256D696BB1 = {
+						DevelopmentTeam = 3FWT3PM62W;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -357,6 +367,7 @@
 			packageReferences = (
 				70EE5A4F0030B35C17E813F3 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
+			preferredProjectObjectVersion = 77;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
@@ -413,6 +424,8 @@
 				90DE4814BB481DFC5489D0A8 /* SeasonalViewModel.swift in Sources */,
 				C6C0FA97C4C329865B63D350 /* SeasonsApp.swift in Sources */,
 				C5DE6B5055400A93131A07A9 /* SupabaseConfig.swift in Sources */,
+				F0E586CC30B1AFA911B818E4 /* SupabaseSyncClient.swift in Sources */,
+				39E9405E29319FA1CDEEAB7A /* SyncClient.swift in Sources */,
 				637005635CFC59FFA52ACA65 /* SyncService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +440,7 @@
 				A183E3C83FA8D17F68ABE10F /* RemoteModelsTests.swift in Sources */,
 				7A47C86451707D1ACB5CB4F5 /* SeasonsTests.swift in Sources */,
 				E07BDCF27688B6A7F0EBE1B6 /* ServiceTests.swift in Sources */,
+				F415095FF8CA8F90C4DA28BD /* SyncServiceTests.swift in Sources */,
 				E007C79E8726379189E3E6B1 /* ViewModelTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

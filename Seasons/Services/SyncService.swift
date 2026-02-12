@@ -3,7 +3,7 @@ import SwiftData
 import Supabase
 
 actor SyncService {
-    private let supabase: SupabaseClient
+    private let client: SyncClient
     private let modelContainer: ModelContainer
 
     private let lastSyncKey = "lastSyncTimestamp"
@@ -19,8 +19,8 @@ actor SyncService {
         UserDefaults.standard.set(date.timeIntervalSince1970, forKey: lastSyncKey)
     }
 
-    init(supabase: SupabaseClient, modelContainer: ModelContainer) {
-        self.supabase = supabase
+    init(client: SyncClient, modelContainer: ModelContainer) {
+        self.client = client
         self.modelContainer = modelContainer
     }
 
@@ -58,14 +58,14 @@ actor SyncService {
 
     // MARK: - Push
 
-    private func pushChanges(userId: UUID, context: ModelContext) throws {
-        try pushFavorites(userId: userId, context: context)
-        try pushCarbonLogs(userId: userId, context: context)
-        try pushDeletions(context: context)
+    private func pushChanges(userId: UUID, context: ModelContext) async throws {
+        try await pushFavorites(userId: userId, context: context)
+        try await pushCarbonLogs(userId: userId, context: context)
+        try await pushDeletions(context: context)
         try context.save()
     }
 
-    private func pushFavorites(userId: UUID, context: ModelContext) throws {
+    private func pushFavorites(userId: UUID, context: ModelContext) async throws {
         let unsynced = try context.fetch(FetchDescriptor<Favorite>(
             predicate: #Predicate { $0.isSynced == false }
         ))
@@ -80,17 +80,16 @@ actor SyncService {
                 "updated_at": .string(favorite.updatedAt.ISO8601Format())
             ]
 
-            Task {
-                try await supabase.from("favorites")
-                    .upsert(payload)
-                    .execute()
+            do {
+                try await client.upsert(table: "favorites", payload: payload)
+                favorite.isSynced = true
+            } catch {
+                print("[SyncService] Failed to push favorite \(favorite.id): \(error)")
             }
-
-            favorite.isSynced = true
         }
     }
 
-    private func pushCarbonLogs(userId: UUID, context: ModelContext) throws {
+    private func pushCarbonLogs(userId: UUID, context: ModelContext) async throws {
         let unsynced = try context.fetch(FetchDescriptor<CarbonLog>(
             predicate: #Predicate { $0.isSynced == false }
         ))
@@ -108,31 +107,28 @@ actor SyncService {
                 "is_deleted": .bool(log.isDeleted)
             ]
 
-            Task {
-                try await supabase.from("carbon_logs")
-                    .upsert(payload)
-                    .execute()
+            do {
+                try await client.upsert(table: "carbon_logs", payload: payload)
+                log.isSynced = true
+            } catch {
+                print("[SyncService] Failed to push carbon log \(log.id): \(error)")
             }
-
-            log.isSynced = true
         }
     }
 
-    private func pushDeletions(context: ModelContext) throws {
+    private func pushDeletions(context: ModelContext) async throws {
         let deletions = try context.fetch(FetchDescriptor<PendingSyncDeletion>())
 
         for deletion in deletions {
             let table = deletion.tableName
             let recordId = deletion.recordId
 
-            Task {
-                try await supabase.from(table)
-                    .delete()
-                    .eq("id", value: recordId.uuidString)
-                    .execute()
+            do {
+                try await client.delete(table: table, id: recordId)
+                context.delete(deletion)
+            } catch {
+                print("[SyncService] Failed to push deletion \(recordId) from \(table): \(error)")
             }
-
-            context.delete(deletion)
         }
     }
 
@@ -144,12 +140,9 @@ actor SyncService {
         var latestTimestamp = since
 
         // Pull favorites
-        let remoteFavorites: [RemoteFavorite] = try await supabase.from("favorites")
-            .select()
-            .eq("user_id", value: userId.uuidString)
-            .gt("updated_at", value: sinceISO)
-            .execute()
-            .value
+        let remoteFavorites: [RemoteFavorite] = try await client.select(
+            table: "favorites", userId: userId.uuidString, updatedAfter: sinceISO
+        )
 
         for remote in remoteFavorites {
             let remoteId = remote.id
@@ -180,12 +173,9 @@ actor SyncService {
         }
 
         // Pull carbon logs
-        let remoteLogs: [RemoteCarbonLog] = try await supabase.from("carbon_logs")
-            .select()
-            .eq("user_id", value: userId.uuidString)
-            .gt("updated_at", value: sinceISO)
-            .execute()
-            .value
+        let remoteLogs: [RemoteCarbonLog] = try await client.select(
+            table: "carbon_logs", userId: userId.uuidString, updatedAfter: sinceISO
+        )
 
         for remote in remoteLogs {
             let remoteId = remote.id

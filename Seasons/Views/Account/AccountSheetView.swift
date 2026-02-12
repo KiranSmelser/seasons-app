@@ -4,6 +4,7 @@ import AuthenticationServices
 struct AccountSheetView: View {
     let authService: AuthService
     @Environment(\.dismiss) private var dismiss
+    @State private var errorMessage: String?
 
     var body: some View {
         NavigationStack {
@@ -24,6 +25,16 @@ struct AccountSheetView: View {
             }
         }
         .presentationDetents([.medium])
+        .alert("Error", isPresented: Binding(
+            get: { errorMessage != nil },
+            set: { if !$0 { errorMessage = nil } }
+        )) {
+            Button("OK") { errorMessage = nil }
+        } message: {
+            if let errorMessage {
+                Text(errorMessage)
+            }
+        }
     }
 
     @ViewBuilder
@@ -51,7 +62,11 @@ struct AccountSheetView: View {
 
         Button {
             Task {
-                try? await authService.signInWithApple()
+                do {
+                    try await authService.signInWithApple()
+                } catch {
+                    errorMessage = error.localizedDescription
+                }
             }
         } label: {
             HStack {
@@ -98,8 +113,12 @@ struct AccountSheetView: View {
 
         Button(role: .destructive) {
             Task {
-                try? await authService.signOut()
-                dismiss()
+                do {
+                    try await authService.signOut()
+                    dismiss()
+                } catch {
+                    errorMessage = error.localizedDescription
+                }
             }
         } label: {
             Text("Sign Out")

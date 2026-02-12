@@ -31,7 +31,7 @@ struct SeasonsApp: App {
         let auth = AuthService()
         self._authService = State(initialValue: auth)
         self.syncService = SyncService(
-            supabase: auth.supabase,
+            client: SupabaseSyncClient(supabase: auth.supabase),
             modelContainer: container
         )
     }
