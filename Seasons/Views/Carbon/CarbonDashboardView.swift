@@ -3,7 +3,8 @@ import SwiftData
 
 struct CarbonDashboardView: View {
     @Environment(\.modelContext) private var modelContext
-    @Query(filter: #Predicate<CarbonLog> { !$0.isDeleted }, sort: \CarbonLog.date, order: .reverse) private var logs: [CarbonLog]
+    @Environment(SyncCoordinator.self) private var syncCoordinator
+    @Query(filter: #Predicate<CarbonLog> { !$0.isSoftDeleted }, sort: \CarbonLog.date, order: .reverse) private var logs: [CarbonLog]
     @State private var viewModel = CarbonViewModel()
     @State private var showAddSheet = false
 
@@ -46,6 +47,7 @@ struct CarbonDashboardView: View {
             .sheet(isPresented: $showAddSheet) {
                 AddCarbonLogView(viewModel: viewModel) { entry in
                     modelContext.insert(entry)
+                    syncCoordinator.notifyMutation()
                 }
             }
         }
@@ -169,9 +171,10 @@ struct CarbonDashboardView: View {
                 .clipShape(RoundedRectangle(cornerRadius: 10))
                 .contextMenu {
                     Button(role: .destructive) {
-                        log.isDeleted = true
+                        log.isSoftDeleted = true
                         log.isSynced = false
                         log.updatedAt = Date()
+                        syncCoordinator.notifyMutation()
                     } label: {
                         Label("Delete", systemImage: "trash")
                     }
@@ -248,5 +251,6 @@ struct AddCarbonLogView: View {
 
 #Preview {
     CarbonDashboardView()
+        .environment(SyncCoordinator.preview)
         .modelContainer(for: CarbonLog.self, inMemory: true)
 }

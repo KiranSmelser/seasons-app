@@ -9,6 +9,7 @@ final class Favorite {
     var dateAdded: Date
     var updatedAt: Date
     var isSynced: Bool
+    var isSoftDeleted: Bool
 
     init(itemType: String, itemId: String) {
         self.id = UUID()
@@ -17,5 +18,6 @@ final class Favorite {
         self.dateAdded = Date()
         self.updatedAt = Date()
         self.isSynced = false
+        self.isSoftDeleted = false
     }
 }

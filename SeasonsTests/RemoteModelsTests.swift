@@ -17,7 +17,8 @@ final class RemoteModelsTests: XCTestCase {
             "item_type": "produce",
             "item_id": "tomato",
             "date_added": "2025-06-15T10:30:00Z",
-            "updated_at": "2025-06-15T10:30:00Z"
+            "updated_at": "2025-06-15T10:30:00Z",
+            "is_deleted": false
         }
         """.data(using: .utf8)!
 
@@ -26,6 +27,7 @@ final class RemoteModelsTests: XCTestCase {
         XCTAssertEqual(favorite.userId, UUID(uuidString: "660e8400-e29b-41d4-a716-446655440000"))
         XCTAssertEqual(favorite.itemType, "produce")
         XCTAssertEqual(favorite.itemId, "tomato")
+        XCTAssertFalse(favorite.isDeleted)
     }
 
     func testRemoteCarbonLogDecoding() throws {

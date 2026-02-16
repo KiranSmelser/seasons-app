@@ -7,6 +7,7 @@ struct RemoteFavorite: Decodable {
     let itemId: String
     let dateAdded: Date
     let updatedAt: Date
+    let isDeleted: Bool
 
     enum CodingKeys: String, CodingKey {
         case id
@@ -15,6 +16,7 @@ struct RemoteFavorite: Decodable {
         case itemId = "item_id"
         case dateAdded = "date_added"
         case updatedAt = "updated_at"
+        case isDeleted = "is_deleted"
     }
 }
 

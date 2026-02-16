@@ -10,6 +10,7 @@ struct SeasonsApp: App {
 
     private let modelContainer: ModelContainer
     private let syncService: SyncService
+    @State private var syncCoordinator: SyncCoordinator
 
     init() {
         let schema = Schema([CarbonLog.self, Favorite.self, PendingSyncDeletion.self])
@@ -32,15 +33,18 @@ struct SeasonsApp: App {
 
         let auth = AuthService()
         self._authService = State(initialValue: auth)
-        self.syncService = SyncService(
+        let syncService = SyncService(
             client: SupabaseSyncClient(supabase: auth.supabase),
             modelContainer: container
         )
+        self.syncService = syncService
+        self._syncCoordinator = State(initialValue: SyncCoordinator(syncService: syncService, authService: auth))
     }
 
     var body: some Scene {
         WindowGroup {
             ContentView(authService: authService, syncBannerMessage: $syncBannerMessage)
+                .environment(syncCoordinator)
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
@@ -57,16 +61,27 @@ struct SeasonsApp: App {
         .onChange(of: authService.isSignedIn) { wasSignedIn, isNowSignedIn in
             if !wasSignedIn && isNowSignedIn, let user = authService.currentUser {
                 Task {
-                    let result = await syncService.uploadAllLocalData(userId: user.id)
+                    let hasInitialSync = await syncService.hasCompletedInitialSync(userId: user.id)
+                    let result: SyncResult
+                    if hasInitialSync {
+                        result = await syncService.performSync(userId: user.id)
+                    } else {
+                        result = await syncService.uploadAllLocalData(userId: user.id)
+                        await syncService.setInitialSyncCompleted(userId: user.id)
+                    }
                     showBanner(for: result)
                 }
             }
             if wasSignedIn && !isNowSignedIn {
-                let context = modelContainer.mainContext
-                try? context.delete(model: Favorite.self)
-                try? context.delete(model: CarbonLog.self)
-                try? context.delete(model: PendingSyncDeletion.self)
-                try? context.save()
+                syncCoordinator.cancelPendingSync()
+                Task { @MainActor in
+                    await syncService.resetSyncState()
+                    let context = modelContainer.mainContext
+                    try? context.delete(model: Favorite.self)
+                    try? context.delete(model: CarbonLog.self)
+                    try? context.delete(model: PendingSyncDeletion.self)
+                    try? context.save()
+                }
             }
         }
     }

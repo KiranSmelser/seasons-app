@@ -20,6 +20,7 @@
 		637005635CFC59FFA52ACA65 /* SyncService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7A6136C6EC6FEAF72CDA83BF /* SyncService.swift */; };
 		6DF03A54366D79295E609025 /* PendingSyncDeletion.swift in Sources */ = {isa = PBXBuildFile; fileRef = C097DF06DD7D6AC0D249D5CB /* PendingSyncDeletion.swift */; };
 		70CDDBFD513B3116765BDAD5 /* GrowingRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61248354345EA0B70D324011 /* GrowingRegion.swift */; };
+		71C0A5D5C55F1B5371FF9D97 /* SyncCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A7EFC1896E04E1708CE29 /* SyncCoordinatorTests.swift */; };
 		758FB75E82065D8019370BB1 /* Color+Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B4498BC60A12BD10B1CE5 /* Color+Season.swift */; };
 		7A47C86451707D1ACB5CB4F5 /* SeasonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */; };
 		8232D28378BBE446A92C0C91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1216D2423EFA9EED169DF5A8 /* Preview Assets.xcassets */; };
@@ -46,6 +47,7 @@
 		E07BDCF27688B6A7F0EBE1B6 /* ServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 08733E4A7CD4D4DCAEAB9802 /* ServiceTests.swift */; };
 		E28911C15C1C1870B686DBC1 /* SeasonalListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3978E20E8E93D08EEDF43C6F /* SeasonalListView.swift */; };
 		E3C222853915FAC287603111 /* FavoritesService.swift in Sources */ = {isa = PBXBuildFile; fileRef = D1C7384C6DCA84B4B546B007 /* FavoritesService.swift */; };
+		EA2E89B9E5F92C83F1ED42D5 /* SyncCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6E79483F95F9390299084BF1 /* SyncCoordinator.swift */; };
 		ED67FEC7DED5FB64C5E9C32F /* RecipeListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 314310D7D1156CE2CE3195D3 /* RecipeListView.swift */; };
 		EDDC97A5F96029920490F0D6 /* AuthService.swift in Sources */ = {isa = PBXBuildFile; fileRef = C02A09A7DFBC32870132756A /* AuthService.swift */; };
 		F0E586CC30B1AFA911B818E4 /* SupabaseSyncClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A9FBD89DB688FAD90B5AB17 /* SupabaseSyncClient.swift */; };
@@ -91,6 +93,7 @@
 		5212FBF28BECFDD8B1F8E60E /* ProduceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceDetailView.swift; sourceTree = "<group>"; };
 		5971522E2DC6297DEC19CA2C /* recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		61248354345EA0B70D324011 /* GrowingRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingRegion.swift; sourceTree = "<group>"; };
+		6E79483F95F9390299084BF1 /* SyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncCoordinator.swift; sourceTree = "<group>"; };
 		708D6202C60D11E0BBB57D51 /* RemoteModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteModels.swift; sourceTree = "<group>"; };
 		7A6136C6EC6FEAF72CDA83BF /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 		80EB122F1746918E347DC8DB /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
@@ -108,6 +111,7 @@
 		C9ED451C77364A5B4F8CCDF2 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
 		C9FC51A5C4DF9547F7AEDD77 /* SyncBannerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncBannerView.swift; sourceTree = "<group>"; };
 		D1C7384C6DCA84B4B546B007 /* FavoritesService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesService.swift; sourceTree = "<group>"; };
+		D66A7EFC1896E04E1708CE29 /* SyncCoordinatorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncCoordinatorTests.swift; sourceTree = "<group>"; };
 		D7E05496A2FB0CE108A6077A /* Recipe.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Recipe.swift; sourceTree = "<group>"; };
 		D819519680457F3F6E0200FD /* SupabaseConfig.swift.template */ = {isa = PBXFileReference; path = SupabaseConfig.swift.template; sourceTree = "<group>"; };
 		E5CD2D5D8B90A901C7DB128B /* ProduceDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceDataService.swift; sourceTree = "<group>"; };
@@ -186,6 +190,7 @@
 				F86F645F22F676E517E64A4C /* RecipeDataService.swift */,
 				1A9FBD89DB688FAD90B5AB17 /* SupabaseSyncClient.swift */,
 				0937E7CE31F20B3C95A49130 /* SyncClient.swift */,
+				6E79483F95F9390299084BF1 /* SyncCoordinator.swift */,
 				7A6136C6EC6FEAF72CDA83BF /* SyncService.swift */,
 			);
 			path = Services;
@@ -277,6 +282,7 @@
 				4A7F7CDB2BD9A3043DBC4215 /* RemoteModelsTests.swift */,
 				EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */,
 				08733E4A7CD4D4DCAEAB9802 /* ServiceTests.swift */,
+				D66A7EFC1896E04E1708CE29 /* SyncCoordinatorTests.swift */,
 				00563252469BE1B66FCE36A9 /* SyncServiceTests.swift */,
 				8CA4641E5D7540B63E0A572C /* ViewModelTests.swift */,
 			);
@@ -442,6 +448,7 @@
 				F0E586CC30B1AFA911B818E4 /* SupabaseSyncClient.swift in Sources */,
 				888C374CC0CDB0607ED4B082 /* SyncBannerView.swift in Sources */,
 				39E9405E29319FA1CDEEAB7A /* SyncClient.swift in Sources */,
+				EA2E89B9E5F92C83F1ED42D5 /* SyncCoordinator.swift in Sources */,
 				637005635CFC59FFA52ACA65 /* SyncService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -456,6 +463,7 @@
 				A183E3C83FA8D17F68ABE10F /* RemoteModelsTests.swift in Sources */,
 				7A47C86451707D1ACB5CB4F5 /* SeasonsTests.swift in Sources */,
 				E07BDCF27688B6A7F0EBE1B6 /* ServiceTests.swift in Sources */,
+				71C0A5D5C55F1B5371FF9D97 /* SyncCoordinatorTests.swift in Sources */,
 				F415095FF8CA8F90C4DA28BD /* SyncServiceTests.swift in Sources */,
 				E007C79E8726379189E3E6B1 /* ViewModelTests.swift in Sources */,
 			);

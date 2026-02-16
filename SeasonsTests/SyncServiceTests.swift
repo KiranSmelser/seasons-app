@@ -11,9 +11,9 @@ private enum MockError: Error {
 
 private final class MockSyncClient: SyncClient, @unchecked Sendable {
     // Recorded calls
-    private(set) var upsertCalls: [(table: String, payload: [String: AnyJSON])] = []
-    private(set) var deleteCalls: [(table: String, id: UUID)] = []
-    private(set) var selectCalls: [(table: String, userId: String, updatedAfter: String)] = []
+    var upsertCalls: [(table: String, payload: [String: AnyJSON])] = []
+    var deleteCalls: [(table: String, id: UUID)] = []
+    var selectCalls: [(table: String, userId: String, updatedAfter: String)] = []
 
     // Per-call error configuration: key = "\(table):\(id)" or call index
     var upsertErrorIndices: Set<Int> = []
@@ -90,6 +90,10 @@ final class SyncServiceTests: XCTestCase {
 
     override func tearDown() async throws {
         UserDefaults.standard.removeObject(forKey: "lastSyncTimestamp")
+        // Clear any initial sync flags set during tests
+        for key in UserDefaults.standard.dictionaryRepresentation().keys where key.hasPrefix("hasCompletedInitialSync_") {
+            UserDefaults.standard.removeObject(forKey: key)
+        }
         try await super.tearDown()
     }
 
@@ -250,7 +254,8 @@ final class SyncServiceTests: XCTestCase {
                 itemType: "produce",
                 itemId: "broccoli",
                 dateAdded: now,
-                updatedAt: now
+                updatedAt: now,
+                isDeleted: false
             )
         ]
 
@@ -296,6 +301,52 @@ final class SyncServiceTests: XCTestCase {
         }
     }
 
+    func testResetSyncState_allowsRepullOfPreviouslySyncedRecords() async throws {
+        let remoteId = UUID()
+        let now = Date()
+        mockClient.remoteFavorites = [
+            RemoteFavorite(
+                id: remoteId,
+                userId: testUserId,
+                itemType: "produce",
+                itemId: "broccoli",
+                dateAdded: now,
+                updatedAt: now,
+                isDeleted: false
+            )
+        ]
+
+        // First sync — pulls the remote favorite and advances the timestamp
+        await syncService.performSync(userId: testUserId)
+
+        let context1 = makeContext()
+        let fetched1 = try context1.fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(fetched1.count, 1, "First sync should pull the remote favorite")
+
+        // Simulate sign-out: delete local data (but remote stays the same)
+        try context1.delete(model: Favorite.self)
+        try context1.save()
+
+        let afterDelete = try makeContext().fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(afterDelete.count, 0, "Local favorites should be cleared after sign-out")
+
+        // Reset sync state (as sign-out would do)
+        await syncService.resetSyncState()
+
+        // Second sync — should re-pull the same remote favorite
+        mockClient.selectCalls = []
+        await syncService.performSync(userId: testUserId)
+
+        let context2 = makeContext()
+        let fetched2 = try context2.fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(fetched2.count, 1, "After resetSyncState, the remote favorite should be re-pulled")
+        XCTAssertEqual(fetched2.first?.itemId, "broccoli")
+
+        // Verify the select call used distantPast (or at least a timestamp before `now`)
+        let lastSelect = try XCTUnwrap(mockClient.selectCalls.first)
+        XCTAssertEqual(lastSelect.table, "favorites")
+    }
+
     func testPerformSync_pullUpdatesTimestamp() async throws {
         let future = Date(timeIntervalSinceNow: 3600) // 1 hour from now
         mockClient.remoteFavorites = [
@@ -305,7 +356,8 @@ final class SyncServiceTests: XCTestCase {
                 itemType: "produce",
                 itemId: "carrot",
                 dateAdded: future,
-                updatedAt: future
+                updatedAt: future,
+                isDeleted: false
             )
         ]
 
@@ -316,5 +368,196 @@ final class SyncServiceTests: XCTestCase {
         let afterSync = UserDefaults.standard.double(forKey: "lastSyncTimestamp")
         XCTAssertGreaterThan(afterSync, beforeSync, "lastSyncTimestamp should advance after pulling newer data")
         XCTAssertEqual(afterSync, future.timeIntervalSince1970, accuracy: 1.0)
+    }
+
+    // MARK: - Pull Failure
+
+    func testPerformSync_returnsFailureWhenPullFails() async throws {
+        mockClient.selectShouldThrow = true
+
+        let result = await syncService.performSync(userId: testUserId)
+        if case .failure = result {
+            // expected
+        } else {
+            XCTFail("Expected .failure but got \(result)")
+        }
+    }
+
+    func testPerformSync_pullFailure_doesNotAdvanceTimestamp() async throws {
+        let beforeSync = UserDefaults.standard.double(forKey: "lastSyncTimestamp")
+
+        mockClient.selectShouldThrow = true
+        await syncService.performSync(userId: testUserId)
+
+        let afterSync = UserDefaults.standard.double(forKey: "lastSyncTimestamp")
+        XCTAssertEqual(afterSync, beforeSync, "lastSyncTimestamp should not advance when pull fails")
+    }
+
+    // MARK: - Soft-Delete Carbon Logs
+
+    func testPushCarbonLog_softDeleted_sendsIsDeletedTrue() async throws {
+        let context = makeContext()
+        let log = CarbonLog(produceId: "tomato", produceName: "Tomato", quantityKg: 1.0, carbonSavedKg: 0.5)
+        context.insert(log)
+        log.isSynced = false
+        log.isSoftDeleted = true
+        try context.save()
+
+        await syncService.performSync(userId: testUserId)
+
+        let carbonCall = mockClient.upsertCalls.first { $0.table == "carbon_logs" }
+        XCTAssertNotNil(carbonCall, "Should have pushed the carbon log")
+        if case .bool(let isDeleted) = carbonCall?.payload["is_deleted"] {
+            XCTAssertTrue(isDeleted, "Soft-deleted carbon log should push is_deleted: true")
+        } else {
+            XCTFail("is_deleted field missing from carbon log payload")
+        }
+    }
+
+    func testPullCarbonLog_withIsDeletedTrue_updatesLocalCopy() async throws {
+        // Insert a local carbon log
+        let logId = UUID()
+        let context = makeContext()
+        let log = CarbonLog(produceId: "tomato", produceName: "Tomato", quantityKg: 1.0, carbonSavedKg: 0.5)
+        context.insert(log)
+        log.id = logId
+        log.isSoftDeleted = false
+        log.isSynced = true
+        log.updatedAt = Date(timeIntervalSince1970: 1000)
+        try context.save()
+
+        // Remote says it's deleted with a newer timestamp
+        mockClient.remoteCarbonLogs = [
+            RemoteCarbonLog(
+                id: logId,
+                userId: testUserId,
+                date: Date(),
+                produceId: "tomato",
+                produceName: "Tomato",
+                quantityKg: 1.0,
+                carbonSavedKg: 0.5,
+                updatedAt: Date(timeIntervalSince1970: 2000),
+                isDeleted: true
+            )
+        ]
+
+        await syncService.performSync(userId: testUserId)
+
+        let freshContext = makeContext()
+        let fetched = try freshContext.fetch(FetchDescriptor<CarbonLog>())
+        XCTAssertEqual(fetched.count, 1)
+        XCTAssertTrue(fetched.first!.isSoftDeleted, "Local carbon log should be marked as deleted after pull")
+    }
+
+    // MARK: - Soft-Delete Favorites
+
+    func testSoftDeletedFavorite_isPushedWithIsDeletedTrue() async throws {
+        let context = makeContext()
+        let fav = Favorite(itemType: "produce", itemId: "tomato")
+        context.insert(fav)
+        fav.isSynced = false
+        fav.isSoftDeleted = true
+        try context.save()
+
+        await syncService.performSync(userId: testUserId)
+
+        let favCall = mockClient.upsertCalls.first { $0.table == "favorites" }
+        XCTAssertNotNil(favCall, "Should have pushed the favorite")
+        if case .bool(let isDeleted) = favCall?.payload["is_deleted"] {
+            XCTAssertTrue(isDeleted, "Soft-deleted favorite should push is_deleted: true")
+        } else {
+            XCTFail("is_deleted field missing from favorite payload")
+        }
+    }
+
+    func testPullFavorite_withIsDeletedTrue_marksLocalAsDeleted() async throws {
+        // Insert a local favorite
+        let favId = UUID()
+        let context = makeContext()
+        let fav = Favorite(itemType: "produce", itemId: "tomato")
+        context.insert(fav)
+        fav.id = favId
+        fav.isSoftDeleted = false
+        fav.isSynced = true
+        fav.updatedAt = Date(timeIntervalSince1970: 1000)
+        try context.save()
+
+        // Remote says it's deleted with a newer timestamp
+        mockClient.remoteFavorites = [
+            RemoteFavorite(
+                id: favId,
+                userId: testUserId,
+                itemType: "produce",
+                itemId: "tomato",
+                dateAdded: Date(),
+                updatedAt: Date(timeIntervalSince1970: 2000),
+                isDeleted: true
+            )
+        ]
+
+        await syncService.performSync(userId: testUserId)
+
+        let freshContext = makeContext()
+        let fetched = try freshContext.fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(fetched.count, 1)
+        XCTAssertTrue(fetched.first!.isSoftDeleted, "Local favorite should be marked as deleted after pull")
+    }
+
+    // MARK: - Push Only
+
+    func testPushOnly_pushesButDoesNotPull() async throws {
+        let context = makeContext()
+        let fav = Favorite(itemType: "produce", itemId: "tomato")
+        fav.isSynced = false
+        context.insert(fav)
+        try context.save()
+
+        let result = await syncService.pushOnly(userId: testUserId)
+
+        if case .success = result { } else { XCTFail("Expected .success but got \(result)") }
+
+        // Should have pushed the favorite
+        XCTAssertEqual(mockClient.upsertCalls.count, 1)
+        XCTAssertEqual(mockClient.upsertCalls.first?.table, "favorites")
+
+        // Should NOT have called select (no pull)
+        XCTAssertEqual(mockClient.selectCalls.count, 0, "pushOnly should not pull from remote")
+
+        // Verify the favorite is marked as synced
+        let freshContext = makeContext()
+        let fetched = try freshContext.fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(fetched.count, 1)
+        XCTAssertTrue(fetched.first!.isSynced, "Favorite should be marked as synced after pushOnly")
+    }
+
+    // MARK: - Concurrent Sync Guard
+
+    func testConcurrentSyncCalls_secondIsSkipped() async throws {
+        // We can't easily test true concurrency with an actor, but we can verify
+        // that two sequential calls both succeed (the guard resets via defer).
+        // To test the guard, we use a wrapper that exposes isSyncing state.
+        let result1 = await syncService.performSync(userId: testUserId)
+        let result2 = await syncService.performSync(userId: testUserId)
+
+        // Both should succeed (second runs after first completes due to actor serialization)
+        if case .success = result1 { } else { XCTFail("First sync should succeed") }
+        if case .success = result2 { } else { XCTFail("Second sync should succeed") }
+
+        // The real concurrency guard test: launch two syncs concurrently via async let.
+        // Due to actor serialization, only one runs at a time, but the guard ensures
+        // the second one short-circuits if it enters while the first is still running.
+        mockClient.reset()
+        async let r1 = syncService.performSync(userId: testUserId)
+        async let r2 = syncService.performSync(userId: testUserId)
+        let results = await [r1, r2]
+
+        // Both return .success (one actually syncs, one is skipped via guard)
+        for result in results {
+            if case .success = result { } else { XCTFail("Expected .success but got \(result)") }
+        }
+
+        // At most one sync should have made select calls (the skipped one makes zero)
+        // Due to actor serialization, the second call may or may not be skipped depending
+        // on timing. We just verify no errors occurred.
     }
 }

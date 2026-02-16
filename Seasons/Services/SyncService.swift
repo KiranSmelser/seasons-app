@@ -10,6 +10,7 @@ enum SyncResult {
 actor SyncService {
     private let client: SyncClient
     private let modelContainer: ModelContainer
+    private var isSyncing = false
 
     private let lastSyncKey = "lastSyncTimestamp"
 
@@ -29,22 +30,53 @@ actor SyncService {
         self.modelContainer = modelContainer
     }
 
+    private let initialSyncPrefix = "hasCompletedInitialSync_"
+
+    func resetSyncState() {
+        UserDefaults.standard.removeObject(forKey: lastSyncKey)
+        // Clear all per-user initial sync flags
+        for key in UserDefaults.standard.dictionaryRepresentation().keys where key.hasPrefix(initialSyncPrefix) {
+            UserDefaults.standard.removeObject(forKey: key)
+        }
+    }
+
+    func hasCompletedInitialSync(userId: UUID) -> Bool {
+        UserDefaults.standard.bool(forKey: "\(initialSyncPrefix)\(userId.uuidString)")
+    }
+
+    func setInitialSyncCompleted(userId: UUID) {
+        UserDefaults.standard.set(true, forKey: "\(initialSyncPrefix)\(userId.uuidString)")
+    }
+
     @discardableResult
     func performSync(userId: UUID) async -> SyncResult {
+        guard !isSyncing else { return .success }
+        isSyncing = true
+        defer { isSyncing = false }
+        return await performSyncInternal(userId: userId)
+    }
+
+    @discardableResult
+    func pushOnly(userId: UUID) async -> SyncResult {
+        guard !isSyncing else { return .success }
+        isSyncing = true
+        defer { isSyncing = false }
         do {
             let context = ModelContext(modelContainer)
             try await pushChanges(userId: userId, context: context)
-            try await pullChanges(userId: userId, context: context)
             try context.save()
             return .success
         } catch {
-            print("[SyncService] Sync failed: \(error)")
             return .failure(error.localizedDescription)
         }
     }
 
     @discardableResult
     func uploadAllLocalData(userId: UUID) async -> SyncResult {
+        guard !isSyncing else { return .success }
+        isSyncing = true
+        defer { isSyncing = false }
+
         do {
             let context = ModelContext(modelContainer)
 
@@ -59,9 +91,23 @@ actor SyncService {
             }
 
             try context.save()
-            return await performSync(userId: userId)
         } catch {
             print("[SyncService] Upload all failed: \(error)")
+            return .failure(error.localizedDescription)
+        }
+
+        return await performSyncInternal(userId: userId)
+    }
+
+    private func performSyncInternal(userId: UUID) async -> SyncResult {
+        do {
+            let context = ModelContext(modelContainer)
+            try await pushChanges(userId: userId, context: context)
+            try await pullChanges(userId: userId, context: context)
+            try context.save()
+            return .success
+        } catch {
+            print("[SyncService] Sync failed: \(error)")
             return .failure(error.localizedDescription)
         }
     }
@@ -87,7 +133,8 @@ actor SyncService {
                 "item_type": .string(favorite.itemType),
                 "item_id": .string(favorite.itemId),
                 "date_added": .string(favorite.dateAdded.ISO8601Format()),
-                "updated_at": .string(favorite.updatedAt.ISO8601Format())
+                "updated_at": .string(favorite.updatedAt.ISO8601Format()),
+                "is_deleted": .bool(favorite.isSoftDeleted)
             ]
 
             do {
@@ -114,7 +161,7 @@ actor SyncService {
                 "quantity_kg": .double(log.quantityKg),
                 "carbon_saved_kg": .double(log.carbonSavedKg),
                 "updated_at": .string(log.updatedAt.ISO8601Format()),
-                "is_deleted": .bool(log.isDeleted)
+                "is_deleted": .bool(log.isSoftDeleted)
             ]
 
             do {
@@ -166,6 +213,7 @@ actor SyncService {
                     existing.itemId = remote.itemId
                     existing.dateAdded = remote.dateAdded
                     existing.updatedAt = remote.updatedAt
+                    existing.isSoftDeleted = remote.isDeleted
                     existing.isSynced = true
                 }
             } else {
@@ -173,6 +221,7 @@ actor SyncService {
                 favorite.id = remote.id
                 favorite.dateAdded = remote.dateAdded
                 favorite.updatedAt = remote.updatedAt
+                favorite.isSoftDeleted = remote.isDeleted
                 favorite.isSynced = true
                 context.insert(favorite)
             }
@@ -201,7 +250,7 @@ actor SyncService {
                     existing.quantityKg = remote.quantityKg
                     existing.carbonSavedKg = remote.carbonSavedKg
                     existing.updatedAt = remote.updatedAt
-                    existing.isDeleted = remote.isDeleted
+                    existing.isSoftDeleted = remote.isDeleted
                     existing.isSynced = true
                 }
             } else {
@@ -214,7 +263,7 @@ actor SyncService {
                 log.id = remote.id
                 log.date = remote.date
                 log.updatedAt = remote.updatedAt
-                log.isDeleted = remote.isDeleted
+                log.isSoftDeleted = remote.isDeleted
                 log.isSynced = true
                 context.insert(log)
             }

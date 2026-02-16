@@ -6,6 +6,7 @@ struct RecipeDetailView: View {
     let locationService: LocationService
 
     @Environment(\.modelContext) private var modelContext
+    @Environment(SyncCoordinator.self) private var syncCoordinator
 
     @State private var isFavorited = false
 
@@ -33,6 +34,7 @@ struct RecipeDetailView: View {
                 Button {
                     favoritesService.toggleFavorite(itemType: "recipe", itemId: recipe.id)
                     isFavorited.toggle()
+                    syncCoordinator.notifyMutation()
                 } label: {
                     Image(systemName: isFavorited ? "heart.fill" : "heart")
                         .foregroundStyle(isFavorited ? .red : .secondary)
@@ -190,5 +192,6 @@ struct SeasonalBadge: View {
             locationService: LocationService()
         )
     }
+    .environment(SyncCoordinator.preview)
     .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

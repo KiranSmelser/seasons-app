@@ -174,13 +174,13 @@ final class ServiceTests: XCTestCase {
     func testCarbonLogDefaultSyncFields() throws {
         let log = CarbonLog(produceId: "tomato", produceName: "Tomato", quantityKg: 1.0, carbonSavedKg: 1.5)
         XCTAssertFalse(log.isSynced)
-        XCTAssertFalse(log.isDeleted)
+        XCTAssertFalse(log.isSoftDeleted)
         XCTAssertNotNil(log.updatedAt)
     }
 
-    // MARK: - PendingSyncDeletion on Unfavorite
+    // MARK: - Soft-Delete on Unfavorite
 
-    func testUnfavoriteCreatesPendingSyncDeletion() throws {
+    func testUnfavoriteSoftDeletesFavorite() throws {
         let context = try makeTestModelContext()
         let service = FavoritesService(modelContext: context)
 
@@ -190,18 +190,28 @@ final class ServiceTests: XCTestCase {
         service.toggleFavorite(itemType: "produce", itemId: "tomato")
         XCTAssertFalse(service.isFavorited(itemType: "produce", itemId: "tomato"))
 
-        let deletions = try context.fetch(FetchDescriptor<PendingSyncDeletion>())
-        XCTAssertEqual(deletions.count, 1)
-        XCTAssertEqual(deletions.first?.tableName, "favorites")
+        // The favorite should still exist but be soft-deleted
+        let all = try context.fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(all.count, 1)
+        XCTAssertTrue(all.first!.isSoftDeleted)
+        XCTAssertFalse(all.first!.isSynced)
     }
 
-    func testPendingSyncDeletionNotCreatedOnFirstToggle() throws {
+    func testRefavoriteRevivesSoftDeletedFavorite() throws {
         let context = try makeTestModelContext()
         let service = FavoritesService(modelContext: context)
 
-        service.toggleFavorite(itemType: "produce", itemId: "kale")
+        service.toggleFavorite(itemType: "produce", itemId: "tomato")
+        service.toggleFavorite(itemType: "produce", itemId: "tomato")
+        XCTAssertFalse(service.isFavorited(itemType: "produce", itemId: "tomato"))
 
-        let deletions = try context.fetch(FetchDescriptor<PendingSyncDeletion>())
-        XCTAssertEqual(deletions.count, 0)
+        // Re-favorite should revive the soft-deleted record
+        service.toggleFavorite(itemType: "produce", itemId: "tomato")
+        XCTAssertTrue(service.isFavorited(itemType: "produce", itemId: "tomato"))
+
+        let all = try context.fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(all.count, 1, "Should reuse existing record, not create a new one")
+        XCTAssertFalse(all.first!.isSoftDeleted)
+        XCTAssertFalse(all.first!.isSynced)
     }
 }

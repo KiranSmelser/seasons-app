@@ -6,7 +6,8 @@ struct RecipeListView: View {
     @State private var viewModel: RecipeViewModel?
 
     @Environment(\.modelContext) private var modelContext
-    @Query private var favorites: [Favorite]
+    @Environment(SyncCoordinator.self) private var syncCoordinator
+    @Query(filter: #Predicate<Favorite> { !$0.isSoftDeleted }) private var favorites: [Favorite]
 
     private var recipeFavoritedIds: Set<String> {
         Set(favorites.filter { $0.itemType == "recipe" }.map(\.itemId))
@@ -45,6 +46,7 @@ struct RecipeListView: View {
                             onToggleFavorite: {
                                 FavoritesService(modelContext: modelContext)
                                     .toggleFavorite(itemType: "recipe", itemId: recipe.id)
+                                syncCoordinator.notifyMutation()
                             }
                         )
                     }
@@ -144,5 +146,6 @@ struct RecipeRow: View {
 
 #Preview {
     RecipeListView()
+        .environment(SyncCoordinator.preview)
         .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }
