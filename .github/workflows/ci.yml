@@ -1,0 +1,48 @@
+name: CI
+
+on:
+  push:
+    branches: [main, dev]
+  pull_request:
+    branches: [main, dev]
+
+jobs:
+  build-and-test:
+    runs-on: macos-15
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Select Xcode
+        run: sudo xcode-select -s /Applications/Xcode_16.2.app
+
+      - name: Install XcodeGen
+        run: brew install xcodegen
+
+      - name: Generate SupabaseConfig
+        run: |
+          cat > Seasons/Config/SupabaseConfig.swift << 'EOF'
+          import Foundation
+          enum SupabaseConfig {
+              static let url = URL(string: "https://placeholder.supabase.co")!
+              static let anonKey = "placeholder-key"
+          }
+          EOF
+
+      - name: Generate Xcode project
+        run: xcodegen generate
+
+      - name: Build
+        run: |
+          xcodebuild build \
+            -scheme Seasons \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_ALLOWED=NO
+
+      - name: Test
+        run: |
+          xcodebuild test \
+            -scheme Seasons \
+            -destination 'platform=iOS Simulator,name=iPhone 16 Pro' \
+            CODE_SIGN_IDENTITY="" \
+            CODE_SIGNING_ALLOWED=NO
