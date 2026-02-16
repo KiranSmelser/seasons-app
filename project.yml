@@ -61,6 +61,7 @@ targets:
           UIColorName: ""
         NSLocationWhenInUseUsageDescription: "Seasons uses your location to determine which growing region you're in, so we can show you locally seasonal produce."
         GIDClientID: 134875106487-dnojdorppqr1qn96gbag8c9gmj1u6507.apps.googleusercontent.com
+        GIDServerClientID: 134875106487-4ljn55lqgrh8kbgifr42ms0ku0d2pfn7.apps.googleusercontent.com
         CFBundleURLTypes:
           - CFBundleTypeRole: Editor
             CFBundleURLSchemes:

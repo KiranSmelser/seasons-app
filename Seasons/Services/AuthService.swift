@@ -32,6 +32,7 @@ final class AuthService: NSObject {
             let session = try await supabase.auth.session
             currentUser = session.user
         } catch {
+            print("[AuthService] Failed to restore session: \(error)")
             currentUser = nil
         }
     }
@@ -41,7 +42,12 @@ final class AuthService: NSObject {
         isLoading = true
         defer { isLoading = false }
 
-        let authorization = try await performAppleSignIn()
+        let rawNonce = generateNonce()
+        let hashedNonce = SHA256.hash(data: Data(rawNonce.utf8))
+            .map { String(format: "%02x", $0) }
+            .joined()
+
+        let authorization = try await performAppleSignIn(hashedNonce: hashedNonce)
 
         guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
               let identityTokenData = credential.identityToken,
@@ -50,7 +56,7 @@ final class AuthService: NSObject {
         }
 
         let session = try await supabase.auth.signInWithIdToken(
-            credentials: .init(provider: .apple, idToken: idToken)
+            credentials: .init(provider: .apple, idToken: idToken, nonce: rawNonce)
         )
         currentUser = session.user
     }
@@ -65,9 +71,14 @@ final class AuthService: NSObject {
             throw AuthError.missingPresentingViewController
         }
 
+        guard let clientID = Bundle.main.object(forInfoDictionaryKey: "GIDClientID") as? String,
+              let serverClientID = Bundle.main.object(forInfoDictionaryKey: "GIDServerClientID") as? String else {
+            throw AuthError.missingGoogleConfig
+        }
+
         GIDSignIn.sharedInstance.configuration = GIDConfiguration(
-            clientID: Bundle.main.object(forInfoDictionaryKey: "GIDClientID") as! String,
-            serverClientID: "134875106487-4ljn55lqgrh8kbgifr42ms0ku0d2pfn7.apps.googleusercontent.com"
+            clientID: clientID,
+            serverClientID: serverClientID
         )
 
         let rawNonce = generateNonce()
@@ -97,19 +108,28 @@ final class AuthService: NSObject {
         currentUser = nil
     }
 
-    private func generateNonce(length: Int = 32) -> String {
+    func generateNonce(length: Int = 32) -> String {
         let charset = Array("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789")
-        var bytes = [UInt8](repeating: 0, count: length)
-        _ = SecRandomCopyBytes(kSecRandomDefault, bytes.count, &bytes)
-        return String(bytes.map { charset[Int($0) % charset.count] })
+        let limit = (256 / charset.count) * charset.count
+        var result = ""
+        result.reserveCapacity(length)
+        while result.count < length {
+            var byte: UInt8 = 0
+            _ = SecRandomCopyBytes(kSecRandomDefault, 1, &byte)
+            if Int(byte) < limit {
+                result.append(charset[Int(byte) % charset.count])
+            }
+        }
+        return result
     }
 
     @MainActor
-    private func performAppleSignIn() async throws -> ASAuthorization {
+    private func performAppleSignIn(hashedNonce: String) async throws -> ASAuthorization {
         try await withCheckedThrowingContinuation { continuation in
             self.signInContinuation = continuation
             let request = ASAuthorizationAppleIDProvider().createRequest()
             request.requestedScopes = [.email, .fullName]
+            request.nonce = hashedNonce
             let controller = ASAuthorizationController(authorizationRequests: [request])
             controller.delegate = self
             controller.performRequests()
@@ -119,19 +139,22 @@ final class AuthService: NSObject {
 
 extension AuthService: ASAuthorizationControllerDelegate {
     func authorizationController(controller: ASAuthorizationController, didCompleteWithAuthorization authorization: ASAuthorization) {
-        signInContinuation?.resume(returning: authorization)
+        guard let continuation = signInContinuation else { return }
         signInContinuation = nil
+        continuation.resume(returning: authorization)
     }
 
     func authorizationController(controller: ASAuthorizationController, didCompleteWithError error: Error) {
-        signInContinuation?.resume(throwing: error)
+        guard let continuation = signInContinuation else { return }
         signInContinuation = nil
+        continuation.resume(throwing: error)
     }
 }
 
 enum AuthError: LocalizedError {
     case missingToken
     case missingGoogleToken
+    case missingGoogleConfig
     case missingPresentingViewController
 
     var errorDescription: String? {
@@ -140,6 +163,8 @@ enum AuthError: LocalizedError {
             return "Unable to retrieve Apple ID token."
         case .missingGoogleToken:
             return "Unable to retrieve Google ID token."
+        case .missingGoogleConfig:
+            return "Google Sign-In configuration is missing from Info.plist."
         case .missingPresentingViewController:
             return "Unable to find a presenting view controller."
         }

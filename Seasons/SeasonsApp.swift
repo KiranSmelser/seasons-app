@@ -77,10 +77,14 @@ struct SeasonsApp: App {
                 Task { @MainActor in
                     await syncService.resetSyncState()
                     let context = modelContainer.mainContext
-                    try? context.delete(model: Favorite.self)
-                    try? context.delete(model: CarbonLog.self)
-                    try? context.delete(model: PendingSyncDeletion.self)
-                    try? context.save()
+                    do {
+                        try context.delete(model: Favorite.self)
+                        try context.delete(model: CarbonLog.self)
+                        try context.delete(model: PendingSyncDeletion.self)
+                        try context.save()
+                    } catch {
+                        print("[SeasonsApp] Sign-out cleanup failed: \(error)")
+                    }
                 }
             }
         }
