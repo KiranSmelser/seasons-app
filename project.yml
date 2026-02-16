@@ -54,6 +54,9 @@ targets:
         CFBundleDisplayName: Seasons
         CFBundleShortVersionString: "1.0.0"
         CFBundleVersion: "1"
+        UIRequiresFullScreen: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
         UILaunchScreen:
           UIColorName: ""
         NSLocationWhenInUseUsageDescription: "Seasons uses your location to determine which growing region you're in, so we can show you locally seasonal produce."

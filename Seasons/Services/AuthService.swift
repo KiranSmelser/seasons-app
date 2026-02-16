@@ -20,7 +20,8 @@ final class AuthService: NSObject {
     override init() {
         self.supabase = SupabaseClient(
             supabaseURL: SupabaseConfig.url,
-            supabaseKey: SupabaseConfig.anonKey
+            supabaseKey: SupabaseConfig.anonKey,
+            options: .init(auth: .init(emitLocalSessionAsInitialSession: true))
         )
         super.init()
         Task { await restoreSession() }
