@@ -10,6 +10,9 @@ packages:
   Supabase:
     url: https://github.com/supabase/supabase-swift
     from: "2.0.0"
+  GoogleSignIn:
+    url: https://github.com/google/GoogleSignIn-iOS
+    from: "9.0.0"
 
 settings:
   base:
@@ -28,6 +31,8 @@ targets:
     dependencies:
       - package: Supabase
         product: Supabase
+      - package: GoogleSignIn
+        product: GoogleSignIn
     entitlements:
       path: Seasons/Seasons.entitlements
       properties:
@@ -52,6 +57,11 @@ targets:
         UILaunchScreen:
           UIColorName: ""
         NSLocationWhenInUseUsageDescription: "Seasons uses your location to determine which growing region you're in, so we can show you locally seasonal produce."
+        GIDClientID: 134875106487-dnojdorppqr1qn96gbag8c9gmj1u6507.apps.googleusercontent.com
+        CFBundleURLTypes:
+          - CFBundleTypeRole: Editor
+            CFBundleURLSchemes:
+              - com.googleusercontent.apps.134875106487-dnojdorppqr1qn96gbag8c9gmj1u6507
 
   SeasonsTests:
     type: bundle.unit-test

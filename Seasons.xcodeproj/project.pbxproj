@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0588AE9771065618881C0E93 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 857FB15776A245EB9A38269B /* GoogleSignIn */; };
 		20FE893E0EFCA13B883DF841 /* AccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B487483A751244459C7E9FEB /* AccountSheetView.swift */; };
 		288BD196422FBD4A58BC2010 /* CarbonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD62714559824FD325A5267 /* CarbonViewModel.swift */; };
 		2F7D028940CEAAC677B951C2 /* RecipeDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F645F22F676E517E64A4C /* RecipeDataService.swift */; };
@@ -121,6 +122,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B414138C4536F486CA5713A6 /* Supabase in Frameworks */,
+				0588AE9771065618881C0E93 /* GoogleSignIn in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -327,6 +329,7 @@
 			name = Seasons;
 			packageProductDependencies = (
 				CF116A19B91B1DCDC63B0494 /* Supabase */,
+				857FB15776A245EB9A38269B /* GoogleSignIn */,
 			);
 			productName = Seasons;
 			productReference = 3CA638D19FE3BEEC719D7666 /* Seasons.app */;
@@ -376,6 +379,7 @@
 			mainGroup = EDD7B4D6748682D69C936D75;
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
+				F396B76B1E582F603FB1D731 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */,
 				70EE5A4F0030B35C17E813F3 /* XCRemoteSwiftPackageReference "supabase-swift" */,
 			);
 			preferredProjectObjectVersion = 77;
@@ -704,9 +708,22 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		F396B76B1E582F603FB1D731 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		857FB15776A245EB9A38269B /* GoogleSignIn */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = F396B76B1E582F603FB1D731 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */;
+			productName = GoogleSignIn;
+		};
 		CF116A19B91B1DCDC63B0494 /* Supabase */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 70EE5A4F0030B35C17E813F3 /* XCRemoteSwiftPackageReference "supabase-swift" */;

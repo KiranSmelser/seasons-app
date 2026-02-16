@@ -1,5 +1,6 @@
 import SwiftUI
 import SwiftData
+import GoogleSignIn
 
 @main
 struct SeasonsApp: App {
@@ -40,6 +41,9 @@ struct SeasonsApp: App {
     var body: some Scene {
         WindowGroup {
             ContentView(authService: authService, syncBannerMessage: $syncBannerMessage)
+                .onOpenURL { url in
+                    GIDSignIn.sharedInstance.handle(url)
+                }
         }
         .modelContainer(modelContainer)
         .onChange(of: scenePhase) { _, newPhase in
@@ -56,6 +60,13 @@ struct SeasonsApp: App {
                     let result = await syncService.uploadAllLocalData(userId: user.id)
                     showBanner(for: result)
                 }
+            }
+            if wasSignedIn && !isNowSignedIn {
+                let context = modelContainer.mainContext
+                try? context.delete(model: Favorite.self)
+                try? context.delete(model: CarbonLog.self)
+                try? context.delete(model: PendingSyncDeletion.self)
+                try? context.save()
             }
         }
     }

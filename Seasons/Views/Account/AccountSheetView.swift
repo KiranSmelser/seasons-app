@@ -81,6 +81,44 @@ struct AccountSheetView: View {
         }
         .disabled(authService.isLoading)
 
+        HStack {
+            Rectangle()
+                .frame(height: 1)
+                .foregroundStyle(Color(.systemGray4))
+            Text("or")
+                .font(.subheadline)
+                .foregroundStyle(.secondary)
+            Rectangle()
+                .frame(height: 1)
+                .foregroundStyle(Color(.systemGray4))
+        }
+
+        Button {
+            Task {
+                do {
+                    try await authService.signInWithGoogle()
+                } catch {
+                    errorMessage = error.localizedDescription
+                }
+            }
+        } label: {
+            HStack {
+                Image(systemName: "g.circle.fill")
+                    .font(.title3)
+                Text("Sign in with Google")
+            }
+            .frame(maxWidth: .infinity)
+            .padding()
+            .background(Color(.systemBackground))
+            .foregroundStyle(.primary)
+            .clipShape(RoundedRectangle(cornerRadius: 10))
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(.systemGray3), lineWidth: 1)
+            )
+        }
+        .disabled(authService.isLoading)
+
         Spacer()
     }
 
