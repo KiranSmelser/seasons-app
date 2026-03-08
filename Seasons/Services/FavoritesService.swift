@@ -30,6 +30,10 @@ struct FavoritesService {
         } else {
             modelContext.insert(Favorite(itemType: itemType, itemId: itemId))
         }
+        // Persist immediately so SyncService's background context sees the change.
+        // SwiftData's autosave is debounced and may not fire before the 2-second
+        // push debounce, causing pushOnly to find nothing to sync.
+        try? modelContext.save()
     }
 
     func favoritedIds(for itemType: String) -> Set<String> {

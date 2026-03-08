@@ -4,9 +4,11 @@ import SwiftData
 struct CarbonDashboardView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(SyncCoordinator.self) private var syncCoordinator
+    @Environment(SubscriptionService.self) private var subscriptionService
     @Query(filter: #Predicate<CarbonLog> { !$0.isSoftDeleted }, sort: \CarbonLog.date, order: .reverse) private var logs: [CarbonLog]
     @State private var viewModel = CarbonViewModel()
     @State private var showAddSheet = false
+    @State private var showPaywall = false
 
     private var filteredLogs: [CarbonLog] {
         viewModel.filteredLogs(from: logs)
@@ -14,41 +16,55 @@ struct CarbonDashboardView: View {
 
     var body: some View {
         NavigationStack {
-            ScrollView {
-                VStack(spacing: 24) {
-                    timePeriodPicker
-                    summaryCard
-                    if !filteredLogs.isEmpty {
-                        equivalenciesSection
-                        topProduceSection
-                        recentLogsSection
-                    } else {
-                        emptyState
+            if subscriptionService.isPro {
+                dashboardContent
+            } else {
+                CarbonLockedView(showPaywall: $showPaywall)
+                    .navigationTitle("Impact")
+                    .sheet(isPresented: $showPaywall) {
+                        PaywallView()
                     }
-                }
-                .padding()
             }
-            .navigationTitle("Impact")
-            .toolbar {
-                ToolbarItem(placement: .topBarLeading) {
-                    ShareLink(item: viewModel.shareText(from: filteredLogs)) {
-                        Image(systemName: "square.and.arrow.up")
-                    }
-                    .disabled(filteredLogs.isEmpty)
-                }
-                ToolbarItem(placement: .topBarTrailing) {
-                    Button {
-                        showAddSheet = true
-                    } label: {
-                        Image(systemName: "plus.circle.fill")
-                    }
+        }
+    }
+
+    @ViewBuilder
+    private var dashboardContent: some View {
+        ScrollView {
+            VStack(spacing: 24) {
+                timePeriodPicker
+                summaryCard
+                if !filteredLogs.isEmpty {
+                    equivalenciesSection
+                    topProduceSection
+                    recentLogsSection
+                } else {
+                    emptyState
                 }
             }
-            .sheet(isPresented: $showAddSheet) {
-                AddCarbonLogView(viewModel: viewModel) { entry in
-                    modelContext.insert(entry)
-                    syncCoordinator.notifyMutation()
+            .padding()
+        }
+        .navigationTitle("Impact")
+        .toolbar {
+            ToolbarItem(placement: .topBarLeading) {
+                ShareLink(item: viewModel.shareText(from: filteredLogs)) {
+                    Image(systemName: "square.and.arrow.up")
                 }
+                .disabled(filteredLogs.isEmpty)
+            }
+            ToolbarItem(placement: .topBarTrailing) {
+                Button {
+                    showAddSheet = true
+                } label: {
+                    Image(systemName: "plus.circle.fill")
+                }
+            }
+        }
+        .sheet(isPresented: $showAddSheet) {
+            AddCarbonLogView(viewModel: viewModel) { entry in
+                modelContext.insert(entry)
+                try? modelContext.save()
+                if subscriptionService.isPro { syncCoordinator.notifyMutation() }
             }
         }
     }
@@ -174,7 +190,8 @@ struct CarbonDashboardView: View {
                         log.isSoftDeleted = true
                         log.isSynced = false
                         log.updatedAt = Date()
-                        syncCoordinator.notifyMutation()
+                        try? modelContext.save()
+                        if subscriptionService.isPro { syncCoordinator.notifyMutation() }
                     } label: {
                         Label("Delete", systemImage: "trash")
                     }
@@ -249,8 +266,65 @@ struct AddCarbonLogView: View {
     }
 }
 
-#Preview {
+struct CarbonLockedView: View {
+    @Binding var showPaywall: Bool
+
+    var body: some View {
+        ScrollView {
+            VStack(spacing: 28) {
+                Spacer(minLength: 40)
+
+                Image(systemName: "chart.bar.fill")
+                    .font(.system(size: 64))
+                    .foregroundStyle(Color.seasonGreen.opacity(0.4))
+
+                VStack(spacing: 8) {
+                    Text("Carbon Impact")
+                        .font(.title2)
+                        .fontWeight(.bold)
+
+                    Text("Track your CO\u{2082} savings from choosing local, seasonal produce. Available with Seasons Pro.")
+                        .font(.subheadline)
+                        .foregroundStyle(.secondary)
+                        .multilineTextAlignment(.center)
+                }
+
+                VStack(alignment: .leading, spacing: 14) {
+                    ProFeatureRow(icon: "chart.bar.fill", text: "Carbon Impact dashboard")
+                    ProFeatureRow(icon: "icloud.fill", text: "Cross-device sync for favorites")
+                    ProFeatureRow(icon: "arrow.triangle.2.circlepath", text: "Carbon logs synced everywhere")
+                }
+                .padding()
+                .background(Color(.systemGray6))
+                .clipShape(RoundedRectangle(cornerRadius: 14))
+
+                Button {
+                    showPaywall = true
+                } label: {
+                    Text("Upgrade to Pro")
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.seasonGreen)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 14))
+                }
+            }
+            .padding()
+        }
+    }
+}
+
+#Preview("Pro") {
     CarbonDashboardView()
         .environment(SyncCoordinator.preview)
+        .environment(SubscriptionService())
+        .modelContainer(for: CarbonLog.self, inMemory: true)
+}
+
+#Preview("Locked") {
+    CarbonDashboardView()
+        .environment(SyncCoordinator.preview)
+        .environment(SubscriptionService())
         .modelContainer(for: CarbonLog.self, inMemory: true)
 }

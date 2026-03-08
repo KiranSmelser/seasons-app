@@ -1,10 +1,16 @@
 import SwiftUI
 import AuthenticationServices
+import os
 
 struct AccountSheetView: View {
     let authService: AuthService
+    let locationService: LocationService
     @Environment(\.dismiss) private var dismiss
+    @Environment(SubscriptionService.self) private var subscriptionService
     @State private var errorMessage: String?
+    @State private var showPaywall = false
+
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.kiransmelser.seasons", category: "AccountSheetView")
 
     var body: some View {
         NavigationStack {
@@ -19,12 +25,22 @@ struct AccountSheetView: View {
             .navigationTitle("Account")
             .navigationBarTitleDisplayMode(.inline)
             .toolbar {
+                ToolbarItem(placement: .topBarLeading) {
+                    NavigationLink {
+                        SettingsView(locationService: locationService)
+                    } label: {
+                        Image(systemName: "gearshape")
+                    }
+                }
                 ToolbarItem(placement: .topBarTrailing) {
                     Button("Done") { dismiss() }
                 }
             }
         }
-        .presentationDetents([.medium])
+        .presentationDetents([.large])
+        .sheet(isPresented: $showPaywall) {
+            PaywallView()
+        }
         .alert("Error", isPresented: Binding(
             get: { errorMessage != nil },
             set: { if !$0 { errorMessage = nil } }
@@ -50,7 +66,7 @@ struct AccountSheetView: View {
                 .font(.title2)
                 .fontWeight(.bold)
 
-            Text("Sign in to sync your favorites and carbon logs across devices.")
+            Text("Sign in with a Seasons Pro subscription to sync your favorites and carbon logs across devices.")
                 .font(.subheadline)
                 .foregroundStyle(.secondary)
                 .multilineTextAlignment(.center)
@@ -65,7 +81,8 @@ struct AccountSheetView: View {
                 do {
                     try await authService.signInWithApple()
                 } catch {
-                    errorMessage = error.localizedDescription
+                    logger.error("Apple sign-in error: \(error, privacy: .private)")
+                    errorMessage = friendlyMessage(for: error)
                 }
             }
         } label: {
@@ -98,7 +115,8 @@ struct AccountSheetView: View {
                 do {
                     try await authService.signInWithGoogle()
                 } catch {
-                    errorMessage = error.localizedDescription
+                    logger.error("Google sign-in error: \(error, privacy: .private)")
+                    errorMessage = friendlyMessage(for: error)
                 }
             }
         } label: {
@@ -127,9 +145,9 @@ struct AccountSheetView: View {
         Spacer()
 
         VStack(spacing: 16) {
-            Image(systemName: "checkmark.icloud.fill")
+            Image(systemName: subscriptionService.isPro ? "checkmark.icloud.fill" : "icloud.slash.fill")
                 .font(.system(size: 48))
-                .foregroundStyle(Color.seasonGreen)
+                .foregroundStyle(subscriptionService.isPro ? Color.seasonGreen : Color(.systemGray3))
 
             Text("Signed In")
                 .font(.title2)
@@ -141,10 +159,29 @@ struct AccountSheetView: View {
                     .foregroundStyle(.secondary)
             }
 
-            Text("Your favorites and carbon logs are syncing across devices.")
-                .font(.subheadline)
-                .foregroundStyle(.secondary)
-                .multilineTextAlignment(.center)
+            if subscriptionService.isPro {
+                Label("Pro · Syncing active", systemImage: "checkmark.circle.fill")
+                    .font(.subheadline)
+                    .fontWeight(.medium)
+                    .foregroundStyle(Color.seasonGreen)
+            } else {
+                Text("Sync requires a Pro subscription.")
+                    .font(.subheadline)
+                    .foregroundStyle(.secondary)
+                    .multilineTextAlignment(.center)
+
+                Button {
+                    showPaywall = true
+                } label: {
+                    Text("Upgrade to Pro")
+                        .fontWeight(.semibold)
+                        .frame(maxWidth: .infinity)
+                        .padding()
+                        .background(Color.seasonGreen)
+                        .foregroundStyle(.white)
+                        .clipShape(RoundedRectangle(cornerRadius: 12))
+                }
+            }
         }
 
         Spacer()
@@ -155,7 +192,8 @@ struct AccountSheetView: View {
                     try await authService.signOut()
                     dismiss()
                 } catch {
-                    errorMessage = error.localizedDescription
+                    logger.error("Sign-out error: \(error, privacy: .private)")
+                    errorMessage = friendlyMessage(for: error)
                 }
             }
         } label: {
@@ -165,5 +203,22 @@ struct AccountSheetView: View {
                 .background(Color(.systemGray6))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
+    }
+
+    /// Maps thrown errors to user-friendly strings, keeping internal details out of the UI.
+    private func friendlyMessage(for error: Error) -> String {
+        let desc = error.localizedDescription.lowercased()
+        if desc.contains("cancel") || desc.contains("dismiss") {
+            return "Sign-in was cancelled."
+        }
+        if desc.contains("network") || desc.contains("internet") ||
+           desc.contains("offline") || desc.contains("connection") {
+            return "No internet connection. Please check your network and try again."
+        }
+        if desc.contains("invalid") || desc.contains("unauthorized") ||
+           desc.contains("credential") || desc.contains("token") {
+            return "Sign-in failed. Please try again."
+        }
+        return "Something went wrong. Please try again."
     }
 }

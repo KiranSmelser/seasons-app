@@ -35,14 +35,18 @@ final class CarbonViewModel {
         return produceService.produce(byId: id)
     }
 
+    private static let maxQuantityKg = 10_000.0
+
     var canLog: Bool {
-        selectedProduce != nil && (Double(quantityString) ?? 0) > 0
+        guard let quantity = Double(quantityString) else { return false }
+        return selectedProduce != nil && quantity > 0 && quantity.isFinite && quantity <= Self.maxQuantityKg
     }
 
     /// Creates a new CarbonLog entry for the selected produce and quantity.
     func createLogEntry() -> CarbonLog? {
         guard let produce = selectedProduce,
-              let quantity = Double(quantityString), quantity > 0 else {
+              let quantity = Double(quantityString),
+              quantity > 0, quantity.isFinite, quantity <= Self.maxQuantityKg else {
             return nil
         }
         let saved = CarbonCalculationService.carbonSaved(produce: produce, quantityKg: quantity)

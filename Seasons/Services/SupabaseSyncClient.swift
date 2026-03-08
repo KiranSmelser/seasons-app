@@ -14,10 +14,11 @@ struct SupabaseSyncClient: SyncClient {
             .execute()
     }
 
-    func delete(table: String, id: UUID) async throws {
+    func delete(table: String, id: UUID, userId: String) async throws {
         try await supabase.from(table)
             .delete()
             .eq("id", value: id.uuidString)
+            .eq("user_id", value: userId)
             .execute()
     }
 

@@ -9,10 +9,10 @@ options:
 packages:
   Supabase:
     url: https://github.com/supabase/supabase-swift
-    from: "2.0.0"
+    exactVersion: "2.41.1"
   GoogleSignIn:
     url: https://github.com/google/GoogleSignIn-iOS
-    from: "9.0.0"
+    exactVersion: "9.1.0"
 
 settings:
   base:
@@ -26,6 +26,15 @@ targets:
     attributes:
       DevelopmentTeam: "3FWT3PM62W"
       ProvisioningStyle: Automatic
+    settings:
+      base:
+        INFOPLIST_FILE: Seasons/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.kiransmelser.seasons
+        MARKETING_VERSION: "1.0.0"
+        CURRENT_PROJECT_VERSION: 1
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        DEVELOPMENT_TEAM: "3FWT3PM62W"
+        CODE_SIGN_STYLE: Automatic
     sources:
       - path: Seasons
     dependencies:
@@ -38,15 +47,6 @@ targets:
       properties:
         com.apple.developer.applesignin:
           - Default
-    settings:
-      base:
-        INFOPLIST_FILE: Seasons/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: com.kiransmelser.seasons
-        MARKETING_VERSION: "1.0.0"
-        CURRENT_PROJECT_VERSION: 1
-        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
-        DEVELOPMENT_TEAM: "3FWT3PM62W"
-        CODE_SIGN_STYLE: Automatic
     info:
       path: Seasons/Info.plist
       properties:
@@ -72,8 +72,24 @@ targets:
     platform: iOS
     sources:
       - path: SeasonsTests
+    resources:
+      - Seasons/Seasons.storekit
     dependencies:
       - target: Seasons
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.kiransmelser.seasons.tests
+
+schemes:
+  Seasons:
+    build:
+      targets:
+        Seasons: all
+        SeasonsTests: [test]
+    run:
+      config: Debug
+      storeKitConfiguration: Seasons/Seasons.storekit
+    test:
+      config: Debug
+      targets:
+        - SeasonsTests

@@ -9,10 +9,17 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     var authorizationStatus: CLAuthorizationStatus = .notDetermined
     var hasLocation = false
 
+    private static let manualRegionKey = "manualRegion"
+
     override init() {
         super.init()
         manager.delegate = self
         manager.desiredAccuracy = kCLLocationAccuracyReduced
+        if let raw = UserDefaults.standard.string(forKey: Self.manualRegionKey),
+           let saved = GrowingRegion(rawValue: raw) {
+            region = saved
+            hasLocation = true
+        }
     }
 
     func requestPermission() {
@@ -26,6 +33,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
     func setManualRegion(_ region: GrowingRegion) {
         self.region = region
         self.hasLocation = true
+        UserDefaults.standard.set(region.rawValue, forKey: Self.manualRegionKey)
     }
 
     // MARK: - CLLocationManagerDelegate

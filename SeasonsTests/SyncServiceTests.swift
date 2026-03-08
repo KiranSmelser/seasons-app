@@ -12,7 +12,7 @@ private enum MockError: Error {
 private final class MockSyncClient: SyncClient, @unchecked Sendable {
     // Recorded calls
     var upsertCalls: [(table: String, payload: [String: AnyJSON])] = []
-    var deleteCalls: [(table: String, id: UUID)] = []
+    var deleteCalls: [(table: String, id: UUID, userId: String)] = []
     var selectCalls: [(table: String, userId: String, updatedAfter: String)] = []
 
     // Per-call error configuration: key = "\(table):\(id)" or call index
@@ -32,9 +32,9 @@ private final class MockSyncClient: SyncClient, @unchecked Sendable {
         }
     }
 
-    func delete(table: String, id: UUID) async throws {
+    func delete(table: String, id: UUID, userId: String) async throws {
         let index = deleteCalls.count
-        deleteCalls.append((table, id))
+        deleteCalls.append((table, id, userId))
         if deleteErrorIndices.contains(index) {
             throw MockError.simulated
         }
@@ -62,6 +62,10 @@ private final class MockSyncClient: SyncClient, @unchecked Sendable {
         remoteFavorites = []
         remoteCarbonLogs = []
         selectShouldThrow = false
+    }
+
+    var pushedFavorites: [(table: String, id: UUID, userId: String)] {
+        deleteCalls.filter { $0.table == "favorites" }
     }
 }
 
@@ -94,6 +98,7 @@ final class SyncServiceTests: XCTestCase {
         for key in UserDefaults.standard.dictionaryRepresentation().keys where key.hasPrefix("hasCompletedInitialSync_") {
             UserDefaults.standard.removeObject(forKey: key)
         }
+        KeychainStore.deleteAll(withPrefix: "hasCompletedInitialSync_")
         try await super.tearDown()
     }
 
@@ -528,6 +533,55 @@ final class SyncServiceTests: XCTestCase {
         let fetched = try freshContext.fetch(FetchDescriptor<Favorite>())
         XCTAssertEqual(fetched.count, 1)
         XCTAssertTrue(fetched.first!.isSynced, "Favorite should be marked as synced after pushOnly")
+    }
+
+    // MARK: - Upload All Local Data
+
+    func testUploadAllLocalDataResetsAndPushes() async throws {
+        let context = makeContext()
+
+        // Insert 3 already-synced favorites
+        for i in 1...3 {
+            let fav = Favorite(itemType: "produce", itemId: "item_\(i)")
+            fav.isSynced = true
+            context.insert(fav)
+        }
+        try context.save()
+
+        let result = await syncService.uploadAllLocalData(userId: testUserId)
+
+        if case .failure(let msg) = result {
+            XCTFail("Expected .success but got .failure(\(msg))")
+        }
+
+        // All 3 should have been pushed (marked unsynced → pushed)
+        let favoriteCalls = mockClient.upsertCalls.filter { $0.table == "favorites" }
+        XCTAssertEqual(favoriteCalls.count, 3, "All 3 favorites should be pushed by uploadAllLocalData")
+
+        // After sync they should all be marked synced again
+        let freshContext = makeContext()
+        let fetched = try freshContext.fetch(FetchDescriptor<Favorite>())
+        XCTAssertTrue(fetched.allSatisfy(\.isSynced), "All favorites should be synced after uploadAllLocalData")
+    }
+
+    // MARK: - Initial Sync Keychain Round-Trip
+
+    func testHasCompletedInitialSyncRoundTrip() async throws {
+        // Before: should be false
+        let before = await syncService.hasCompletedInitialSync(userId: testUserId)
+        XCTAssertFalse(before, "Should not have completed initial sync before setInitialSyncCompleted")
+
+        // Mark completed
+        await syncService.setInitialSyncCompleted(userId: testUserId)
+
+        // After: should be true for this user
+        let after = await syncService.hasCompletedInitialSync(userId: testUserId)
+        XCTAssertTrue(after, "Should report initial sync completed after setInitialSyncCompleted")
+
+        // Different user should still return false
+        let differentUserId = UUID()
+        let otherResult = await syncService.hasCompletedInitialSync(userId: differentUserId)
+        XCTAssertFalse(otherResult, "Different userId should not be flagged as having completed initial sync")
     }
 
     // MARK: - Concurrent Sync Guard

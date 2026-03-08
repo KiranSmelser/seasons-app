@@ -1,16 +1,30 @@
 import Foundation
 import SwiftData
 import Supabase
+import os
 
 enum SyncResult {
     case success
     case failure(String)
 }
 
+/// Whitelist of Supabase table names the app is permitted to read/write/delete.
+/// Any `PendingSyncDeletion` whose `tableName` is not in this enum is skipped.
+private enum SyncTable: String {
+    case favorites
+    case carbonLogs = "carbon_logs"
+}
+
 actor SyncService {
     private let client: SyncClient
     private let modelContainer: ModelContainer
     private var isSyncing = false
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.kiransmelser.seasons", category: "SyncService")
+
+    /// When `pushOnly` is called while another sync is in progress it sets this
+    /// instead of silently dropping the request. The pending push fires as soon
+    /// as the active sync finishes.
+    private var pendingPushUserId: UUID?
 
     private let lastSyncKey = "lastSyncTimestamp"
 
@@ -34,39 +48,62 @@ actor SyncService {
 
     func resetSyncState() {
         UserDefaults.standard.removeObject(forKey: lastSyncKey)
-        // Clear all per-user initial sync flags
+        // Clear both Keychain and any legacy UserDefaults flags.
+        KeychainStore.deleteAll(withPrefix: initialSyncPrefix)
         for key in UserDefaults.standard.dictionaryRepresentation().keys where key.hasPrefix(initialSyncPrefix) {
             UserDefaults.standard.removeObject(forKey: key)
         }
     }
 
     func hasCompletedInitialSync(userId: UUID) -> Bool {
-        UserDefaults.standard.bool(forKey: "\(initialSyncPrefix)\(userId.uuidString)")
+        let key = "\(initialSyncPrefix)\(userId.uuidString)"
+
+        // Check Keychain first.
+        if KeychainStore.bool(forKey: key) { return true }
+
+        // One-time migration: if the flag was stored in UserDefaults before the
+        // Keychain change, promote it so we don't re-run uploadAllLocalData.
+        if UserDefaults.standard.bool(forKey: key) {
+            KeychainStore.setBool(true, forKey: key)
+            UserDefaults.standard.removeObject(forKey: key)
+            return true
+        }
+
+        return false
     }
 
     func setInitialSyncCompleted(userId: UUID) {
-        UserDefaults.standard.set(true, forKey: "\(initialSyncPrefix)\(userId.uuidString)")
+        KeychainStore.setBool(true, forKey: "\(initialSyncPrefix)\(userId.uuidString)")
     }
 
     @discardableResult
     func performSync(userId: UUID) async -> SyncResult {
         guard !isSyncing else { return .success }
         isSyncing = true
-        defer { isSyncing = false }
+        defer { isSyncing = false; flushPendingPush() }
         return await performSyncInternal(userId: userId)
     }
 
     @discardableResult
     func pushOnly(userId: UUID) async -> SyncResult {
-        guard !isSyncing else { return .success }
+        guard !isSyncing else {
+            // Another sync is already in progress. Queue this push so it fires
+            // automatically when the active sync finishes.
+            logger.debug("pushOnly: sync in progress, queuing push for later")
+            pendingPushUserId = userId
+            return .success
+        }
         isSyncing = true
-        defer { isSyncing = false }
+        defer { isSyncing = false; flushPendingPush() }
+        logger.debug("pushOnly: starting push for user \(userId, privacy: .private)")
         do {
             let context = ModelContext(modelContainer)
             try await pushChanges(userId: userId, context: context)
             try context.save()
+            logger.debug("pushOnly: completed successfully")
             return .success
         } catch {
+            logger.error("pushOnly failed: \(error.localizedDescription, privacy: .public)")
             return .failure(error.localizedDescription)
         }
     }
@@ -75,7 +112,7 @@ actor SyncService {
     func uploadAllLocalData(userId: UUID) async -> SyncResult {
         guard !isSyncing else { return .success }
         isSyncing = true
-        defer { isSyncing = false }
+        defer { isSyncing = false; flushPendingPush() }
 
         do {
             let context = ModelContext(modelContainer)
@@ -92,7 +129,7 @@ actor SyncService {
 
             try context.save()
         } catch {
-            print("[SyncService] Upload all failed: \(error)")
+            logger.error("Upload all failed: \(error.localizedDescription, privacy: .public)")
             return .failure(error.localizedDescription)
         }
 
@@ -107,9 +144,17 @@ actor SyncService {
             try context.save()
             return .success
         } catch {
-            print("[SyncService] Sync failed: \(error)")
+            logger.error("Sync failed: \(error.localizedDescription, privacy: .public)")
             return .failure(error.localizedDescription)
         }
+    }
+
+    /// Called from the `defer` of every sync entry-point. If a `pushOnly` was
+    /// skipped while a sync was in progress, we kick it off now.
+    private func flushPendingPush() {
+        guard let userId = pendingPushUserId else { return }
+        pendingPushUserId = nil
+        Task { await self.pushOnly(userId: userId) }
     }
 
     // MARK: - Push
@@ -117,7 +162,7 @@ actor SyncService {
     private func pushChanges(userId: UUID, context: ModelContext) async throws {
         try await pushFavorites(userId: userId, context: context)
         try await pushCarbonLogs(userId: userId, context: context)
-        try await pushDeletions(context: context)
+        try await pushDeletions(userId: userId, context: context)
         try context.save()
     }
 
@@ -141,7 +186,7 @@ actor SyncService {
                 try await client.upsert(table: "favorites", payload: payload)
                 favorite.isSynced = true
             } catch {
-                print("[SyncService] Failed to push favorite \(favorite.id): \(error)")
+                logger.error("Failed to push favorite: \(error.localizedDescription, privacy: .public)")
             }
         }
     }
@@ -168,23 +213,30 @@ actor SyncService {
                 try await client.upsert(table: "carbon_logs", payload: payload)
                 log.isSynced = true
             } catch {
-                print("[SyncService] Failed to push carbon log \(log.id): \(error)")
+                logger.error("Failed to push carbon log: \(error.localizedDescription, privacy: .public)")
             }
         }
     }
 
-    private func pushDeletions(context: ModelContext) async throws {
+    private func pushDeletions(userId: UUID, context: ModelContext) async throws {
         let deletions = try context.fetch(FetchDescriptor<PendingSyncDeletion>())
 
         for deletion in deletions {
             let table = deletion.tableName
             let recordId = deletion.recordId
 
+            // Reject any table name not in the explicit whitelist to prevent
+            // arbitrary-table deletion if local SwiftData is ever tampered with.
+            guard SyncTable(rawValue: table) != nil else {
+                context.delete(deletion)
+                continue
+            }
+
             do {
-                try await client.delete(table: table, id: recordId)
+                try await client.delete(table: table, id: recordId, userId: userId.uuidString)
                 context.delete(deletion)
             } catch {
-                print("[SyncService] Failed to push deletion \(recordId) from \(table): \(error)")
+                logger.error("Failed to push deletion from \(table, privacy: .public): \(error.localizedDescription, privacy: .public)")
             }
         }
     }
@@ -201,7 +253,16 @@ actor SyncService {
             table: "favorites", userId: userId.uuidString, updatedAfter: sinceISO
         )
 
+        /// Valid item types the server is permitted to return.
+        let validItemTypes: Set<String> = ["produce", "recipe"]
+
         for remote in remoteFavorites {
+            guard validItemTypes.contains(remote.itemType),
+                  !remote.itemId.isEmpty, remote.itemId.count <= 500 else {
+                logger.warning("Skipping remote favorite with invalid itemType or empty itemId.")
+                continue
+            }
+
             let remoteId = remote.id
             let existing = try context.fetch(FetchDescriptor<Favorite>(
                 predicate: #Predicate { $0.id == remoteId }
@@ -236,7 +297,17 @@ actor SyncService {
             table: "carbon_logs", userId: userId.uuidString, updatedAfter: sinceISO
         )
 
+        let carbonKgRange: ClosedRange<Double> = 0...10_000
+
         for remote in remoteLogs {
+            guard remote.quantityKg.isFinite && carbonKgRange.contains(remote.quantityKg),
+                  remote.carbonSavedKg.isFinite && carbonKgRange.contains(remote.carbonSavedKg),
+                  !remote.produceId.isEmpty, remote.produceId.count <= 200,
+                  !remote.produceName.isEmpty, remote.produceName.count <= 500 else {
+                logger.warning("Skipping remote carbon log with out-of-range or empty values.")
+                continue
+            }
+
             let remoteId = remote.id
             let existing = try context.fetch(FetchDescriptor<CarbonLog>(
                 predicate: #Predicate { $0.id == remoteId }

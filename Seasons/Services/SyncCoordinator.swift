@@ -1,15 +1,23 @@
 import Foundation
 import SwiftData
 import Supabase
+import os
+
+/// Abstraction over the auth layer consumed by SyncCoordinator.
+/// Enables unit-testing without a live Supabase session.
+protocol AuthProviding {
+    var currentUserId: UUID? { get }
+}
 
 @Observable
 @MainActor
 final class SyncCoordinator {
     private let syncService: SyncService
-    private let authService: AuthService
+    private let authService: any AuthProviding
     private var debounceTask: Task<Void, Never>?
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.kiransmelser.seasons", category: "SyncCoordinator")
 
-    init(syncService: SyncService, authService: AuthService) {
+    init(syncService: SyncService, authService: any AuthProviding) {
         self.syncService = syncService
         self.authService = authService
     }
@@ -19,8 +27,12 @@ final class SyncCoordinator {
         debounceTask = Task {
             try? await Task.sleep(for: .seconds(2))
             guard !Task.isCancelled else { return }
-            guard let user = authService.currentUser else { return }
-            await syncService.pushOnly(userId: user.id)
+            guard let userId = authService.currentUserId else {
+                logger.warning("notifyMutation: skipping push — no signed-in user")
+                return
+            }
+            logger.debug("notifyMutation: pushing for user \(userId, privacy: .private)")
+            await syncService.pushOnly(userId: userId)
         }
     }
 
@@ -31,10 +43,12 @@ final class SyncCoordinator {
 
     static var preview: SyncCoordinator {
         let config = ModelConfiguration(isStoredInMemoryOnly: true)
-        let container = try! ModelContainer(
+        guard let container = try? ModelContainer(
             for: CarbonLog.self, Favorite.self, PendingSyncDeletion.self,
             configurations: config
-        )
+        ) else {
+            fatalError("Failed to create in-memory ModelContainer for preview.")
+        }
         let syncService = SyncService(client: NoOpSyncClient(), modelContainer: container)
         return SyncCoordinator(syncService: syncService, authService: AuthService())
     }
@@ -42,6 +56,6 @@ final class SyncCoordinator {
 
 private struct NoOpSyncClient: SyncClient {
     func upsert(table: String, payload: [String: AnyJSON]) async throws {}
-    func delete(table: String, id: UUID) async throws {}
+    func delete(table: String, id: UUID, userId: String) async throws {}
     func select<T: Decodable & Sendable>(table: String, userId: String, updatedAfter: String) async throws -> [T] { [] }
 }

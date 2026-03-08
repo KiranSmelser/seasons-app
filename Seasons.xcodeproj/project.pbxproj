@@ -8,11 +8,15 @@
 
 /* Begin PBXBuildFile section */
 		0588AE9771065618881C0E93 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 857FB15776A245EB9A38269B /* GoogleSignIn */; };
+		136AC32513158E08696DC873 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2CD03C505852232A3F2D4 /* KeychainStore.swift */; };
+		1483BCD2E8B4E6D27DF9F17F /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A32AE02BDB60B6989FF642 /* PaywallView.swift */; };
 		20FE893E0EFCA13B883DF841 /* AccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B487483A751244459C7E9FEB /* AccountSheetView.swift */; };
+		2253029819B58D4A657F58E3 /* Seasons.storekit in Resources */ = {isa = PBXBuildFile; fileRef = 4E610B0F0193CE4EDEB611A1 /* Seasons.storekit */; };
 		288BD196422FBD4A58BC2010 /* CarbonViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8CD62714559824FD325A5267 /* CarbonViewModel.swift */; };
 		2F7D028940CEAAC677B951C2 /* RecipeDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F86F645F22F676E517E64A4C /* RecipeDataService.swift */; };
 		30F18C7F80CA51951236778B /* seasonal_produce.json in Resources */ = {isa = PBXBuildFile; fileRef = 5025B505F192EF3770436698 /* seasonal_produce.json */; };
 		33CC745C7FB9B37608E7AB53 /* recipes.json in Resources */ = {isa = PBXBuildFile; fileRef = 5971522E2DC6297DEC19CA2C /* recipes.json */; };
+		39809872D5DDEACF2701B8CB /* KeychainStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3B5C8BB89FDF2ACD1A0C3 /* KeychainStoreTests.swift */; };
 		39E9405E29319FA1CDEEAB7A /* SyncClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0937E7CE31F20B3C95A49130 /* SyncClient.swift */; };
 		3D99F56C57E1990A1EC441A6 /* ProduceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CD2D5D8B90A901C7DB128B /* ProduceDataService.swift */; };
 		5718A07630D51967644A12A0 /* RemoteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D6202C60D11E0BBB57D51 /* RemoteModels.swift */; };
@@ -22,6 +26,7 @@
 		70CDDBFD513B3116765BDAD5 /* GrowingRegion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 61248354345EA0B70D324011 /* GrowingRegion.swift */; };
 		71C0A5D5C55F1B5371FF9D97 /* SyncCoordinatorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = D66A7EFC1896E04E1708CE29 /* SyncCoordinatorTests.swift */; };
 		758FB75E82065D8019370BB1 /* Color+Season.swift in Sources */ = {isa = PBXBuildFile; fileRef = A35B4498BC60A12BD10B1CE5 /* Color+Season.swift */; };
+		79478CDB53918D754AB5ACA2 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 63B9B6D9053AC530ED4A5A3A /* SettingsView.swift */; };
 		7A47C86451707D1ACB5CB4F5 /* SeasonsTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */; };
 		8232D28378BBE446A92C0C91 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 1216D2423EFA9EED169DF5A8 /* Preview Assets.xcassets */; };
 		888C374CC0CDB0607ED4B082 /* SyncBannerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C9FC51A5C4DF9547F7AEDD77 /* SyncBannerView.swift */; };
@@ -34,6 +39,8 @@
 		ABE5DB2AA7E91C21401E7A9A /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB122F1746918E347DC8DB /* LocationService.swift */; };
 		B414138C4536F486CA5713A6 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = CF116A19B91B1DCDC63B0494 /* Supabase */; };
 		B8678C9055AF49249D6A6E01 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB628DF02FE5E0CE1D013D8 /* RecipeViewModel.swift */; };
+		B86AB07BE747D0EFF2A99761 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B2C032D8397B5B5AE9D382 /* SubscriptionService.swift */; };
+		BF431292B3EC1FD04DC8E232 /* SubscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF7BED1E6B94D5B666CE1D9 /* SubscriptionServiceTests.swift */; };
 		BFEB699FBA9C555A50ADC19D /* ModelTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = AB087E9C8CAD0BB1BA424AF1 /* ModelTests.swift */; };
 		C5725AD8B95F7AE63CD1460A /* SupabaseConfig.swift.template in Resources */ = {isa = PBXBuildFile; fileRef = D819519680457F3F6E0200FD /* SupabaseConfig.swift.template */; };
 		C5DE6B5055400A93131A07A9 /* SupabaseConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1A6C7D46BF78E6717711A72A /* SupabaseConfig.swift */; };
@@ -74,6 +81,7 @@
 		08733E4A7CD4D4DCAEAB9802 /* ServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceTests.swift; sourceTree = "<group>"; };
 		0937E7CE31F20B3C95A49130 /* SyncClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncClient.swift; sourceTree = "<group>"; };
 		1216D2423EFA9EED169DF5A8 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		12A32AE02BDB60B6989FF642 /* PaywallView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaywallView.swift; sourceTree = "<group>"; };
 		1423269A0E4CB3253FFA2706 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		1A6C7D46BF78E6717711A72A /* SupabaseConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseConfig.swift; sourceTree = "<group>"; };
 		1A9FBD89DB688FAD90B5AB17 /* SupabaseSyncClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupabaseSyncClient.swift; sourceTree = "<group>"; };
@@ -87,16 +95,21 @@
 		3978E20E8E93D08EEDF43C6F /* SeasonalListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonalListView.swift; sourceTree = "<group>"; };
 		3AFBF1CCE5AABF0FE33BB49F /* AuthServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthServiceTests.swift; sourceTree = "<group>"; };
 		3CA638D19FE3BEEC719D7666 /* Seasons.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Seasons.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		46E3B5C8BB89FDF2ACD1A0C3 /* KeychainStoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStoreTests.swift; sourceTree = "<group>"; };
 		492DE4386D05BAA3293DCEF5 /* CarbonLog.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonLog.swift; sourceTree = "<group>"; };
 		4A7F7CDB2BD9A3043DBC4215 /* RemoteModelsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteModelsTests.swift; sourceTree = "<group>"; };
+		4E610B0F0193CE4EDEB611A1 /* Seasons.storekit */ = {isa = PBXFileReference; path = Seasons.storekit; sourceTree = "<group>"; };
 		5025B505F192EF3770436698 /* seasonal_produce.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = seasonal_produce.json; sourceTree = "<group>"; };
 		5212FBF28BECFDD8B1F8E60E /* ProduceDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProduceDetailView.swift; sourceTree = "<group>"; };
 		5971522E2DC6297DEC19CA2C /* recipes.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = recipes.json; sourceTree = "<group>"; };
 		61248354345EA0B70D324011 /* GrowingRegion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GrowingRegion.swift; sourceTree = "<group>"; };
+		63B9B6D9053AC530ED4A5A3A /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
 		6E79483F95F9390299084BF1 /* SyncCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncCoordinator.swift; sourceTree = "<group>"; };
 		708D6202C60D11E0BBB57D51 /* RemoteModels.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RemoteModels.swift; sourceTree = "<group>"; };
+		71D2CD03C505852232A3F2D4 /* KeychainStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainStore.swift; sourceTree = "<group>"; };
 		7A6136C6EC6FEAF72CDA83BF /* SyncService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SyncService.swift; sourceTree = "<group>"; };
 		80EB122F1746918E347DC8DB /* LocationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationService.swift; sourceTree = "<group>"; };
+		89B2C032D8397B5B5AE9D382 /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		8CA4641E5D7540B63E0A572C /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		8CD62714559824FD325A5267 /* CarbonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonViewModel.swift; sourceTree = "<group>"; };
 		A35B4498BC60A12BD10B1CE5 /* Color+Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Season.swift"; sourceTree = "<group>"; };
@@ -106,6 +119,7 @@
 		AEB628DF02FE5E0CE1D013D8 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		AEEC1DF9C67B33B7326B5A12 /* DataIntegrityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataIntegrityTests.swift; sourceTree = "<group>"; };
 		B487483A751244459C7E9FEB /* AccountSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheetView.swift; sourceTree = "<group>"; };
+		BDF7BED1E6B94D5B666CE1D9 /* SubscriptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionServiceTests.swift; sourceTree = "<group>"; };
 		C02A09A7DFBC32870132756A /* AuthService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthService.swift; sourceTree = "<group>"; };
 		C097DF06DD7D6AC0D249D5CB /* PendingSyncDeletion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PendingSyncDeletion.swift; sourceTree = "<group>"; };
 		C9ED451C77364A5B4F8CCDF2 /* RecipeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDetailView.swift; sourceTree = "<group>"; };
@@ -166,6 +180,7 @@
 				34A431D3659A448763968F32 /* ContentView.swift */,
 				1423269A0E4CB3253FFA2706 /* Info.plist */,
 				1D9F1F060C584E065946D858 /* Seasons.entitlements */,
+				4E610B0F0193CE4EDEB611A1 /* Seasons.storekit */,
 				A4DAC01483B03B870BCBB319 /* SeasonsApp.swift */,
 				627EF0B928ACF0C708F5A724 /* Config */,
 				43867A0B90EFD9E88F459D24 /* Data */,
@@ -185,9 +200,11 @@
 				C02A09A7DFBC32870132756A /* AuthService.swift */,
 				2A6873E7747B1936F8D79C9F /* CarbonCalculationService.swift */,
 				D1C7384C6DCA84B4B546B007 /* FavoritesService.swift */,
+				71D2CD03C505852232A3F2D4 /* KeychainStore.swift */,
 				80EB122F1746918E347DC8DB /* LocationService.swift */,
 				E5CD2D5D8B90A901C7DB128B /* ProduceDataService.swift */,
 				F86F645F22F676E517E64A4C /* RecipeDataService.swift */,
+				89B2C032D8397B5B5AE9D382 /* SubscriptionService.swift */,
 				1A9FBD89DB688FAD90B5AB17 /* SupabaseSyncClient.swift */,
 				0937E7CE31F20B3C95A49130 /* SyncClient.swift */,
 				6E79483F95F9390299084BF1 /* SyncCoordinator.swift */,
@@ -269,6 +286,8 @@
 			isa = PBXGroup;
 			children = (
 				B487483A751244459C7E9FEB /* AccountSheetView.swift */,
+				12A32AE02BDB60B6989FF642 /* PaywallView.swift */,
+				63B9B6D9053AC530ED4A5A3A /* SettingsView.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -278,10 +297,12 @@
 			children = (
 				3AFBF1CCE5AABF0FE33BB49F /* AuthServiceTests.swift */,
 				AEEC1DF9C67B33B7326B5A12 /* DataIntegrityTests.swift */,
+				46E3B5C8BB89FDF2ACD1A0C3 /* KeychainStoreTests.swift */,
 				AB087E9C8CAD0BB1BA424AF1 /* ModelTests.swift */,
 				4A7F7CDB2BD9A3043DBC4215 /* RemoteModelsTests.swift */,
 				EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */,
 				08733E4A7CD4D4DCAEAB9802 /* ServiceTests.swift */,
+				BDF7BED1E6B94D5B666CE1D9 /* SubscriptionServiceTests.swift */,
 				D66A7EFC1896E04E1708CE29 /* SyncCoordinatorTests.swift */,
 				00563252469BE1B66FCE36A9 /* SyncServiceTests.swift */,
 				8CA4641E5D7540B63E0A572C /* ViewModelTests.swift */,
@@ -405,6 +426,7 @@
 			files = (
 				9910713D528887191C2A797B /* Assets.xcassets in Resources */,
 				8232D28378BBE446A92C0C91 /* Preview Assets.xcassets in Resources */,
+				2253029819B58D4A657F58E3 /* Seasons.storekit in Resources */,
 				C5725AD8B95F7AE63CD1460A /* SupabaseConfig.swift.template in Resources */,
 				33CC745C7FB9B37608E7AB53 /* recipes.json in Resources */,
 				30F18C7F80CA51951236778B /* seasonal_produce.json in Resources */,
@@ -429,8 +451,10 @@
 				FDB3891AD6A02BEAD50B2FF5 /* Favorite.swift in Sources */,
 				E3C222853915FAC287603111 /* FavoritesService.swift in Sources */,
 				70CDDBFD513B3116765BDAD5 /* GrowingRegion.swift in Sources */,
+				136AC32513158E08696DC873 /* KeychainStore.swift in Sources */,
 				ABE5DB2AA7E91C21401E7A9A /* LocationService.swift in Sources */,
 				9CBF5CD5CDCCC6DA967F065D /* NavigationDestination.swift in Sources */,
+				1483BCD2E8B4E6D27DF9F17F /* PaywallView.swift in Sources */,
 				6DF03A54366D79295E609025 /* PendingSyncDeletion.swift in Sources */,
 				3D99F56C57E1990A1EC441A6 /* ProduceDataService.swift in Sources */,
 				DA8E085386BA8F2A45809795 /* ProduceDetailView.swift in Sources */,
@@ -444,6 +468,8 @@
 				E28911C15C1C1870B686DBC1 /* SeasonalListView.swift in Sources */,
 				90DE4814BB481DFC5489D0A8 /* SeasonalViewModel.swift in Sources */,
 				C6C0FA97C4C329865B63D350 /* SeasonsApp.swift in Sources */,
+				79478CDB53918D754AB5ACA2 /* SettingsView.swift in Sources */,
+				B86AB07BE747D0EFF2A99761 /* SubscriptionService.swift in Sources */,
 				C5DE6B5055400A93131A07A9 /* SupabaseConfig.swift in Sources */,
 				F0E586CC30B1AFA911B818E4 /* SupabaseSyncClient.swift in Sources */,
 				888C374CC0CDB0607ED4B082 /* SyncBannerView.swift in Sources */,
@@ -459,10 +485,12 @@
 			files = (
 				AAC50506F5682CA6184FB15E /* AuthServiceTests.swift in Sources */,
 				F2AE5B63C3AAF24F39CD98B4 /* DataIntegrityTests.swift in Sources */,
+				39809872D5DDEACF2701B8CB /* KeychainStoreTests.swift in Sources */,
 				BFEB699FBA9C555A50ADC19D /* ModelTests.swift in Sources */,
 				A183E3C83FA8D17F68ABE10F /* RemoteModelsTests.swift in Sources */,
 				7A47C86451707D1ACB5CB4F5 /* SeasonsTests.swift in Sources */,
 				E07BDCF27688B6A7F0EBE1B6 /* ServiceTests.swift in Sources */,
+				BF431292B3EC1FD04DC8E232 /* SubscriptionServiceTests.swift in Sources */,
 				71C0A5D5C55F1B5371FF9D97 /* SyncCoordinatorTests.swift in Sources */,
 				F415095FF8CA8F90C4DA28BD /* SyncServiceTests.swift in Sources */,
 				E007C79E8726379189E3E6B1 /* ViewModelTests.swift in Sources */,
@@ -712,16 +740,16 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/supabase/supabase-swift";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 2.0.0;
+				kind = exactVersion;
+				version = 2.41.1;
 			};
 		};
 		F396B76B1E582F603FB1D731 /* XCRemoteSwiftPackageReference "GoogleSignIn-iOS" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/google/GoogleSignIn-iOS";
 			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 9.0.0;
+				kind = exactVersion;
+				version = 9.1.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */

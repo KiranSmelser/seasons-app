@@ -1,34 +1,23 @@
 import SwiftUI
 import SwiftData
 import GoogleSignIn
+import os
 
 @main
 struct SeasonsApp: App {
     @State private var authService = AuthService()
     @State private var syncBannerMessage: SyncBannerMessage?
+    @State private var subscriptionService = SubscriptionService()
+    @AppStorage("colorSchemePreference") private var colorSchemePref = AppColorScheme.system.rawValue
     @Environment(\.scenePhase) private var scenePhase
 
     private let modelContainer: ModelContainer
     private let syncService: SyncService
     @State private var syncCoordinator: SyncCoordinator
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.kiransmelser.seasons", category: "SeasonsApp")
 
     init() {
-        let schema = Schema([CarbonLog.self, Favorite.self, PendingSyncDeletion.self])
-        let config = ModelConfiguration(schema: schema)
-        let container: ModelContainer
-        do {
-            container = try ModelContainer(for: schema, configurations: [config])
-        } catch {
-            // Schema changed since last install — delete the old store and retry
-            let storeURL = config.url
-            let related = [
-                storeURL,
-                storeURL.deletingPathExtension().appendingPathExtension("store-shm"),
-                storeURL.deletingPathExtension().appendingPathExtension("store-wal")
-            ]
-            for url in related { try? FileManager.default.removeItem(at: url) }
-            container = try! ModelContainer(for: schema, configurations: [config])
-        }
+        let container = Self.makeModelContainer()
         self.modelContainer = container
 
         let auth = AuthService()
@@ -45,14 +34,19 @@ struct SeasonsApp: App {
         WindowGroup {
             ContentView(authService: authService, syncBannerMessage: $syncBannerMessage)
                 .environment(syncCoordinator)
+                .environment(subscriptionService)
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
+                .onAppear { applyColorScheme(colorSchemePref) }
+                .onChange(of: colorSchemePref) { _, newValue in applyColorScheme(newValue) }
         }
         .modelContainer(modelContainer)
         .onChange(of: scenePhase) { _, newPhase in
             if newPhase == .active, let user = authService.currentUser {
                 Task {
+                    await subscriptionService.checkEntitlement()
+                    guard subscriptionService.isPro else { return }
                     let result = await syncService.performSync(userId: user.id)
                     showBanner(for: result)
                 }
@@ -61,6 +55,8 @@ struct SeasonsApp: App {
         .onChange(of: authService.isSignedIn) { wasSignedIn, isNowSignedIn in
             if !wasSignedIn && isNowSignedIn, let user = authService.currentUser {
                 Task {
+                    await subscriptionService.checkEntitlement()
+                    guard subscriptionService.isPro else { return }
                     let hasInitialSync = await syncService.hasCompletedInitialSync(userId: user.id)
                     let result: SyncResult
                     if hasInitialSync {
@@ -83,9 +79,23 @@ struct SeasonsApp: App {
                         try context.delete(model: PendingSyncDeletion.self)
                         try context.save()
                     } catch {
-                        print("[SeasonsApp] Sign-out cleanup failed: \(error)")
+                        logger.error("Sign-out cleanup failed: \(error.localizedDescription, privacy: .public)")
                     }
                 }
+            }
+        }
+    }
+
+    private func applyColorScheme(_ pref: String) {
+        let style: UIUserInterfaceStyle
+        switch AppColorScheme(rawValue: pref) {
+        case .light: style = .light
+        case .dark: style = .dark
+        default: style = .unspecified
+        }
+        for scene in UIApplication.shared.connectedScenes.compactMap({ $0 as? UIWindowScene }) {
+            for window in scene.windows {
+                window.overrideUserInterfaceStyle = style
             }
         }
     }
@@ -101,5 +111,35 @@ struct SeasonsApp: App {
                 }
             }
         }
+    }
+
+    /// Creates the SwiftData ModelContainer, recovering from schema-migration failures.
+    /// Falls back to an in-memory store only as a last resort so the app never crashes on startup.
+    private static func makeModelContainer() -> ModelContainer {
+        let schema = Schema([CarbonLog.self, Favorite.self, PendingSyncDeletion.self])
+        let config = ModelConfiguration(schema: schema)
+
+        if let container = try? ModelContainer(for: schema, configurations: [config]) {
+            return container
+        }
+
+        // Schema changed — wipe the on-disk store and retry once.
+        let storeURL = config.url
+        for ext in ["store", "store-shm", "store-wal"] {
+            let url = storeURL.deletingPathExtension().appendingPathExtension(ext)
+            try? FileManager.default.removeItem(at: url)
+        }
+
+        if let container = try? ModelContainer(for: schema, configurations: [config]) {
+            return container
+        }
+
+        // Last resort: in-memory only. Data won't survive this session,
+        // but the app stays functional rather than crashing.
+        let memConfig = ModelConfiguration(schema: schema, isStoredInMemoryOnly: true)
+        guard let container = try? ModelContainer(for: schema, configurations: [memConfig]) else {
+            fatalError("Failed to initialise even an in-memory ModelContainer — this should never happen.")
+        }
+        return container
     }
 }

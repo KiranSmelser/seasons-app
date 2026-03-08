@@ -11,6 +11,7 @@ struct SeasonalListView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(SyncCoordinator.self) private var syncCoordinator
+    @Environment(SubscriptionService.self) private var subscriptionService
     @Query(filter: #Predicate<Favorite> { !$0.isSoftDeleted }) private var favorites: [Favorite]
 
     private var produceFavoritedIds: Set<String> {
@@ -50,7 +51,7 @@ struct SeasonalListView: View {
                 }
             }
             .sheet(isPresented: $showAccountSheet) {
-                AccountSheetView(authService: authService)
+                AccountSheetView(authService: authService, locationService: locationService)
             }
             .sheet(isPresented: $showRegionPicker) {
                 RegionPickerView(locationService: locationService)
@@ -150,7 +151,9 @@ struct SeasonalListView: View {
                         Button {
                             FavoritesService(modelContext: modelContext)
                                 .toggleFavorite(itemType: "produce", itemId: item.id)
-                            syncCoordinator.notifyMutation()
+                            if subscriptionService.isPro {
+                                syncCoordinator.notifyMutation()
+                            }
                         } label: {
                             Image(systemName: isFavorited ? "heart.fill" : "heart")
                                 .font(.caption)
@@ -275,5 +278,6 @@ struct RegionPickerView: View {
 #Preview {
     SeasonalListView(authService: AuthService())
         .environment(SyncCoordinator.preview)
+        .environment(SubscriptionService())
         .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

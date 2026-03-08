@@ -192,6 +192,45 @@ final class ViewModelTests: XCTestCase {
         XCTAssertEqual(vm.totalCarbonSaved(from: logs), 1.8, accuracy: 0.001)
     }
 
+    func testShareTextIsNonEmpty() {
+        let vm = CarbonViewModel()
+        let log = CarbonLog(produceId: "tomato", produceName: "Tomato", quantityKg: 1.0, carbonSavedKg: 0.5)
+        let text = vm.shareText(from: [log])
+        XCTAssertFalse(text.isEmpty, "shareText should return a non-empty string")
+        XCTAssertTrue(text.contains("kg") || text.contains("g"),
+                      "shareText should mention a carbon unit")
+    }
+
+    func testEquivalenciesMatchesService() {
+        let vm = CarbonViewModel()
+        let log = CarbonLog(produceId: "tomato", produceName: "Tomato", quantityKg: 1.0, carbonSavedKg: 0.5)
+        let vmEquivs = vm.equivalencies(from: [log])
+        let serviceEquivs = CarbonCalculationService.equivalencies(carbonSavedKg: 0.5)
+        XCTAssertEqual(vmEquivs.count, serviceEquivs.count,
+                       "equivalencies(from:) count should match CarbonCalculationService.equivalencies(for:)")
+    }
+
+    func testCanLogReturnsFalseForNegativeQuantity() {
+        let vm = CarbonViewModel()
+        vm.selectedProduceId = "tomato"
+        vm.quantityString = "-1"
+        XCTAssertFalse(vm.canLog, "canLog should be false for negative quantity")
+    }
+
+    func testCanLogReturnsFalseForZeroQuantity() {
+        let vm = CarbonViewModel()
+        vm.selectedProduceId = "tomato"
+        vm.quantityString = "0"
+        XCTAssertFalse(vm.canLog, "canLog should be false for zero quantity")
+    }
+
+    func testCanLogReturnsFalseForNonNumericQuantity() {
+        let vm = CarbonViewModel()
+        vm.selectedProduceId = "tomato"
+        vm.quantityString = "abc"
+        XCTAssertFalse(vm.canLog, "canLog should be false for non-numeric input")
+    }
+
     func testTopProduceBreakdownGroupsAndSorts() throws {
         let vm = CarbonViewModel()
         let logs = [

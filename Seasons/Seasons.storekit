@@ -1,0 +1,67 @@
+{
+  "identifier" : "6E3F4A2B-8C1D-4E9F-A7B3-2D5E6F7A8C9D",
+  "nonConsumableProducts" : [],
+  "nonRenewingSubscriptionProducts" : [],
+  "products" : [],
+  "settings" : {
+    "_locale" : "en_US",
+    "_storefront" : "USA",
+    "askToBuyEnabled" : false,
+    "defaultTimeSaleEnabled" : false
+  },
+  "subscriptionGroups" : [
+    {
+      "id" : "9A8B7C6D-5E4F-3A2B-1C0D-9E8F7A6B5C4D",
+      "localizations" : [],
+      "name" : "Seasons Pro",
+      "subscriptions" : [
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "1.99",
+          "familyShareable" : false,
+          "groupNumber" : 1,
+          "internalID" : "1A2B3C4D-5E6F-7A8B-9C0D-1E2F3A4B5C6D",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Full access to Carbon Impact dashboard and cross-device sync",
+              "displayName" : "Seasons Pro Monthly",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.kiransmelser.seasons.pro.monthly",
+          "recurringSubscriptionPeriod" : "P1M",
+          "referenceName" : "Pro Monthly",
+          "subscriptionGroupID" : "9A8B7C6D-5E4F-3A2B-1C0D-9E8F7A6B5C4D",
+          "type" : "RecurringSubscription"
+        },
+        {
+          "adHocOffers" : [],
+          "codeOffers" : [],
+          "displayPrice" : "19.99",
+          "familyShareable" : false,
+          "groupNumber" : 2,
+          "internalID" : "7D8E9F0A-1B2C-3D4E-5F6A-7B8C9D0E1F2A",
+          "introductoryOffer" : null,
+          "localizations" : [
+            {
+              "description" : "Full access to Carbon Impact dashboard and cross-device sync",
+              "displayName" : "Seasons Pro Annual",
+              "locale" : "en_US"
+            }
+          ],
+          "productID" : "com.kiransmelser.seasons.pro.annual",
+          "recurringSubscriptionPeriod" : "P1Y",
+          "referenceName" : "Pro Annual",
+          "subscriptionGroupID" : "9A8B7C6D-5E4F-3A2B-1C0D-9E8F7A6B5C4D",
+          "type" : "RecurringSubscription"
+        }
+      ]
+    }
+  ],
+  "version" : {
+    "major" : 3,
+    "minor" : 0
+  }
+}

@@ -1,9 +1,10 @@
-// Copy this file to SupabaseConfig.swift (which is gitignored) and fill in your values.
-// Find these in your Supabase project: Settings > API
-
 import Foundation
 
+// Copy this file to SupabaseConfig.swift and fill in your values.
+// SupabaseConfig.swift is gitignored — never commit the real file.
+//
+// Get these values from your Supabase project → Settings → API.
 enum SupabaseConfig {
     static let url = URL(string: "https://your-project.supabase.co")!
-    static let anonKey = "your-anon-key"
+    static let anonKey = "your-anon-key-here"
 }

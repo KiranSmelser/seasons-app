@@ -1,9 +1,19 @@
 import SwiftUI
 
+enum AppColorScheme: String {
+    case system, light, dark
+    var colorScheme: ColorScheme? {
+        switch self {
+        case .system: nil
+        case .light: .light
+        case .dark: .dark
+        }
+    }
+}
+
 struct ContentView: View {
     let authService: AuthService
     @Binding var syncBannerMessage: SyncBannerMessage?
-
     var body: some View {
         TabView {
             SeasonalListView(authService: authService)

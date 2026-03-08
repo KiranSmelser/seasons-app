@@ -43,3 +43,18 @@ struct RemoteCarbonLog: Decodable {
         case isDeleted = "is_deleted"
     }
 }
+
+extension RemoteCarbonLog {
+    init(from decoder: Decoder) throws {
+        let c = try decoder.container(keyedBy: CodingKeys.self)
+        id = try c.decode(UUID.self, forKey: .id)
+        userId = try c.decode(UUID.self, forKey: .userId)
+        date = try c.decode(Date.self, forKey: .date)
+        produceId = try c.decode(String.self, forKey: .produceId)
+        produceName = try c.decode(String.self, forKey: .produceName)
+        quantityKg = try c.decode(Double.self, forKey: .quantityKg)
+        carbonSavedKg = try c.decode(Double.self, forKey: .carbonSavedKg)
+        updatedAt = try c.decode(Date.self, forKey: .updatedAt)
+        isDeleted = try c.decodeIfPresent(Bool.self, forKey: .isDeleted) ?? false
+    }
+}

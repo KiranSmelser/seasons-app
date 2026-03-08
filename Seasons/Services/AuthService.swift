@@ -5,6 +5,7 @@ import CryptoKit
 import Supabase
 import Auth
 import GoogleSignIn
+import os
 
 @Observable
 final class AuthService: NSObject {
@@ -12,6 +13,7 @@ final class AuthService: NSObject {
 
     private(set) var currentUser: User?
     private(set) var isLoading = false
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.kiransmelser.seasons", category: "AuthService")
 
     var isSignedIn: Bool { currentUser != nil }
 
@@ -32,7 +34,7 @@ final class AuthService: NSObject {
             let session = try await supabase.auth.session
             currentUser = session.user
         } catch {
-            print("[AuthService] Failed to restore session: \(error)")
+            logger.error("Failed to restore session: \(error.localizedDescription, privacy: .public)")
             currentUser = nil
         }
     }
@@ -149,6 +151,10 @@ extension AuthService: ASAuthorizationControllerDelegate {
         signInContinuation = nil
         continuation.resume(throwing: error)
     }
+}
+
+extension AuthService: AuthProviding {
+    var currentUserId: UUID? { currentUser?.id }
 }
 
 enum AuthError: LocalizedError {

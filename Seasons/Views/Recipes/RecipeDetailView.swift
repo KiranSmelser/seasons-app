@@ -7,6 +7,7 @@ struct RecipeDetailView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(SyncCoordinator.self) private var syncCoordinator
+    @Environment(SubscriptionService.self) private var subscriptionService
 
     @State private var isFavorited = false
 
@@ -34,7 +35,7 @@ struct RecipeDetailView: View {
                 Button {
                     favoritesService.toggleFavorite(itemType: "recipe", itemId: recipe.id)
                     isFavorited.toggle()
-                    syncCoordinator.notifyMutation()
+                    if subscriptionService.isPro { syncCoordinator.notifyMutation() }
                 } label: {
                     Image(systemName: isFavorited ? "heart.fill" : "heart")
                         .foregroundStyle(isFavorited ? .red : .secondary)
@@ -82,10 +83,9 @@ struct RecipeDetailView: View {
 
             ForEach(recipe.ingredients) { ingredient in
                 let isInSeason = viewModel.isIngredientInSeason(ingredient)
-                let hasProduce = ingredient.produceId != nil
 
-                if hasProduce {
-                    NavigationLink(value: ProduceDestination(produceId: ingredient.produceId!)) {
+                if let produceId = ingredient.produceId {
+                    NavigationLink(value: ProduceDestination(produceId: produceId)) {
                         ingredientRow(ingredient: ingredient, isInSeason: isInSeason, tappable: true)
                     }
                     .buttonStyle(.plain)

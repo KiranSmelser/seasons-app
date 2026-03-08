@@ -73,6 +73,33 @@ final class SyncCoordinatorTests: XCTestCase {
         XCTAssertEqual(mockClient.upsertCallCount, 0, "Unauthenticated rapid mutations should not push")
     }
 
+    // MARK: - Authenticated Push
+
+    func testNotifyMutationCallsPushWhenAuthenticated() async throws {
+        // Create a fake auth provider with a signed-in user
+        let fakeAuth = FakeAuthProvider()
+        fakeAuth.currentUserId = UUID()
+
+        // Build a coordinator that uses the fake auth and the shared mockClient
+        let localCoordinator = SyncCoordinator(syncService: syncService, authService: fakeAuth)
+
+        // Insert an unsynced favorite so pushOnly has something to push
+        let context = ModelContext(container)
+        let fav = Favorite(itemType: "produce", itemId: "apple")
+        fav.isSynced = false
+        context.insert(fav)
+        try context.save()
+
+        localCoordinator.notifyMutation()
+
+        // Wait past the 2-second debounce
+        try await Task.sleep(for: .seconds(3))
+
+        // pushOnly should have upserted the favorite (no select/pull)
+        XCTAssertEqual(mockClient.upsertCallCount, 1, "Should push when authenticated after debounce")
+        XCTAssertEqual(mockClient.selectCallCount, 0, "pushOnly should not trigger a pull")
+    }
+
     func testCancelPendingSync_afterMultipleMutations() async throws {
         coordinator.notifyMutation()
         try await Task.sleep(for: .milliseconds(50))
@@ -88,6 +115,12 @@ final class SyncCoordinatorTests: XCTestCase {
     }
 }
 
+// MARK: - Fake Auth Provider
+
+private final class FakeAuthProvider: AuthProviding {
+    var currentUserId: UUID?
+}
+
 // MARK: - Recording Mock
 
 private final class RecordingSyncClient: SyncClient, @unchecked Sendable {
@@ -99,7 +132,7 @@ private final class RecordingSyncClient: SyncClient, @unchecked Sendable {
         upsertCallCount += 1
     }
 
-    func delete(table: String, id: UUID) async throws {
+    func delete(table: String, id: UUID, userId: String) async throws {
         deleteCallCount += 1
     }
 

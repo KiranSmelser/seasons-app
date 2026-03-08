@@ -61,6 +61,7 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 
-# Supabase config (contains secrets)
+# Supabase config (contains API keys — never commit)
+# Copy SupabaseConfig.swift.template to SupabaseConfig.swift and fill in your values.
 Seasons/Config/SupabaseConfig.swift
 Docs/*
