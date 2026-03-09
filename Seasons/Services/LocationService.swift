@@ -30,6 +30,18 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
         manager.requestLocation()
     }
 
+    /// Requests the current location, handling both the case where permission
+    /// is already granted (calls requestLocation directly) and not yet granted
+    /// (calls requestPermission, which auto-triggers requestLocation on grant).
+    func useCurrentLocation() {
+        switch manager.authorizationStatus {
+        case .authorizedWhenInUse, .authorizedAlways:
+            requestLocation()
+        default:
+            requestPermission()
+        }
+    }
+
     func setManualRegion(_ region: GrowingRegion) {
         self.region = region
         self.hasLocation = true
@@ -40,8 +52,7 @@ final class LocationService: NSObject, CLLocationManagerDelegate {
 
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         guard let coordinate = locations.first?.coordinate else { return }
-        region = GrowingRegion.from(coordinate: coordinate)
-        hasLocation = true
+        setManualRegion(GrowingRegion.from(coordinate: coordinate))
     }
 
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {

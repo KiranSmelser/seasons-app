@@ -12,6 +12,7 @@ struct SeasonalListView: View {
     @Environment(\.modelContext) private var modelContext
     @Environment(SyncCoordinator.self) private var syncCoordinator
     @Environment(SubscriptionService.self) private var subscriptionService
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
     @Query(filter: #Predicate<Favorite> { !$0.isSoftDeleted }) private var favorites: [Favorite]
 
     private var produceFavoritedIds: Set<String> {
@@ -60,7 +61,7 @@ struct SeasonalListView: View {
                 if viewModel == nil {
                     viewModel = SeasonalViewModel(locationService: locationService)
                 }
-                if !locationService.hasLocation {
+                if !locationService.hasLocation && hasSeenOnboarding {
                     locationService.requestPermission()
                 }
             }

@@ -9,6 +9,7 @@ struct SeasonsApp: App {
     @State private var syncBannerMessage: SyncBannerMessage?
     @State private var subscriptionService = SubscriptionService()
     @AppStorage("colorSchemePreference") private var colorSchemePref = AppColorScheme.system.rawValue
+    @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
     @Environment(\.scenePhase) private var scenePhase
 
     private let modelContainer: ModelContainer
@@ -40,6 +41,15 @@ struct SeasonsApp: App {
                 }
                 .onAppear { applyColorScheme(colorSchemePref) }
                 .onChange(of: colorSchemePref) { _, newValue in applyColorScheme(newValue) }
+                .fullScreenCover(isPresented: Binding(
+                    get: { !hasSeenOnboarding },
+                    set: { if !$0 { hasSeenOnboarding = true } }
+                )) {
+                    OnboardingView(authService: authService) {
+                        hasSeenOnboarding = true
+                    }
+                    .environment(subscriptionService)
+                }
         }
         .modelContainer(modelContainer)
         .onChange(of: scenePhase) { _, newPhase in
