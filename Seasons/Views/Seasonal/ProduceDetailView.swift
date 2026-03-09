@@ -7,6 +7,7 @@ struct ProduceDetailView: View {
 
     @Environment(\.modelContext) private var modelContext
     @Environment(SyncCoordinator.self) private var syncCoordinator
+    @Environment(SubscriptionService.self) private var subscriptionService
 
     private let monthAbbreviations = ["J", "F", "M", "A", "M", "J", "J", "A", "S", "O", "N", "D"]
 
@@ -44,7 +45,9 @@ struct ProduceDetailView: View {
                 Button {
                     favoritesService.toggleFavorite(itemType: "produce", itemId: item.id)
                     isFavorited.toggle()
-                    syncCoordinator.notifyMutation()
+                    if subscriptionService.isPro {
+                        syncCoordinator.notifyMutation()
+                    }
                 } label: {
                     Image(systemName: isFavorited ? "heart.fill" : "heart")
                         .foregroundStyle(isFavorited ? .red : .secondary)
@@ -246,5 +249,6 @@ struct CarbonCard: View {
         )
     }
     .environment(SyncCoordinator.preview)
+    .environment(SubscriptionService())
     .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

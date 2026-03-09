@@ -6,8 +6,10 @@ import os
 @main
 struct SeasonsApp: App {
     @State private var authService = AuthService()
+    @State private var locationService = LocationService()
     @State private var syncBannerMessage: SyncBannerMessage?
     @State private var subscriptionService = SubscriptionService()
+    @State private var notificationService = NotificationService()
     @AppStorage("colorSchemePreference") private var colorSchemePref = AppColorScheme.system.rawValue
     @AppStorage("hasSeenOnboarding") private var hasSeenOnboarding = false
     @Environment(\.scenePhase) private var scenePhase
@@ -36,6 +38,8 @@ struct SeasonsApp: App {
             ContentView(authService: authService, syncBannerMessage: $syncBannerMessage)
                 .environment(syncCoordinator)
                 .environment(subscriptionService)
+                .environment(locationService)
+                .environment(notificationService)
                 .onOpenURL { url in
                     GIDSignIn.sharedInstance.handle(url)
                 }
@@ -45,14 +49,21 @@ struct SeasonsApp: App {
                     get: { !hasSeenOnboarding },
                     set: { if !$0 { hasSeenOnboarding = true } }
                 )) {
-                    OnboardingView(authService: authService) {
+                    OnboardingView(authService: authService, locationService: locationService) {
                         hasSeenOnboarding = true
                     }
                     .environment(subscriptionService)
                 }
         }
         .modelContainer(modelContainer)
+        .onChange(of: locationService.region) { _, newRegion in
+            guard UserDefaults.standard.bool(forKey: "notificationsEnabled") else { return }
+            Task { await notificationService.scheduleMonthlyNotifications(for: newRegion) }
+        }
         .onChange(of: scenePhase) { _, newPhase in
+            if newPhase == .active {
+                Task { await notificationService.checkAuthorizationStatus() }
+            }
             if newPhase == .active, let user = authService.currentUser {
                 Task {
                     await subscriptionService.checkEntitlement()

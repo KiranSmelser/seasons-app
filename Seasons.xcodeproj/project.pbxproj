@@ -19,6 +19,7 @@
 		39809872D5DDEACF2701B8CB /* KeychainStoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 46E3B5C8BB89FDF2ACD1A0C3 /* KeychainStoreTests.swift */; };
 		39E9405E29319FA1CDEEAB7A /* SyncClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0937E7CE31F20B3C95A49130 /* SyncClient.swift */; };
 		3D99F56C57E1990A1EC441A6 /* ProduceDataService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5CD2D5D8B90A901C7DB128B /* ProduceDataService.swift */; };
+		3EF862A57EA1D1968C19D7A8 /* NotificationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = FD32A1A520DCFDAC1EB25912 /* NotificationService.swift */; };
 		52B1B114900685CACD6AE14E /* OnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = BEA7C4743FB995BD994F76CD /* OnboardingView.swift */; };
 		5718A07630D51967644A12A0 /* RemoteModels.swift in Sources */ = {isa = PBXBuildFile; fileRef = 708D6202C60D11E0BBB57D51 /* RemoteModels.swift */; };
 		5FEB023924A216D00230AEDE /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 34A431D3659A448763968F32 /* ContentView.swift */; };
@@ -39,6 +40,7 @@
 		AAC50506F5682CA6184FB15E /* AuthServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AFBF1CCE5AABF0FE33BB49F /* AuthServiceTests.swift */; };
 		ABE5DB2AA7E91C21401E7A9A /* LocationService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 80EB122F1746918E347DC8DB /* LocationService.swift */; };
 		B414138C4536F486CA5713A6 /* Supabase in Frameworks */ = {isa = PBXBuildFile; productRef = CF116A19B91B1DCDC63B0494 /* Supabase */; };
+		B866FB5FDEE87BF8B8F56E2E /* NotificationServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9AC5F5F74C8110A6CD304C8F /* NotificationServiceTests.swift */; };
 		B8678C9055AF49249D6A6E01 /* RecipeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AEB628DF02FE5E0CE1D013D8 /* RecipeViewModel.swift */; };
 		B86AB07BE747D0EFF2A99761 /* SubscriptionService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 89B2C032D8397B5B5AE9D382 /* SubscriptionService.swift */; };
 		BF431292B3EC1FD04DC8E232 /* SubscriptionServiceTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = BDF7BED1E6B94D5B666CE1D9 /* SubscriptionServiceTests.swift */; };
@@ -114,6 +116,7 @@
 		89B2C032D8397B5B5AE9D382 /* SubscriptionService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionService.swift; sourceTree = "<group>"; };
 		8CA4641E5D7540B63E0A572C /* ViewModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewModelTests.swift; sourceTree = "<group>"; };
 		8CD62714559824FD325A5267 /* CarbonViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CarbonViewModel.swift; sourceTree = "<group>"; };
+		9AC5F5F74C8110A6CD304C8F /* NotificationServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationServiceTests.swift; sourceTree = "<group>"; };
 		A35B4498BC60A12BD10B1CE5 /* Color+Season.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Color+Season.swift"; sourceTree = "<group>"; };
 		A4DAC01483B03B870BCBB319 /* SeasonsApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsApp.swift; sourceTree = "<group>"; };
 		AB087E9C8CAD0BB1BA424AF1 /* ModelTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelTests.swift; sourceTree = "<group>"; };
@@ -136,6 +139,7 @@
 		E7ADF9CBBD146BA357A1CE8E /* SeasonsTests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = SeasonsTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonsTests.swift; sourceTree = "<group>"; };
 		F86F645F22F676E517E64A4C /* RecipeDataService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeDataService.swift; sourceTree = "<group>"; };
+		FD32A1A520DCFDAC1EB25912 /* NotificationService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -206,6 +210,7 @@
 				D1C7384C6DCA84B4B546B007 /* FavoritesService.swift */,
 				71D2CD03C505852232A3F2D4 /* KeychainStore.swift */,
 				80EB122F1746918E347DC8DB /* LocationService.swift */,
+				FD32A1A520DCFDAC1EB25912 /* NotificationService.swift */,
 				E5CD2D5D8B90A901C7DB128B /* ProduceDataService.swift */,
 				F86F645F22F676E517E64A4C /* RecipeDataService.swift */,
 				89B2C032D8397B5B5AE9D382 /* SubscriptionService.swift */,
@@ -313,6 +318,7 @@
 				46E3B5C8BB89FDF2ACD1A0C3 /* KeychainStoreTests.swift */,
 				D62F59601C371945158E6F1C /* LocationServiceTests.swift */,
 				AB087E9C8CAD0BB1BA424AF1 /* ModelTests.swift */,
+				9AC5F5F74C8110A6CD304C8F /* NotificationServiceTests.swift */,
 				4A7F7CDB2BD9A3043DBC4215 /* RemoteModelsTests.swift */,
 				EA8E7C60B4CE3060ABFF65EF /* SeasonsTests.swift */,
 				08733E4A7CD4D4DCAEAB9802 /* ServiceTests.swift */,
@@ -468,6 +474,7 @@
 				136AC32513158E08696DC873 /* KeychainStore.swift in Sources */,
 				ABE5DB2AA7E91C21401E7A9A /* LocationService.swift in Sources */,
 				9CBF5CD5CDCCC6DA967F065D /* NavigationDestination.swift in Sources */,
+				3EF862A57EA1D1968C19D7A8 /* NotificationService.swift in Sources */,
 				52B1B114900685CACD6AE14E /* OnboardingView.swift in Sources */,
 				1483BCD2E8B4E6D27DF9F17F /* PaywallView.swift in Sources */,
 				6DF03A54366D79295E609025 /* PendingSyncDeletion.swift in Sources */,
@@ -503,6 +510,7 @@
 				39809872D5DDEACF2701B8CB /* KeychainStoreTests.swift in Sources */,
 				EAF7BB11F179A36B2FCA2E87 /* LocationServiceTests.swift in Sources */,
 				BFEB699FBA9C555A50ADC19D /* ModelTests.swift in Sources */,
+				B866FB5FDEE87BF8B8F56E2E /* NotificationServiceTests.swift in Sources */,
 				A183E3C83FA8D17F68ABE10F /* RemoteModelsTests.swift in Sources */,
 				7A47C86451707D1ACB5CB4F5 /* SeasonsTests.swift in Sources */,
 				E07BDCF27688B6A7F0EBE1B6 /* ServiceTests.swift in Sources */,

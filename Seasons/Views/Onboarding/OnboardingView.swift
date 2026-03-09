@@ -5,9 +5,8 @@ import os
 
 struct OnboardingView: View {
     let authService: AuthService
+    let locationService: LocationService
     let onComplete: () -> Void
-
-    @State private var locationService = LocationService()
     @State private var currentPage = 0
     @State private var errorMessage: String?
 

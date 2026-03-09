@@ -4,7 +4,7 @@ import SwiftData
 struct SeasonalListView: View {
     let authService: AuthService
 
-    @State private var locationService = LocationService()
+    @Environment(LocationService.self) private var locationService
     @State private var viewModel: SeasonalViewModel?
     @State private var showRegionPicker = false
     @State private var showAccountSheet = false
@@ -280,5 +280,6 @@ struct RegionPickerView: View {
     SeasonalListView(authService: AuthService())
         .environment(SyncCoordinator.preview)
         .environment(SubscriptionService())
+        .environment(LocationService())
         .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }

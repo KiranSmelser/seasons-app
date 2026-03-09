@@ -2,7 +2,7 @@ import SwiftUI
 import SwiftData
 
 struct RecipeListView: View {
-    @State private var locationService = LocationService()
+    @Environment(LocationService.self) private var locationService
     @State private var viewModel: RecipeViewModel?
 
     @Environment(\.modelContext) private var modelContext
@@ -151,5 +151,6 @@ struct RecipeRow: View {
     RecipeListView()
         .environment(SyncCoordinator.preview)
         .environment(SubscriptionService())
+        .environment(LocationService())
         .modelContainer(for: [CarbonLog.self, Favorite.self], inMemory: true)
 }
