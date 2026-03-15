@@ -140,4 +140,6 @@ private final class RecordingSyncClient: SyncClient, @unchecked Sendable {
         selectCallCount += 1
         return []
     }
+
+    func deleteAllRows(table: String, userId: String) async throws {}
 }

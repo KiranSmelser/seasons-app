@@ -53,6 +53,17 @@ private final class MockSyncClient: SyncClient, @unchecked Sendable {
         return []
     }
 
+    // deleteAllRows tracking
+    var deleteAllRowsCalls: [(table: String, userId: String)] = []
+    var deleteAllRowsShouldThrow = false
+
+    func deleteAllRows(table: String, userId: String) async throws {
+        deleteAllRowsCalls.append((table, userId))
+        if deleteAllRowsShouldThrow {
+            throw MockError.simulated
+        }
+    }
+
     func reset() {
         upsertCalls = []
         deleteCalls = []
@@ -62,6 +73,8 @@ private final class MockSyncClient: SyncClient, @unchecked Sendable {
         remoteFavorites = []
         remoteCarbonLogs = []
         selectShouldThrow = false
+        deleteAllRowsCalls = []
+        deleteAllRowsShouldThrow = false
     }
 
     var pushedFavorites: [(table: String, id: UUID, userId: String)] {
@@ -582,6 +595,33 @@ final class SyncServiceTests: XCTestCase {
         let differentUserId = UUID()
         let otherResult = await syncService.hasCompletedInitialSync(userId: differentUserId)
         XCTAssertFalse(otherResult, "Different userId should not be flagged as having completed initial sync")
+    }
+
+    // MARK: - Delete All User Data
+
+    func testDeleteAllUserData_deletesFromBothTables() async throws {
+        try await syncService.deleteAllUserData(userId: testUserId)
+
+        XCTAssertEqual(mockClient.deleteAllRowsCalls.count, 2)
+
+        let tables = mockClient.deleteAllRowsCalls.map(\.table)
+        XCTAssertTrue(tables.contains("favorites"), "Should delete from favorites table")
+        XCTAssertTrue(tables.contains("carbon_logs"), "Should delete from carbon_logs table")
+
+        for call in mockClient.deleteAllRowsCalls {
+            XCTAssertEqual(call.userId, testUserId.uuidString, "Should pass correct userId")
+        }
+    }
+
+    func testDeleteAllUserData_throwsOnFailure() async throws {
+        mockClient.deleteAllRowsShouldThrow = true
+
+        do {
+            try await syncService.deleteAllUserData(userId: testUserId)
+            XCTFail("Expected deleteAllUserData to throw")
+        } catch {
+            // expected — error should propagate
+        }
     }
 
     // MARK: - Concurrent Sync Guard

@@ -76,6 +76,13 @@ actor SyncService {
         KeychainStore.setBool(true, forKey: "\(initialSyncPrefix)\(userId.uuidString)")
     }
 
+    func deleteAllUserData(userId: UUID) async throws {
+        for table in [SyncTable.favorites, SyncTable.carbonLogs] {
+            try await client.deleteAllRows(table: table.rawValue, userId: userId.uuidString)
+        }
+        logger.info("Deleted all remote data for user \(userId, privacy: .private)")
+    }
+
     @discardableResult
     func performSync(userId: UUID) async -> SyncResult {
         guard !isSyncing else { return .success }

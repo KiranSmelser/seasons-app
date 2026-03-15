@@ -130,7 +130,7 @@ final class AuthService: NSObject {
         try await withCheckedThrowingContinuation { continuation in
             self.signInContinuation = continuation
             let request = ASAuthorizationAppleIDProvider().createRequest()
-            request.requestedScopes = [.email, .fullName]
+            request.requestedScopes = [.email]
             request.nonce = hashedNonce
             let controller = ASAuthorizationController(authorizationRequests: [request])
             controller.delegate = self

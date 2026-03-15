@@ -30,4 +30,11 @@ struct SupabaseSyncClient: SyncClient {
             .execute()
             .value
     }
+
+    func deleteAllRows(table: String, userId: String) async throws {
+        try await supabase.from(table)
+            .delete()
+            .eq("user_id", value: userId)
+            .execute()
+    }
 }

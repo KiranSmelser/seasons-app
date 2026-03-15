@@ -27,7 +27,7 @@ struct AccountSheetView: View {
             .toolbar {
                 ToolbarItem(placement: .topBarLeading) {
                     NavigationLink {
-                        SettingsView(locationService: locationService)
+                        SettingsView(authService: authService, locationService: locationService)
                     } label: {
                         Image(systemName: "gearshape")
                     }
@@ -203,6 +203,7 @@ struct AccountSheetView: View {
                 .background(Color(.systemGray6))
                 .clipShape(RoundedRectangle(cornerRadius: 10))
         }
+
     }
 
     /// Maps thrown errors to user-friendly strings, keeping internal details out of the UI.
