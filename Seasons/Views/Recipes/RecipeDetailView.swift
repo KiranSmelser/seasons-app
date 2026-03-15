@@ -9,14 +9,14 @@ struct RecipeDetailView: View {
     @Environment(SyncCoordinator.self) private var syncCoordinator
     @Environment(SubscriptionService.self) private var subscriptionService
 
-    @State private var isFavorited = false
-
-    private var viewModel: RecipeViewModel {
-        RecipeViewModel(locationService: locationService)
-    }
+    @State private var viewModel: RecipeViewModel?
 
     private var favoritesService: FavoritesService {
         FavoritesService(modelContext: modelContext)
+    }
+
+    private var isFavorited: Bool {
+        favoritesService.isFavorited(itemType: "recipe", itemId: recipe.id)
     }
 
     var body: some View {
@@ -34,7 +34,6 @@ struct RecipeDetailView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     favoritesService.toggleFavorite(itemType: "recipe", itemId: recipe.id)
-                    isFavorited.toggle()
                     if subscriptionService.isPro { syncCoordinator.notifyMutation() }
                 } label: {
                     Image(systemName: isFavorited ? "heart.fill" : "heart")
@@ -42,8 +41,10 @@ struct RecipeDetailView: View {
                 }
             }
         }
-        .onAppear {
-            isFavorited = favoritesService.isFavorited(itemType: "recipe", itemId: recipe.id)
+        .task {
+            if viewModel == nil {
+                viewModel = RecipeViewModel(locationService: locationService)
+            }
         }
     }
 
@@ -68,7 +69,7 @@ struct RecipeDetailView: View {
             }
             .foregroundStyle(.secondary)
 
-            if recipe.trackableProduceCount > 0 {
+            if recipe.trackableProduceCount > 0, let viewModel {
                 let matchCount = viewModel.seasonalMatchCount(for: recipe)
                 SeasonalBadge(matchCount: matchCount, totalCount: recipe.trackableProduceCount)
             }
@@ -82,7 +83,7 @@ struct RecipeDetailView: View {
                 .font(.headline)
 
             ForEach(recipe.ingredients) { ingredient in
-                let isInSeason = viewModel.isIngredientInSeason(ingredient)
+                let isInSeason = viewModel?.isIngredientInSeason(ingredient) ?? false
 
                 if let produceId = ingredient.produceId {
                     NavigationLink(value: ProduceDestination(produceId: produceId)) {

@@ -285,6 +285,7 @@ actor SyncService {
                     existing.isSynced = true
                 }
             } else {
+                guard !remote.isDeleted else { continue }  // Don't insert already-deleted records
                 let favorite = Favorite(itemType: remote.itemType, itemId: remote.itemId)
                 favorite.id = remote.id
                 favorite.dateAdded = remote.dateAdded
@@ -332,6 +333,7 @@ actor SyncService {
                     existing.isSynced = true
                 }
             } else {
+                guard !remote.isDeleted else { continue }  // Don't insert already-deleted records
                 let log = CarbonLog(
                     produceId: remote.produceId,
                     produceName: remote.produceName,

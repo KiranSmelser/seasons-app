@@ -82,11 +82,15 @@ struct RecipeListView: View {
         .navigationDestination(for: RecipeDestination.self) { destination in
             if let recipe = RecipeDataService.shared.recipe(byId: destination.recipeId) {
                 RecipeDetailView(recipe: recipe, locationService: locationService)
+            } else {
+                ContentUnavailableView("Recipe Not Found", systemImage: "questionmark.circle")
             }
         }
         .navigationDestination(for: ProduceDestination.self) { destination in
             if let item = ProduceDataService.shared.produce(byId: destination.produceId) {
                 ProduceDetailView(item: item, region: locationService.region)
+            } else {
+                ContentUnavailableView("Item Not Found", systemImage: "questionmark.circle")
             }
         }
     }

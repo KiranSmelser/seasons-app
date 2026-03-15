@@ -1,20 +1,27 @@
 import Foundation
+import os
 
 final class ProduceDataService {
     static let shared = ProduceDataService()
 
     private(set) var allProduce: [ProduceItem] = []
+    private let logger = Logger(subsystem: Bundle.main.bundleIdentifier ?? "com.kiransmelser.seasons", category: "ProduceDataService")
 
     private init() {
         loadProduce()
     }
 
     private func loadProduce() {
-        guard let url = Bundle.main.url(forResource: "seasonal_produce", withExtension: "json"),
-              let data = try? Data(contentsOf: url) else {
+        guard let url = Bundle.main.url(forResource: "seasonal_produce", withExtension: "json") else {
+            logger.error("seasonal_produce.json not found in bundle")
             return
         }
-        allProduce = (try? JSONDecoder().decode([ProduceItem].self, from: data)) ?? []
+        do {
+            let data = try Data(contentsOf: url)
+            allProduce = try JSONDecoder().decode([ProduceItem].self, from: data)
+        } catch {
+            logger.error("Failed to decode seasonal_produce.json: \(error.localizedDescription, privacy: .public)")
+        }
     }
 
     /// Returns produce items that are in season for the given region and month.

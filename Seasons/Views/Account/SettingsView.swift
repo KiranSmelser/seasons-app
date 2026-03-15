@@ -176,15 +176,4 @@ struct SettingsView: View {
         }
     }
 
-    private func friendlyMessage(for error: Error) -> String {
-        let desc = error.localizedDescription.lowercased()
-        if desc.contains("cancel") || desc.contains("dismiss") {
-            return "Operation was cancelled."
-        }
-        if desc.contains("network") || desc.contains("internet") ||
-           desc.contains("offline") || desc.contains("connection") {
-            return "No internet connection. Please check your network and try again."
-        }
-        return "Something went wrong. Please try again."
-    }
 }

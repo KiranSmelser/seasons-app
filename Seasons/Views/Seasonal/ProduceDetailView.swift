@@ -23,7 +23,9 @@ struct ProduceDetailView: View {
         FavoritesService(modelContext: modelContext)
     }
 
-    @State private var isFavorited = false
+    private var isFavorited: Bool {
+        favoritesService.isFavorited(itemType: "produce", itemId: item.id)
+    }
 
     var body: some View {
         ScrollView {
@@ -44,7 +46,6 @@ struct ProduceDetailView: View {
             ToolbarItem(placement: .topBarTrailing) {
                 Button {
                     favoritesService.toggleFavorite(itemType: "produce", itemId: item.id)
-                    isFavorited.toggle()
                     if subscriptionService.isPro {
                         syncCoordinator.notifyMutation()
                     }
@@ -53,9 +54,6 @@ struct ProduceDetailView: View {
                         .foregroundStyle(isFavorited ? .red : .secondary)
                 }
             }
-        }
-        .onAppear {
-            isFavorited = favoritesService.isFavorited(itemType: "produce", itemId: item.id)
         }
     }
 

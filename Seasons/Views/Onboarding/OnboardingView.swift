@@ -576,19 +576,4 @@ private struct OnboardingSignInPage: View {
         .padding()
     }
 
-    private func friendlyMessage(for error: Error) -> String {
-        let desc = error.localizedDescription.lowercased()
-        if desc.contains("cancel") || desc.contains("dismiss") {
-            return "Sign-in was cancelled."
-        }
-        if desc.contains("network") || desc.contains("internet") ||
-           desc.contains("offline") || desc.contains("connection") {
-            return "No internet connection. Please check your network and try again."
-        }
-        if desc.contains("invalid") || desc.contains("unauthorized") ||
-           desc.contains("credential") || desc.contains("token") {
-            return "Sign-in failed. Please try again."
-        }
-        return "Something went wrong. Please try again."
-    }
 }
