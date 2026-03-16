@@ -41,6 +41,22 @@ final class ModelTests: XCTestCase {
         }
     }
 
+    func testFromCoordinateReturnsNortheastForOutOfBounds() {
+        // London — outside all US bounding boxes, falls through to .northeast default
+        let coord = CLLocationCoordinate2D(latitude: 51.5, longitude: -0.12)
+        XCTAssertEqual(GrowingRegion.from(coordinate: coord), .northeast)
+    }
+
+    func testFromCoordinateEdgeOfRegion() {
+        // Just inside California's southern boundary (lat >= 32.5)
+        let insideCali = CLLocationCoordinate2D(latitude: 32.5, longitude: -118.0)
+        XCTAssertEqual(GrowingRegion.from(coordinate: insideCali), .california)
+
+        // Just below California's southern boundary (lat < 32.5) — falls to southwest
+        let belowCali = CLLocationCoordinate2D(latitude: 32.49, longitude: -118.0)
+        XCTAssertEqual(GrowingRegion.from(coordinate: belowCali), .southwest)
+    }
+
     // MARK: - ProduceItem Tests
 
     func testSeasonalMonthsReturnsCorrectArray() {

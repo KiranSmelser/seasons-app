@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0588AE9771065618881C0E93 /* GoogleSignIn in Frameworks */ = {isa = PBXBuildFile; productRef = 857FB15776A245EB9A38269B /* GoogleSignIn */; };
+		0D124712C9537E96454D8192 /* ErrorFormattingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = B1D35AF965B301FD8461DDA3 /* ErrorFormattingTests.swift */; };
 		136AC32513158E08696DC873 /* KeychainStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71D2CD03C505852232A3F2D4 /* KeychainStore.swift */; };
 		1483BCD2E8B4E6D27DF9F17F /* PaywallView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12A32AE02BDB60B6989FF642 /* PaywallView.swift */; };
 		20FE893E0EFCA13B883DF841 /* AccountSheetView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B487483A751244459C7E9FEB /* AccountSheetView.swift */; };
@@ -127,6 +128,7 @@
 		AB627591CF760800E4C36C8C /* SeasonalViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SeasonalViewModel.swift; sourceTree = "<group>"; };
 		AEB628DF02FE5E0CE1D013D8 /* RecipeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RecipeViewModel.swift; sourceTree = "<group>"; };
 		AEEC1DF9C67B33B7326B5A12 /* DataIntegrityTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataIntegrityTests.swift; sourceTree = "<group>"; };
+		B1D35AF965B301FD8461DDA3 /* ErrorFormattingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorFormattingTests.swift; sourceTree = "<group>"; };
 		B487483A751244459C7E9FEB /* AccountSheetView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSheetView.swift; sourceTree = "<group>"; };
 		BDF7BED1E6B94D5B666CE1D9 /* SubscriptionServiceTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SubscriptionServiceTests.swift; sourceTree = "<group>"; };
 		BEA7C4743FB995BD994F76CD /* OnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingView.swift; sourceTree = "<group>"; };
@@ -329,6 +331,7 @@
 			children = (
 				3AFBF1CCE5AABF0FE33BB49F /* AuthServiceTests.swift */,
 				AEEC1DF9C67B33B7326B5A12 /* DataIntegrityTests.swift */,
+				B1D35AF965B301FD8461DDA3 /* ErrorFormattingTests.swift */,
 				46E3B5C8BB89FDF2ACD1A0C3 /* KeychainStoreTests.swift */,
 				D62F59601C371945158E6F1C /* LocationServiceTests.swift */,
 				AB087E9C8CAD0BB1BA424AF1 /* ModelTests.swift */,
@@ -523,6 +526,7 @@
 			files = (
 				AAC50506F5682CA6184FB15E /* AuthServiceTests.swift in Sources */,
 				F2AE5B63C3AAF24F39CD98B4 /* DataIntegrityTests.swift in Sources */,
+				0D124712C9537E96454D8192 /* ErrorFormattingTests.swift in Sources */,
 				39809872D5DDEACF2701B8CB /* KeychainStoreTests.swift in Sources */,
 				EAF7BB11F179A36B2FCA2E87 /* LocationServiceTests.swift in Sources */,
 				BFEB699FBA9C555A50ADC19D /* ModelTests.swift in Sources */,

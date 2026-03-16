@@ -182,6 +182,19 @@ final class ViewModelTests: XCTestCase {
         XCTAssertEqual(filtered.first?.produceId, "tomato")
     }
 
+    func testFilteredLogsMonthExcludesOld() {
+        let vm = CarbonViewModel()
+        vm.selectedTimePeriod = .month
+
+        let recentLog = CarbonLog(produceId: "tomato", produceName: "Tomato", quantityKg: 1.0, carbonSavedKg: 0.5)
+        let oldLog = CarbonLog(produceId: "kale", produceName: "Kale", quantityKg: 0.5, carbonSavedKg: 0.3)
+        oldLog.date = Calendar.current.date(byAdding: .day, value: -40, to: Date())!
+
+        let filtered = vm.filteredLogs(from: [recentLog, oldLog])
+        XCTAssertEqual(filtered.count, 1)
+        XCTAssertEqual(filtered.first?.produceId, "tomato")
+    }
+
     func testTotalCarbonSavedSumsCorrectly() {
         let vm = CarbonViewModel()
         let logs = [

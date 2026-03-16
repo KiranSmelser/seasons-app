@@ -145,6 +145,46 @@ final class ServiceTests: XCTestCase {
         XCTAssertFalse(service.isFavorited(itemType: "produce", itemId: "tomato"))
     }
 
+    // MARK: - FavoritesService Edge Cases
+
+    func testToggleFavoriteUpdatesTimestamp() throws {
+        let context = try makeTestModelContext()
+        let service = FavoritesService(modelContext: context)
+
+        service.toggleFavorite(itemType: "produce", itemId: "tomato")
+        let all = try context.fetch(FetchDescriptor<Favorite>())
+        let firstUpdatedAt = all.first!.updatedAt
+
+        // Small delay to ensure timestamp differs
+        Thread.sleep(forTimeInterval: 0.01)
+
+        service.toggleFavorite(itemType: "produce", itemId: "tomato")
+        let afterToggle = try context.fetch(FetchDescriptor<Favorite>())
+        XCTAssertGreaterThanOrEqual(afterToggle.first!.updatedAt, firstUpdatedAt,
+            "updatedAt should advance after toggling off")
+    }
+
+    func testFavoritedIdsReturnsEmptyForUnknownType() throws {
+        let context = try makeTestModelContext()
+        let service = FavoritesService(modelContext: context)
+
+        service.toggleFavorite(itemType: "produce", itemId: "tomato")
+        let unknownIds = service.favoritedIds(for: "unknown")
+        XCTAssertTrue(unknownIds.isEmpty, "Should return empty set for unknown item type")
+    }
+
+    func testIsFavoritedReturnsFalseForSoftDeleted() throws {
+        let context = try makeTestModelContext()
+        let fav = Favorite(itemType: "produce", itemId: "tomato")
+        fav.isSoftDeleted = true
+        context.insert(fav)
+        try context.save()
+
+        let service = FavoritesService(modelContext: context)
+        XCTAssertFalse(service.isFavorited(itemType: "produce", itemId: "tomato"),
+            "isFavorited should return false for soft-deleted favorites")
+    }
+
     // MARK: - CarbonLog Persistence Test
 
     func testCarbonLogPersistence() throws {

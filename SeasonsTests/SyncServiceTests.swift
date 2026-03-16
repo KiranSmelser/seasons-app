@@ -626,6 +626,155 @@ final class SyncServiceTests: XCTestCase {
 
     // MARK: - Concurrent Sync Guard
 
+    // MARK: - Soft-Delete Skip Guards (Insert Path)
+
+    func testPullFavorite_skipsInsertWhenRemoteIsDeleted() async throws {
+        mockClient.remoteFavorites = [
+            RemoteFavorite(
+                id: UUID(),
+                userId: testUserId,
+                itemType: "produce",
+                itemId: "tomato",
+                dateAdded: Date(),
+                updatedAt: Date(),
+                isDeleted: true
+            )
+        ]
+
+        await syncService.performSync(userId: testUserId)
+
+        let context = makeContext()
+        let fetched = try context.fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(fetched.count, 0, "Should not insert a favorite that is already deleted remotely")
+    }
+
+    func testPullCarbonLog_skipsInsertWhenRemoteIsDeleted() async throws {
+        mockClient.remoteCarbonLogs = [
+            RemoteCarbonLog(
+                id: UUID(),
+                userId: testUserId,
+                date: Date(),
+                produceId: "tomato",
+                produceName: "Tomato",
+                quantityKg: 1.0,
+                carbonSavedKg: 0.5,
+                updatedAt: Date(),
+                isDeleted: true
+            )
+        ]
+
+        await syncService.performSync(userId: testUserId)
+
+        let context = makeContext()
+        let fetched = try context.fetch(FetchDescriptor<CarbonLog>())
+        XCTAssertEqual(fetched.count, 0, "Should not insert a carbon log that is already deleted remotely")
+    }
+
+    // MARK: - Table Whitelist Enforcement
+
+    func testPushDeletions_rejectsInvalidTableName() async throws {
+        let context = makeContext()
+        let deletion = PendingSyncDeletion(tableName: "users", recordId: UUID())
+        context.insert(deletion)
+        try context.save()
+
+        await syncService.performSync(userId: testUserId)
+
+        XCTAssertEqual(mockClient.deleteCalls.count, 0, "Should not call delete for an invalid table name")
+
+        let freshContext = makeContext()
+        let remaining = try freshContext.fetch(FetchDescriptor<PendingSyncDeletion>())
+        XCTAssertEqual(remaining.count, 0, "Invalid deletion record should still be removed from local store")
+    }
+
+    // MARK: - Pull Validation Rules
+
+    func testPullFavorite_skipsInvalidItemType() async throws {
+        mockClient.remoteFavorites = [
+            RemoteFavorite(
+                id: UUID(),
+                userId: testUserId,
+                itemType: "invalid",
+                itemId: "tomato",
+                dateAdded: Date(),
+                updatedAt: Date(),
+                isDeleted: false
+            )
+        ]
+
+        await syncService.performSync(userId: testUserId)
+
+        let context = makeContext()
+        let fetched = try context.fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(fetched.count, 0, "Should skip favorite with invalid itemType")
+    }
+
+    func testPullFavorite_skipsEmptyItemId() async throws {
+        mockClient.remoteFavorites = [
+            RemoteFavorite(
+                id: UUID(),
+                userId: testUserId,
+                itemType: "produce",
+                itemId: "",
+                dateAdded: Date(),
+                updatedAt: Date(),
+                isDeleted: false
+            )
+        ]
+
+        await syncService.performSync(userId: testUserId)
+
+        let context = makeContext()
+        let fetched = try context.fetch(FetchDescriptor<Favorite>())
+        XCTAssertEqual(fetched.count, 0, "Should skip favorite with empty itemId")
+    }
+
+    func testPullCarbonLog_skipsOutOfRangeQuantity() async throws {
+        mockClient.remoteCarbonLogs = [
+            RemoteCarbonLog(
+                id: UUID(),
+                userId: testUserId,
+                date: Date(),
+                produceId: "tomato",
+                produceName: "Tomato",
+                quantityKg: -1.0,
+                carbonSavedKg: 0.5,
+                updatedAt: Date(),
+                isDeleted: false
+            )
+        ]
+
+        await syncService.performSync(userId: testUserId)
+
+        let context = makeContext()
+        let fetched = try context.fetch(FetchDescriptor<CarbonLog>())
+        XCTAssertEqual(fetched.count, 0, "Should skip carbon log with negative quantityKg")
+    }
+
+    func testPullCarbonLog_skipsNonFiniteCarbon() async throws {
+        mockClient.remoteCarbonLogs = [
+            RemoteCarbonLog(
+                id: UUID(),
+                userId: testUserId,
+                date: Date(),
+                produceId: "tomato",
+                produceName: "Tomato",
+                quantityKg: 1.0,
+                carbonSavedKg: .infinity,
+                updatedAt: Date(),
+                isDeleted: false
+            )
+        ]
+
+        await syncService.performSync(userId: testUserId)
+
+        let context = makeContext()
+        let fetched = try context.fetch(FetchDescriptor<CarbonLog>())
+        XCTAssertEqual(fetched.count, 0, "Should skip carbon log with non-finite carbonSavedKg")
+    }
+
+    // MARK: - Concurrent Sync Guard
+
     func testConcurrentSyncCalls_secondIsSkipped() async throws {
         // We can't easily test true concurrency with an actor, but we can verify
         // that two sequential calls both succeed (the guard resets via defer).
